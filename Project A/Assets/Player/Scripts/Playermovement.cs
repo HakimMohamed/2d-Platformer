@@ -7,11 +7,20 @@ public class Playermovement : MonoBehaviour
     [Header("Components")]
     private Rigidbody2D rb;
     private Animator anim;
+    [SerializeField] TrailRenderer tr;
 
     [Header("Horizontal Movement")]
     public float MoveSpeed = 10f;
     private Vector2 direciton;
     private bool FacingRight = true;
+
+    [Header("Dash")]
+    private bool canDash = true;
+    private bool isDashing;
+    private float dashinPower=24f;
+    private float dashingTime = 0.2f;
+    private float dashingCooldown =0.5f;
+
 
     [Header("Vertical Movement")]
     public float JumpForce = 10f;
@@ -35,6 +44,9 @@ public class Playermovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (isDashing)
+            return;
+
         IsGrounded = Physics2D.OverlapCircle(GroundChecker.position, GroundChecker_Radius, LayerMask.GetMask(GroundLayer));
         anim.SetBool("IsGrounded", IsGrounded);
         float Yvelocity = rb.velocity.y;
@@ -65,9 +77,16 @@ public class Playermovement : MonoBehaviour
         }
         if (Input.GetKeyUp(KeyCode.Space))
             IsJumping = false;
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+        {
+            StartCoroutine(Dash());
+        }
     }
     private void FixedUpdate()
     {
+        if (isDashing)
+            return;
         MoveCharacter(direciton.x);
         
         
@@ -101,7 +120,23 @@ public class Playermovement : MonoBehaviour
         transform.localScale = scaler;
     }
 
+    private IEnumerator Dash()
+    {
+        canDash = false;
+        isDashing = true;
+        float originalGravity = rb.gravityScale;
+        rb.gravityScale = 0f;
+        rb.velocity = new Vector2(transform.localScale.x * dashinPower, 0f);
+        tr.emitting = true;
 
+        yield return new WaitForSeconds(dashingTime);
+        tr.emitting = false;
+        rb.gravityScale = originalGravity;
+        isDashing = false;
+
+        yield return new WaitForSeconds(dashingCooldown);
+        canDash = true;
+    }
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(GroundChecker.position, GroundChecker_Radius);
