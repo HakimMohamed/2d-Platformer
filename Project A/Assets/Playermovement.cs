@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class Playermovement : MonoBehaviour
 {
-
+    [Header("Horizontal Movement")]
     private Rigidbody2D rb;
     private Animator anim;
-    private float movement;
-    [SerializeField] private float Speed = 20f;
 
-    private bool IsFacingRight = true;
+    [Header("Horizontal Movement")]
+    public float MoveSpeed = 10f;
+    public Vector2 direciton;
+    private bool FacingRight = true;
+
+    
+
+
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -20,28 +26,36 @@ public class Playermovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        movement = Input.GetAxisRaw("Horizontal");
-        anim.SetFloat("Speed", Mathf.Abs(movement));
+        direciton = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxis("Vertical"));
+    }
+    private void FixedUpdate()
+    {
+        MoveCharacter(direciton.x);
+    }
 
 
-        if (movement > 0 && IsFacingRight==false)
+    void MoveCharacter(float horizontal)
+    {
+        rb.velocity = new Vector2(horizontal, rb.velocity.y);
+
+        anim.SetFloat("Speed", Mathf.Abs(rb.velocity.x));
+
+        if (horizontal > 0 && !FacingRight || (horizontal < 0 && FacingRight))
+        {
             Flip();
-        else if(movement<0&&IsFacingRight==true)
-            Flip();
+        }
+
 
     }
 
     void Flip()
     {
-        IsFacingRight = !IsFacingRight;
-        Vector3 Scaler = transform.localScale;
-        Scaler.x *= -1;
-        transform.localScale = Scaler;
+        FacingRight = !FacingRight;
+        Vector3 scaler = transform.localScale;
+        scaler.x *= -1;
+        transform.localScale = scaler;
     }
 
-    private void FixedUpdate()
-    {
-        rb.velocity = Speed * Time.fixedDeltaTime * new Vector3(movement, 0, 0);
 
-    }
+
 }
