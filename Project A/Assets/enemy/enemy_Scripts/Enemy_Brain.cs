@@ -30,40 +30,40 @@ public class Enemy_Brain : MonoBehaviour
         }
 
     }
-    bool canseePlayer(float distance)
-    {
-        bool val = false;
-        float castDist = distance;
-        if (isFacingLeft)
-        {
-            castDist = -distance;
-        }
-        Vector2 endPos = castpoint.position + Vector3.right * castDist;
-        RaycastHit2D hit = Physics2D.Linecast(castpoint.position, endPos, 1 << LayerMask.NameToLayer("Action"));
-        if (hit.collider != null)
-        {
-            if (hit.collider.gameObject.CompareTag("player"))
-            {
-                val = true;
-            }
-            else
-            {
-                val = false;
-            }
+    //bool canseePlayer(float distance)
+    //{
+    //    bool val = false;
+    //    float castDist = distance;
+    //    if (isFacingLeft)
+    //    {
+    //        castDist = -distance;
+    //    }
+    //    Vector2 endPos = castpoint.position + Vector3.right * castDist;
+    //    RaycastHit2D hit = Physics2D.Linecast(castpoint.position, endPos, 1 << LayerMask.NameToLayer("Action"));
+    //    if (hit.collider != null)
+    //    {
+    //        if (hit.collider.gameObject.CompareTag("player"))
+    //        {
+    //            val = true;
+    //        }
+    //        else
+    //        {
+    //            val = false;
+    //        }
 
 
 
 
 
 
-        else
-            {
-                Debug.DrawLine(castpoint.position, endPos, Color.blue);
-            }
+    //    else
+    //        {
+    //            Debug.DrawLine(castpoint.position, endPos, Color.blue);
+    //        }
            
-        }
-        return val;
-    } 
+    //    }
+    //    return val;
+    //} 
     void chasePlayer()
     {
         if(transform.position.x < castpoint.position.x)
