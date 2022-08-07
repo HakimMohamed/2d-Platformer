@@ -39,10 +39,10 @@ public class Enemy_Brain : MonoBehaviour
             castdist = -distance;
         }
         Vector2 endpos = castpoint.position + Vector3.right * castdist;
-        RaycastHit2D hit = Physics2D.Linecast(castpoint.position, endpos, 1 << LayerMask.NameToLayer("action"));
+        RaycastHit2D hit = Physics2D.Linecast(castpoint.position, endpos, 1 << LayerMask.NameToLayer("Action"));
         if (hit.collider != null)
         {
-            if (hit.collider.gameObject.CompareTag("player"))
+            if (hit.collider.gameObject.CompareTag("Player"))
             {
                 val = true;
             }
