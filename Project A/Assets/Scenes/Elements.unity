@@ -910,7 +910,7 @@ GameObject:
   - component: {fileID: 1445466746}
   - component: {fileID: 1445466745}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: Powers_panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
