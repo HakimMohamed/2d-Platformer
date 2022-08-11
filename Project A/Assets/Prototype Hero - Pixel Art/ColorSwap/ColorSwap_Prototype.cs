@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System;
-[ExecuteAlways]
+
 public class ColorSwap_Prototype : MonoBehaviour
 {
     // Accessable in Editor
@@ -71,7 +71,7 @@ public class ColorSwap_Prototype : MonoBehaviour
 
         colorSwapTex.Apply();
 
-        m_spriteRenderer.sharedMaterial.SetTexture("_SwapTex", colorSwapTex);
+        m_spriteRenderer.material.SetTexture("_SwapTex", colorSwapTex);
 
         m_spriteColors = new Color[colorSwapTex.width];
         m_colorSwapTex = colorSwapTex;
