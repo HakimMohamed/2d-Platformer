@@ -9,20 +9,29 @@ public class MeeleEnemy : MonoBehaviour
     public float Health;
     public float MaxHealth;
 
+
+
     [Header("Components")]
     private Animator anim;
-    private Image HealthBar;
+    [SerializeField] private Image HealthBar;
+    [SerializeField] private Image HealthBar_Stroke;
     private SpriteRenderer sp;
+
+
+
+
     [Header("States")]
     private bool IsDead = false;
+    private ParticleSystem Blood;
 
 
     private void Start()
     {
         Health = MaxHealth;
         anim = GetComponent<Animator>();
-        HealthBar = GetComponentInChildren<Image>();
         sp = GetComponent<SpriteRenderer>();
+        Blood = GetComponentInChildren<ParticleSystem>();
+        
     }
 
     private void Update()
@@ -32,14 +41,6 @@ public class MeeleEnemy : MonoBehaviour
             EnemyDissolve();
     }
    
-    private void EnemyDissolve()
-    {
-        Vector4 RGBA = sp.color;
-        RGBA -= new Vector4(0, 0, 0, Time.deltaTime);
-        transform.GetComponent<SpriteRenderer>().color = RGBA;
-        if (RGBA.w <= 0)
-            Destroy(gameObject);
-    }
     public void EnemyReceiveDamage(float Damage)
     {
         if (IsDead)
@@ -49,7 +50,7 @@ public class MeeleEnemy : MonoBehaviour
 
         Health -= Damage;
         HealthBar.fillAmount = Health / MaxHealth;
-
+        Blood.Play();
         if (Health <= 0)
         {
             //Dead
@@ -59,8 +60,19 @@ public class MeeleEnemy : MonoBehaviour
         }
 
         anim.SetTrigger("Hit");
-
+        
         OnEnemyDamaged?.Invoke(this, EventArgs.Empty);
 
     }
+
+    private void EnemyDissolve()
+    {
+        HealthBar_Stroke.enabled = false;
+        Vector4 RGBA = sp.color;
+        RGBA -= new Vector4(0, 0, 0, Time.deltaTime);
+        transform.GetComponent<SpriteRenderer>().color = RGBA;
+        if (RGBA.w <= 0)
+            Destroy(gameObject);
+    }
+
 }
