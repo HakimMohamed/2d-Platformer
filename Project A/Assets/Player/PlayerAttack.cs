@@ -16,19 +16,13 @@ public class PlayerAttack : MonoBehaviour
 
     }
 
-    
-
-    
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            Attack();
-        }
+       
     }
 
-    private void Attack()
+    public void Attack()
     {
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(AttackPoint.position, AttackRadius, EnemyLayer);
 

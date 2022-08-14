@@ -104,9 +104,8 @@ GameObject:
   - component: {fileID: 60039466542813688}
   - component: {fileID: 4332411962248053696}
   - component: {fileID: 4504440814746105827}
-  - component: {fileID: 1146996520}
   m_Layer: 8
-  m_Name: Red
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -202,19 +201,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.5, y: 1.28125}
   m_EdgeRadius: 0
---- !u!114 &1146996520
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1713104161521056501}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 30fa6c71634e3514d9cd46ed7fdec82c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AttackPoint: {fileID: 1331308740}
 --- !u!1 &1841607674839993963
 GameObject:
   m_ObjectHideFlags: 0
