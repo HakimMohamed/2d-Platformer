@@ -1966,6 +1966,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 60039466542813688, guid: 2abfc59723d9cee44bce3fe32b9a09a5, type: 3}
+      propertyPath: JumpTime
+      value: 0.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 60039466542813688, guid: 2abfc59723d9cee44bce3fe32b9a09a5, type: 3}
+      propertyPath: m_maxSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 60039466542813688, guid: 2abfc59723d9cee44bce3fe32b9a09a5, type: 3}
+      propertyPath: m_runSpeed
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 60039466542813688, guid: 2abfc59723d9cee44bce3fe32b9a09a5, type: 3}
+      propertyPath: m_jumpForce
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 1713104161521056501, guid: 2abfc59723d9cee44bce3fe32b9a09a5, type: 3}
       propertyPath: m_Name
       value: Player
@@ -2025,6 +2041,10 @@ PrefabInstance:
     - target: {fileID: 3802914023834367650, guid: 2abfc59723d9cee44bce3fe32b9a09a5, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4332411962248053696, guid: 2abfc59723d9cee44bce3fe32b9a09a5, type: 3}
+      propertyPath: m_GravityScale
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4915381801386375163, guid: 2abfc59723d9cee44bce3fe32b9a09a5, type: 3}
       propertyPath: m_LocalPosition.y

@@ -39,6 +39,9 @@ public class PrototypeHero : MonoBehaviour {
     public float                m_maxSpeed = 4.5f;
 
     // Use this for initialization
+
+
+   
     void Start ()
     {
         m_animator = GetComponentInChildren<Animator>();
@@ -330,7 +333,7 @@ public class PrototypeHero : MonoBehaviour {
         else if (Input.GetButtonDown("Jump") && (m_grounded || m_wallSlide) && !m_dodging && !m_ledgeGrab && !m_ledgeClimb && !m_crouching && m_disableMovementTimer < 0.0f)
         {
             // Check if it's a normal jump or a wall jump
-            if(!m_wallSlide)
+            if (!m_wallSlide)
                 m_body2d.velocity = new Vector2(m_body2d.velocity.x, m_jumpForce);
             else
             {
@@ -344,6 +347,7 @@ public class PrototypeHero : MonoBehaviour {
             m_animator.SetBool("Grounded", m_grounded);
             m_groundSensor.Disable(0.2f);
         }
+
 
         //Crouch / Stand up
         else if (Input.GetKeyDown("s") && m_grounded && !m_dodging && !m_ledgeGrab && !m_ledgeClimb && m_parryTimer < 0.0f)
@@ -439,5 +443,9 @@ public class PrototypeHero : MonoBehaviour {
         transform.position = Vector3.zero;
         m_dead = false;
         m_animator.Rebind();
+    }
+    void Jump()
+    {
+        m_body2d.velocity = new Vector2(-m_facingDirection * m_jumpForce / 2.0f, m_jumpForce);
     }
 }
