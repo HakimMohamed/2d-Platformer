@@ -7,7 +7,7 @@ public class PlayerAttack : MonoBehaviour
 {
     [Header("Attack")]
     private float AttackDamage = 40f;
-    private float AttackRadius = 0.5f;
+    [SerializeField]private float AttackRadius = 0.5f;
     [SerializeField] Transform AttackPoint;
     private LayerMask EnemyLayer;
     void Start()

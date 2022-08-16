@@ -11,7 +11,8 @@ public class MeeleEnemy : MonoBehaviour
     [HideInInspector]public float Health;
     [SerializeField] float MaxHealth;
     [SerializeField] Vector2 FollowRange;
-    private float GroundRadius = 0.5f;
+    [SerializeField] float Speed;
+    [SerializeField]private float GroundRadius = 0.5f;
 
 
     [Header("UI Components")]
@@ -19,60 +20,54 @@ public class MeeleEnemy : MonoBehaviour
     [SerializeField] private Image HealthBar_Stroke;
 
     [Header("Components")]
-    [SerializeField] private LayerMask TargetLayer;
+    [SerializeField]private LayerMask TargetLayer;
     [SerializeField] private LayerMask GroundLayer;
+    [SerializeField] private Transform GroundTransform;
     private Rigidbody2D rb;
     private Animator anim;
-    private ParticleSystem Blood_particle;
-    private ParticleSystem Death_particle;
     private SpriteRenderer sp;
     private Transform Target;
 
     [Header("States")]
     private bool IsDead = false;
-    private bool IsTargetInRange = false;
-    private bool IsGrounded = false;
+    private bool IsTargetInRange;
+    private bool IsGrounded;
 
-    private void Start()
+    public int Angle;
+    private void Awake()
     {
         //Refrence
-        Blood_particle = GameObject.Find("Blood_particle").GetComponent<ParticleSystem>();
-        Death_particle = GameObject.Find("Death_particle").GetComponent<ParticleSystem>();
+
         anim = GetComponent<Animator>();
         sp = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
-        TargetLayer = LayerMask.GetMask("Player");
-        GroundLayer = LayerMask.GetMask("Ground");
         Target = GameObject.Find("Player").transform;
+
 
         //Set Values
         Health = MaxHealth;
-        FollowRange = new Vector3(1,1);
+        IsTargetInRange = false;
     }
 
     private void Update()
     {
+
         if (IsDead)
         {
             EnemyDissolve();
             return;
         }
 
-        IsGrounded = Physics2D.OverlapCircle(transform.position, GroundRadius, GroundLayer);
+        IsGrounded = Physics2D.OverlapCircle(GroundTransform.position, GroundRadius, GroundLayer);
 
         
-        if (IsTargetInRange)
-        {
-            FollowPlayer();
-        }
+
+        
+
     }
    
     //Follow the player
-    private void FollowPlayer()
-    {
-
-        
-    }
+    
 
 
     public void EnemyReceiveDamage(float Damage)
@@ -88,12 +83,11 @@ public class MeeleEnemy : MonoBehaviour
             IsDead = true;
             anim.SetBool("IsDead", IsDead);
             anim.SetTrigger("Death");
-            Death_particle.Play();
             return;
         }
 
         anim.SetTrigger("Hit");
-        Blood_particle.Play();
+
         OnEnemyDamaged?.Invoke(this, EventArgs.Empty);
 
     }
@@ -110,6 +104,8 @@ public class MeeleEnemy : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        
+        Gizmos.DrawWireSphere(GroundTransform.position, GroundRadius);
+        Gizmos.DrawWireCube(transform.position, FollowRange*2f);
+
     }
 }

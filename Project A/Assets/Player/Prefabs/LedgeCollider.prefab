@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8602598713668007755}
   - component: {fileID: 8602598713668007752}
   - component: {fileID: 4402921533905086911}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: LedgeCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}

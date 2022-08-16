@@ -17,7 +17,7 @@ TagManager:
   - Player
   - Sensor
   - Enemy
-  - 
+  - post
   - 
   - 
   - 
@@ -44,4 +44,7 @@ TagManager:
     locked: 0
   - name: Foreground
     uniqueID: 2946842017
+    locked: 0
+  - name: New Layer 2
+    uniqueID: 394376759
     locked: 0
