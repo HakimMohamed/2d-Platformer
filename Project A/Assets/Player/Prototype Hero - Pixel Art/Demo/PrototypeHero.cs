@@ -93,7 +93,7 @@ public class PrototypeHero : MonoBehaviour {
         float inputX = 0.0f;
 
         if (m_disableMovementTimer < 0.0f)
-            inputX = Input.GetAxis("Horizontal");
+            inputX = Input.GetAxisRaw("Horizontal");
 
         // GetAxisRaw returns either -1, 0 or 1
         float inputRaw = Input.GetAxisRaw("Horizontal");
@@ -107,13 +107,17 @@ public class PrototypeHero : MonoBehaviour {
         // Swap direction of sprite depending on move direction
         if (inputRaw > 0 && !m_dodging && !m_wallSlide && !m_ledgeGrab && !m_ledgeClimb)
         {
-            m_SR.flipX = false;
+            Vector3 scale = transform.localScale;
+            scale.x = 1;
+            transform.localScale = scale;
             m_facingDirection = 1;
         }
             
         else if (inputRaw < 0 && !m_dodging && !m_wallSlide && !m_ledgeGrab && !m_ledgeClimb)
         {
-            m_SR.flipX = true;
+            Vector3 scale = transform.localScale;
+            scale.x = -1;
+            transform.localScale = scale;
             m_facingDirection = -1;
         }
      
