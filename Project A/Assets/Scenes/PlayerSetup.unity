@@ -518,7 +518,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 4095
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -674,7 +674,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0
+  m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 0000000037b68117
@@ -749,7 +749,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &619394803
 MonoBehaviour:
@@ -927,7 +927,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &735810483
 BoxCollider2D:
@@ -938,7 +938,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 735810480}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 3d1a966473fc343448c2149f6ebae904, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -1159,7 +1159,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1376480352 stripped
 GameObject:
@@ -1457,7 +1457,7 @@ Transform:
   - {fileID: 893465390}
   - {fileID: 146117282}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1511926925 stripped
 Transform:
@@ -1523,7 +1523,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1662538494
 GameObject:
@@ -1761,14 +1761,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1909046090}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 26.01, y: 6.89, z: 0}
+  m_LocalPosition: {x: 31.04, y: 4.88, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1662538495}
   - {fileID: 1827219631}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1909046094
 MonoBehaviour:
@@ -1980,7 +1980,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 60039466542813688, guid: 2abfc59723d9cee44bce3fe32b9a09a5, type: 3}
       propertyPath: m_jumpForce
-      value: 4
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 60039466542813688, guid: 2abfc59723d9cee44bce3fe32b9a09a5, type: 3}
+      propertyPath: _fallMultiplier
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1713104161521056501, guid: 2abfc59723d9cee44bce3fe32b9a09a5, type: 3}
       propertyPath: m_Name
@@ -2044,7 +2048,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4332411962248053696, guid: 2abfc59723d9cee44bce3fe32b9a09a5, type: 3}
       propertyPath: m_GravityScale
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4915381801386375163, guid: 2abfc59723d9cee44bce3fe32b9a09a5, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2113,6 +2117,14 @@ PrefabInstance:
     - target: {fileID: 5727845880785123324, guid: 2abfc59723d9cee44bce3fe32b9a09a5, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7677626488761663246, guid: 2abfc59723d9cee44bce3fe32b9a09a5, type: 3}
+      propertyPath: m_Size.y
+      value: 0.15347318
+      objectReference: {fileID: 0}
+    - target: {fileID: 7677626488761663246, guid: 2abfc59723d9cee44bce3fe32b9a09a5, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.026736595
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2abfc59723d9cee44bce3fe32b9a09a5, type: 3}

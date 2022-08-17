@@ -40,8 +40,10 @@ public class PrototypeHero : MonoBehaviour {
 
     // Use this for initialization
 
+    [SerializeField] private float _jumpVelocityFalloff = 8;
+    [SerializeField] private float _fallMultiplier = 7;
 
-   
+
     void Start ()
     {
         m_animator = GetComponentInChildren<Animator>();
@@ -343,11 +345,11 @@ public class PrototypeHero : MonoBehaviour {
             }
 
             m_animator.SetTrigger("Jump");
-            m_grounded = false;
             m_animator.SetBool("Grounded", m_grounded);
-            m_groundSensor.Disable(0.2f);
+            
         }
 
+        
 
         //Crouch / Stand up
         else if (Input.GetKeyDown("s") && m_grounded && !m_dodging && !m_ledgeGrab && !m_ledgeClimb && m_parryTimer < 0.0f)
@@ -378,8 +380,16 @@ public class PrototypeHero : MonoBehaviour {
         //Idle
         else
             m_animator.SetInteger("AnimState", 0);
-    }
 
+        if (m_body2d.velocity.y < _jumpVelocityFalloff)
+            m_body2d.velocity += _fallMultiplier * Physics2D.gravity.y * Time.deltaTime * Vector2.up;
+
+        if (m_body2d.velocity.y < _jumpVelocityFalloff || m_body2d.velocity.y > 0 && !Input.GetButton("Jump"))
+            m_body2d.velocity += _fallMultiplier * Physics2D.gravity.y * Time.deltaTime * Vector2.up;
+
+        
+    }
+    
     // Function used to spawn a dust effect
     // All dust effects spawns on the floor
     // dustXoffset controls how far from the player the effects spawns.

@@ -105,7 +105,7 @@ public class MeeleEnemy : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(GroundTransform.position, GroundRadius);
-        Gizmos.DrawWireCube(transform.position, FollowRange*2f);
+        
 
     }
 }
