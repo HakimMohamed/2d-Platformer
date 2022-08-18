@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &67950345 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1713104161521056501, guid: 2abfc59723d9cee44bce3fe32b9a09a5, type: 3}
+  m_PrefabInstance: {fileID: 4916061118888356538}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &82396520
 GameObject:
   m_ObjectHideFlags: 0
@@ -204,6 +209,18 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3802914023834367650, guid: 2abfc59723d9cee44bce3fe32b9a09a5, type: 3}
   m_PrefabInstance: {fileID: 4916061118888356538}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &186651837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 67950345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11d0e62f7e6a95f40b11e85d10f51859, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &205863349
 GameObject:
   m_ObjectHideFlags: 0
@@ -565,6 +582,7 @@ GameObject:
   - component: {fileID: 386678875}
   - component: {fileID: 386678874}
   - component: {fileID: 386678880}
+  - component: {fileID: 386678881}
   m_Layer: 10
   m_Name: Mushroom v2
   m_TagString: Wall
@@ -737,6 +755,18 @@ MonoBehaviour:
   MaxHealth: 100
   HealthBar: {fileID: 614043862}
   HealthBar_Stroke: {fileID: 82396521}
+--- !u!114 &386678881
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 386678873}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b91a88cf7855fb84b99f92a96b22ee98, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &395175192
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -907,7 +937,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.2924385, y: -0.0007004738, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1588,7 +1618,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1395021169}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 52.72, y: 5.8, z: -10}
+  m_LocalPosition: {x: 44.75, y: 7.91, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2001,11 +2031,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3802914023834367650, guid: 2abfc59723d9cee44bce3fe32b9a09a5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 52.72
+      value: 44.75
       objectReference: {fileID: 0}
     - target: {fileID: 3802914023834367650, guid: 2abfc59723d9cee44bce3fe32b9a09a5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 5.8
+      value: 7.91
       objectReference: {fileID: 0}
     - target: {fileID: 3802914023834367650, guid: 2abfc59723d9cee44bce3fe32b9a09a5, type: 3}
       propertyPath: m_LocalPosition.z

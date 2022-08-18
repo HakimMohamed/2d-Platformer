@@ -50,7 +50,7 @@ public class Enemy : MonoBehaviour
         {
             
             StartCoroutine(FlipOnce());
-            isfacingleft = true;
+            
         }
         
         Vector2 speed = rb.velocity.normalized;
@@ -98,12 +98,16 @@ public class Enemy : MonoBehaviour
         transform.localScale = new Vector2(transform.localScale.x*-1, 1);
         CanFlip = false;
 
-        if(transform.localScale.x>0)
+        if (transform.localScale.x > 0)
+        {
             rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
-        else if(transform.localScale.x < 1)
+            isfacingleft = false;
+        }
+        else if (transform.localScale.x < 1)
+        {
             rb.velocity = new Vector2(-moveSpeed, rb.velocity.y);
-
-
+            isfacingleft = true;
+        }
         yield return new WaitForSeconds(.4f);
         CanFlip = true;
     }
