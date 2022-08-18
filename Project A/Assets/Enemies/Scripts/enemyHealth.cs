@@ -1,18 +1,14 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class MeeleEnemy : MonoBehaviour
+public class enemyHealth : MonoBehaviour
 {
-    [HideInInspector] public event EventHandler OnEnemyDamaged;
+
 
     [Header("Properties")]
-    [HideInInspector]public float Health;
+    [HideInInspector] public float Health;
     [SerializeField] float MaxHealth;
-    [SerializeField] Vector2 FollowRange;
-    [SerializeField] float Speed;
-    [SerializeField]private float GroundRadius = 0.5f;
 
 
     [Header("UI Components")]
@@ -20,33 +16,23 @@ public class MeeleEnemy : MonoBehaviour
     [SerializeField] private Image HealthBar_Stroke;
 
     [Header("Components")]
-    [SerializeField]private LayerMask TargetLayer;
-    [SerializeField] private LayerMask GroundLayer;
-    [SerializeField] private Transform GroundTransform;
-    private Rigidbody2D rb;
     private Animator anim;
     private SpriteRenderer sp;
-    private Transform Target;
+    
 
     [Header("States")]
     private bool IsDead = false;
-    private bool IsTargetInRange;
-    private bool IsGrounded;
 
-    public int Angle;
     private void Awake()
     {
         //Refrence
 
         anim = GetComponent<Animator>();
-        sp = GetComponent<SpriteRenderer>();
-        rb = GetComponent<Rigidbody2D>();
-        Target = GameObject.Find("Player").transform;
-
+        sp = GetComponent<SpriteRenderer>();        
 
         //Set Values
         Health = MaxHealth;
-        IsTargetInRange = false;
+      
     }
 
     private void Update()
@@ -58,23 +44,17 @@ public class MeeleEnemy : MonoBehaviour
             return;
         }
 
-        IsGrounded = Physics2D.OverlapCircle(GroundTransform.position, GroundRadius, GroundLayer);
-
-        
-
-        
-
     }
-   
+
     //Follow the player
+
+
     
-
-
     public void EnemyReceiveDamage(float Damage)
     {
         if (IsDead)
             return;
-       
+
         Health -= Damage;
         HealthBar.fillAmount = Health / MaxHealth;
         if (Health <= 0)
@@ -86,9 +66,7 @@ public class MeeleEnemy : MonoBehaviour
             return;
         }
 
-        anim.SetTrigger("Hit");
-
-        OnEnemyDamaged?.Invoke(this, EventArgs.Empty);
+        anim.SetTrigger("Hit"); 
 
     }
 
@@ -102,10 +80,5 @@ public class MeeleEnemy : MonoBehaviour
             Destroy(gameObject);
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireSphere(GroundTransform.position, GroundRadius);
-        
-
-    }
+    
 }

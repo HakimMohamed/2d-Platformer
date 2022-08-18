@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - enemy
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - Sensor
   - Enemy
   - post
-  - 
+  - Wall
   - 
   - 
   - 

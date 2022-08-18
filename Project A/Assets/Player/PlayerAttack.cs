@@ -28,7 +28,12 @@ public class PlayerAttack : MonoBehaviour
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            enemy.GetComponent<MeeleEnemy>().EnemyReceiveDamage(AttackDamage);
+            var enemy_health = enemy.GetComponent<enemyHealth>();
+            var enemy_ = enemy.GetComponent<Enemy>();
+
+            enemy_health.EnemyReceiveDamage(AttackDamage);
+            enemy_.StartCoroutine(enemy_.HitCoolDown());
+
         }
     }
 
