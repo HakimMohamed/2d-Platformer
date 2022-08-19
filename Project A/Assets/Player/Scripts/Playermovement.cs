@@ -50,9 +50,15 @@ public class Playermovement : MonoBehaviour
     void Update()
     {
         if (isDead)
+        {
+            GetComponent<Playermovement>().enabled = false;
+            GetComponent<PlayerAttack>().enabled = false;
             return;
+        }
         if (isDashing)
             return;
+
+        isDead = GetComponent<PlayerHealth>().IsDead;
 
         isGroundedHandler();
 
