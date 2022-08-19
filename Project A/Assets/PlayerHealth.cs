@@ -49,10 +49,10 @@ public class PlayerHealth : MonoBehaviour
             //Dead
             IsDead = true;
             anim.SetTrigger("Death");
-
+            CameraShake();
             return;
         }
-
+        CameraShake();
         anim.SetTrigger("Hurt");
 
     }

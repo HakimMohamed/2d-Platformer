@@ -37,6 +37,7 @@ public class PlayerAttack : MonoBehaviour
             var enemy_health = enemy.GetComponent<enemyHealth>();
             var enemy_ = enemy.GetComponent<Enemy>();
 
+            enemy_.StartCoroutine(enemy_.AttackCooldown());
             enemy_health.EnemyReceiveDamage(AttackDamage);
             enemy_.StartCoroutine(enemy_.HitCoolDown());
 

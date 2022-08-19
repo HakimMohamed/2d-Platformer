@@ -2,13 +2,14 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Cinemachine;
 public class Playermovement : MonoBehaviour
 {
     [Header("Components")]
     private Rigidbody2D rb;
     private Animator anim;
     [SerializeField] TrailRenderer tr;
+    private CinemachineImpulseSource src;
 
     [Header("Horizontal Movement")]
     public float MoveSpeed = 10f;
@@ -44,6 +45,8 @@ public class Playermovement : MonoBehaviour
         anim = GetComponent<Animator>();
         GroundChecker = GameObject.Find("GroundChecker").transform;
         isDead = GetComponent<PlayerHealth>().IsDead;
+        src = GetComponent<CinemachineImpulseSource>();
+
     }
 
     // Update is called once per frame
@@ -153,6 +156,7 @@ public class Playermovement : MonoBehaviour
         rb.gravityScale = 0f;
         rb.velocity = new Vector2(transform.localScale.x * dashinPower, 0f);
         tr.emitting = true;
+        src.GenerateImpulse();
 
         yield return new WaitForSeconds(dashingTime);
         tr.emitting = false;
