@@ -40,8 +40,7 @@ public class PrototypeHero : MonoBehaviour {
 
     // Use this for initialization
 
-    [SerializeField] private float _jumpVelocityFalloff = 8;
-    [SerializeField] private float _fallMultiplier = 7;
+    
 
 
     void Start ()
@@ -381,11 +380,7 @@ public class PrototypeHero : MonoBehaviour {
         else
             m_animator.SetInteger("AnimState", 0);
 
-        if (m_body2d.velocity.y < _jumpVelocityFalloff)
-            m_body2d.velocity += _fallMultiplier * Physics2D.gravity.y * Time.deltaTime * Vector2.up;
-
-        if (m_body2d.velocity.y < _jumpVelocityFalloff || m_body2d.velocity.y > 0 && !Input.GetButton("Jump"))
-            m_body2d.velocity += _fallMultiplier * Physics2D.gravity.y * Time.deltaTime * Vector2.up;
+        
 
         
     }
@@ -394,17 +389,7 @@ public class PrototypeHero : MonoBehaviour {
     // All dust effects spawns on the floor
     // dustXoffset controls how far from the player the effects spawns.
     // Default dustXoffset is zero
-    public void SpawnDustEffect(GameObject dust, float dustXOffset = 0, float dustYOffset = 0)
-    {
-        if (dust != null)
-        {
-            // Set dust spawn position
-            Vector3 dustSpawnPosition = transform.position + new Vector3(dustXOffset * m_facingDirection, dustYOffset, 0.0f);
-            GameObject newDust = Instantiate(dust, dustSpawnPosition, Quaternion.identity) as GameObject;
-            // Turn dust in correct X direction
-            newDust.transform.localScale = newDust.transform.localScale.x * new Vector3(m_facingDirection, 1, 1);
-        }
-    }
+    
 
     void DisableWallSensors()
     {

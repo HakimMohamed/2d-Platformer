@@ -13,12 +13,11 @@ public class PlayerHealth : MonoBehaviour
 
     [Header("UI Components")]
     [SerializeField] private Image HealthBar;
-    [SerializeField] private Image HealthBar_Stroke;
 
 
     [Header("Components")]
     private Animator anim;
-    private bool IsDead = false;
+    public bool IsDead = false;
     private void Awake()
     {
         //Refrence
@@ -29,7 +28,13 @@ public class PlayerHealth : MonoBehaviour
         Health = MaxHealth;
 
     }
-
+    private void Update()
+    {
+        if (Input.GetKeyDown("e"))
+        {
+            PlayerReceiveDamage(20f);
+        }
+    }
 
     public void PlayerReceiveDamage(float Damage)
     {
@@ -39,12 +44,12 @@ public class PlayerHealth : MonoBehaviour
         {
             //Dead
             IsDead = true;
-            anim.SetBool("IsDead", IsDead);
             anim.SetTrigger("Death");
+
             return;
         }
 
-        anim.SetTrigger("Hit");
+        anim.SetTrigger("Hurt");
 
     }
 }

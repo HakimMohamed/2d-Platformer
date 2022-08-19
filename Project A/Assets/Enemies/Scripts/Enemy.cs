@@ -59,6 +59,7 @@ public class Enemy : MonoBehaviour
 
         if (CanSeePlayer(agroRange))
         {
+            IsItTimeToStartPatrol = false;
             isAgro = true;
             timeToStartPatrol = 0;
         }
@@ -82,7 +83,7 @@ public class Enemy : MonoBehaviour
             FollowPlayer();
         }
 
-        if (!CanSeePlayer(agroRange)&& IsItTimeToStartPatrol)
+        if (isAgro && IsItTimeToStartPatrol)
         {
             timeToStartPatrol += Time.deltaTime;
             if(timeToStartPatrol> PatrolTime)
@@ -110,6 +111,12 @@ public class Enemy : MonoBehaviour
         }
         yield return new WaitForSeconds(.4f);
         CanFlip = true;
+    }
+    public IEnumerator AttackCooldown()
+    {
+        StopFollowingPlayer();
+
+        yield return new WaitForSeconds(.5f);
     }
     public IEnumerator HitCoolDown()
     {
@@ -169,8 +176,9 @@ public class Enemy : MonoBehaviour
         
 
         Vector2 endPos = transform.position + Vector3.right * castDist;
+        Vector2 startPos = transform.position + Vector3.left * castDist;
 
-        RaycastHit2D hit = Physics2D.Linecast(transform.position, endPos);     
+        RaycastHit2D hit = Physics2D.Linecast(startPos, endPos);     
 
         if (hit.collider!=null)
         {
@@ -196,7 +204,7 @@ public class Enemy : MonoBehaviour
             
 
         }
-        Debug.DrawLine(transform.position, endPos, Color.red);
+        Debug.DrawLine(startPos, endPos, Color.red);
 
 
         return val;
