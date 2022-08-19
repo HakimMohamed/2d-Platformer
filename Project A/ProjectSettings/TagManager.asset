@@ -40,12 +40,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Lightning
+    uniqueID: 394376759
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
   - name: Foreground
     uniqueID: 2946842017
-    locked: 0
-  - name: Lightning
-    uniqueID: 394376759
     locked: 0

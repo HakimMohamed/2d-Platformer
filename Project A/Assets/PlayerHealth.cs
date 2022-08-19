@@ -36,7 +36,7 @@ public class PlayerHealth : MonoBehaviour
         if (Input.GetKeyDown("e"))
         {
             PlayerReceiveDamage(20f);
-            src.GenerateImpulse();
+            CameraShake();
         }
     }
 
@@ -54,6 +54,12 @@ public class PlayerHealth : MonoBehaviour
         }
 
         anim.SetTrigger("Hurt");
+
+    }
+
+    public void CameraShake()
+    {
+        src.GenerateImpulse();
 
     }
 }
