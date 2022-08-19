@@ -189,45 +189,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c27e79369827124a90b8e4c8c610f2b, type: 3}
---- !u!1 &1199683145 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8154740853067202731, guid: 4c27e79369827124a90b8e4c8c610f2b, type: 3}
-  m_PrefabInstance: {fileID: 1199683144}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1199683146 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8154740854115774453, guid: 4c27e79369827124a90b8e4c8c610f2b, type: 3}
-  m_PrefabInstance: {fileID: 1199683144}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1199683147
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1199683145}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00b1f92d61356494086e756ea3915f6f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1199683148
-MonoBehaviour:
-  m_ObjectHideFlags: 3
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1199683146}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
-  m_PivotOffset: {x: 0, y: 0, z: 0}
-  m_AmplitudeGain: 1
-  m_FrequencyGain: 1
-  mNoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1001 &1670786935
 PrefabInstance:
   m_ObjectHideFlags: 0

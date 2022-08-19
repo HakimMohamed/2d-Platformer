@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Cinemachine;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -18,12 +19,14 @@ public class PlayerHealth : MonoBehaviour
     [Header("Components")]
     private Animator anim;
     public bool IsDead = false;
+
+    private CinemachineImpulseSource src;
     private void Awake()
     {
         //Refrence
 
         anim = GetComponent<Animator>();
-
+        src = GetComponent<CinemachineImpulseSource>();
         //Set Values
         Health = MaxHealth;
 
@@ -33,6 +36,7 @@ public class PlayerHealth : MonoBehaviour
         if (Input.GetKeyDown("e"))
         {
             PlayerReceiveDamage(20f);
+            src.GenerateImpulse();
         }
     }
 
