@@ -21,7 +21,7 @@ public class Playermovement : MonoBehaviour
     private bool isDashing;
     private float dashinPower=24f;
     private float dashingTime = 0.2f;
-    private float dashingCooldown =0.5f;
+    private float dashingCooldown =1f;
 
 
     [Header("Vertical Movement")]
