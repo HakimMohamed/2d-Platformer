@@ -20,7 +20,7 @@ public class Enemy1 : MonoBehaviour
 
 
     [Header("States")]
-    bool isFacingRight;
+    bool isFacingRight=true;
     bool isSearching = false;
     int dirOfPlayer = 0;
 
@@ -30,10 +30,6 @@ public class Enemy1 : MonoBehaviour
         Player = GameObject.Find("Player").transform;
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-
-        //Set values
-
-
     }
 
     void Update()
@@ -73,18 +69,16 @@ public class Enemy1 : MonoBehaviour
 
         if (hit.collider!=null)
         {
-            if (hit.collider.CompareTag("Player") == false)
-            {
-                val = false;
-            }
-
-
-            if (hit.collider.CompareTag("Player"))
+            if (hit.collider.gameObject.CompareTag("Player"))
             {
                 val = true;
                 Debug.DrawLine(startPos, endPos, Color.blue);
             }
-
+            else if (hit.collider.CompareTag("Wall"))
+            {
+                val = false;
+            }
+            
         }
         else
         {
