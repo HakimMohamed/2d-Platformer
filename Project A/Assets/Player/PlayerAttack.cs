@@ -12,11 +12,17 @@ public class PlayerAttack : MonoBehaviour
     private LayerMask EnemyLayer;
     Animator anim;
 
+
+    Playermovement playermovement;
+    float DefaultSpeed;
+    [SerializeField] float speedWhileAttacking;
     void Start()
     {
         EnemyLayer = LayerMask.GetMask("Enemy");
         anim = GetComponent<Animator>();
-            
+        playermovement = GetComponent<Playermovement>();
+        DefaultSpeed = playermovement.MoveSpeed;
+        speedWhileAttacking = DefaultSpeed * speedWhileAttacking;
     }
 
     // Update is called once per frame
@@ -25,21 +31,26 @@ public class PlayerAttack : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             anim.SetTrigger("Attack1");
+            StartCoroutine(DisableMovement_WhileAttacking());
         }
     }
+    public IEnumerator DisableMovement_WhileAttacking()
+    {
+        playermovement.MoveSpeed = speedWhileAttacking;
+        yield return new WaitForSeconds(.5f);
+        playermovement.MoveSpeed = DefaultSpeed;
 
+    }
     public void Attack()
     {
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(AttackPoint.position, AttackRadius, EnemyLayer);
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            var enemy_health = enemy.GetComponent<enemyHealth>();
             var enemy_ = enemy.GetComponent<Enemy>();
+            var enemy_health = enemy.GetComponent<enemyHealth>();
 
-            enemy_.StartCoroutine(enemy_.AttackCooldown());
             enemy_health.EnemyReceiveDamage(AttackDamage);
-            enemy_.StartCoroutine(enemy_.HitCoolDown());
 
         }
     }

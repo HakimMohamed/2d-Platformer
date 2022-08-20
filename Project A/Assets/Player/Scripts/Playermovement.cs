@@ -33,7 +33,9 @@ public class Playermovement : MonoBehaviour
     [SerializeField] private LayerMask GroundLayer;
     private bool IsGrounded;
 
+    [Header("States")]
     bool isDead;
+    public bool isAttacking=false;
 
     [SerializeField] private float _jumpVelocityFalloff = 8;
     [SerializeField] private float _fallMultiplier = 7;
@@ -58,6 +60,8 @@ public class Playermovement : MonoBehaviour
             GetComponent<PlayerAttack>().enabled = false;
             return;
         }
+        
+            
         if (isDashing)
             return;
 
@@ -105,7 +109,9 @@ public class Playermovement : MonoBehaviour
 
     void MoveCharacter(float horizontal)
     {
-        rb.velocity = new Vector2(horizontal*Time.deltaTime*MoveSpeed, rb.velocity.y);
+       
+        
+        rb.velocity = new Vector2(horizontal * Time.deltaTime * MoveSpeed, rb.velocity.y);
         var speed = rb.velocity.normalized.x;
         anim.SetFloat("Speed", Mathf.Abs(speed));
 
@@ -113,11 +119,11 @@ public class Playermovement : MonoBehaviour
         {
             Flip(1);
         }
-        else if((horizontal < 0 && FacingRight))
+        else if ((horizontal < 0 && FacingRight))
         {
             Flip(-1);
         }
-
+        
 
     }
 
