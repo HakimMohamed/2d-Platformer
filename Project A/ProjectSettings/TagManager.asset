@@ -40,6 +40,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 4237944567
+    locked: 0
   - name: Lightning
     uniqueID: 394376759
     locked: 0

@@ -6,28 +6,23 @@ using UnityEngine;
 public class Enemy1 : MonoBehaviour
 {
 
-
-    [SerializeField] float agroRange;
+    [Header("Properties")]
+    [SerializeField] float EyeRange;
     [SerializeField] float moveSpeed;
+    [SerializeField] int attackDamage=10;
+
 
     [Header("Refrence Components")]
+    [SerializeField] LayerMask playerLayer;
     Transform Player;
     Rigidbody2D rb;
     Animator anim;
-    [SerializeField] LayerMask playerLayer;
+
 
     [Header("States")]
-    bool isfacingleft;
-    private bool isGettingAttacked = false;
-    private float timeToStartPatrol;
-    [SerializeField]private float PatrolTime=5f;
-    private bool  IsItTimeToStartPatrol;
-    private bool isTouchingTheWall = false;
-    [SerializeField] private float WallRadius = 0.5f;
-    [SerializeField] private LayerMask WallLayer;
-    bool CanFlip = true;
-    bool isAgro = false;
-    [SerializeField] Vector2 RandomPatrolTime;
+    bool isFacingRight;
+    bool isSearching = false;
+    int dirOfPlayer = 0;
 
     private void Awake()
     {
@@ -35,176 +30,66 @@ public class Enemy1 : MonoBehaviour
         Player = GameObject.Find("Player").transform;
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+
         //Set values
-       timeToStartPatrol = 0f;
-       IsItTimeToStartPatrol = false;
+
+
     }
 
     void Update()
     {
-        isTouchingTheWall = Physics2D.OverlapCircle(transform.position, WallRadius, WallLayer);
 
-        if (isTouchingTheWall&&CanFlip)
-        {
-            
-            StartCoroutine(FlipOnce());
-            
-        }
-        
-        float speed = rb.velocity.normalized.x;
+        bool canSeePlayer = CanSeePlayer(EyeRange);
 
-        anim.SetFloat("Speed", Mathf.Abs(speed));
-        Debug.Log(CanSeePlayer(agroRange));
-        if (CanSeePlayer(agroRange))
-        {
-            IsItTimeToStartPatrol = false;
-            isAgro = true;
-            timeToStartPatrol = 0;
-        }
-        else
-        {
-            if (isAgro)
-            {
-                
-                if(!isGettingAttacked)
-                StartCoroutine(StopPatrolingAfterSeconds());
-                
-            }
 
-        }
-
-        if (isAgro && Vector2.Distance(transform.position,Player.position)>.7f && !isGettingAttacked)
+        if (canSeePlayer)
         {
-            
             FollowPlayer();
+            isSearching = true;
         }
-
-        if (isAgro && IsItTimeToStartPatrol)
+        else if(canSeePlayer&&isSearching)
         {
-            timeToStartPatrol += Time.deltaTime;
-            if(timeToStartPatrol> PatrolTime)
-            {
-                StartCoroutine(RandomPatrol());
-            }
+            isSearching = false;
+            StartCoroutine(KeepSearchingForPlayer());
         }
 
 
     }
-    private IEnumerator FlipOnce()
+
+    private IEnumerator KeepSearchingForPlayer()
     {
-        transform.localScale = new Vector2(transform.localScale.x*-1, 1);
-        CanFlip = false;
-
-        if (transform.localScale.x > 0)
-        {
-            rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
-            isfacingleft = false;
-        }
-        else if (transform.localScale.x < 1)
-        {
-            rb.velocity = new Vector2(-moveSpeed, rb.velocity.y);
-            isfacingleft = true;
-        }
-        yield return new WaitForSeconds(.2f);
-        CanFlip = true;
+        rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
+        yield return new WaitForSeconds(4f);
     }
-    public IEnumerator AttackCooldown()
-    {
-        StopFollowingPlayer();
-        isAgro = false;
-        yield return new WaitForSeconds(.5f);
-        isAgro = true;
 
-    }
-    public IEnumerator HitCoolDown()
-    {
-        isGettingAttacked = true;
-        StopFollowingPlayer();
-        isAgro = false;
-
-        yield return new WaitForSeconds(.5f);
-        isAgro = true;
-
-        isGettingAttacked = false;
-    }
-    private IEnumerator StopPatrolingAfterSeconds()
-    {
-        yield return new WaitForSeconds(UnityEngine.Random.Range(RandomPatrolTime.x, RandomPatrolTime.y));
-        StopFollowingPlayer();
-    }
-    private IEnumerator RandomPatrol()
-    {
-        if (!isAgro)
-        {
-
-
-            int randomPatrol = 0;
-            randomPatrol = Mathf.Clamp(randomPatrol, 0, 1);
-            randomPatrol = UnityEngine.Random.Range(0, 2);
-
-            if (randomPatrol == 0)
-            {
-                rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
-                transform.localScale = new Vector2(1, 1);
-                isfacingleft = false;
-            }
-            else
-            {
-                rb.velocity = new Vector2(-moveSpeed, rb.velocity.y);
-                transform.localScale = new Vector2(-1, 1);
-                isfacingleft = true;
-            }
-
-            timeToStartPatrol = 0f;
-            IsItTimeToStartPatrol = false;
-        }
-        yield return new WaitForSeconds(UnityEngine.Random.Range(5, 7));
-        if (!IsItTimeToStartPatrol)
-        {
-            rb.velocity = Vector2.zero;
-        }
-        IsItTimeToStartPatrol = true;
-        
-        
-
-    }
-    
     bool CanSeePlayer(float distance)
     {
-        bool val=false ;
-        float castDist = distance;
-
-        if (isfacingleft)        
-            castDist = -distance;
+        bool val = false ;
         
-
-        Vector2 endPos = transform.position + Vector3.right * castDist;
-        Vector2 startPos = transform.position + Vector3.left * castDist;
+        Vector2 endPos = transform.position + Vector3.right * distance;
+        Vector2 startPos = transform.position + Vector3.left * distance;
 
         RaycastHit2D hit = Physics2D.Linecast(startPos, endPos);     
 
         if (hit.collider!=null)
         {
-            if (hit.collider.gameObject.CompareTag("Player"))
+            if (hit.collider.CompareTag("Player") == false)
             {
-                val = true;
-            }         
-            else if(hit.collider.CompareTag("Wall")&&!isAgro)
-            {
-                if (timeToStartPatrol > PatrolTime)
-                {
-                    StartCoroutine(RandomPatrol());
-
-                }
-                
                 val = false;
             }
-            
 
-            
+
+            if (hit.collider.CompareTag("Player"))
+            {
+                val = true;
+                Debug.DrawLine(startPos, endPos, Color.blue);
+            }
 
         }
-        Debug.DrawLine(startPos, endPos, Color.red);
+        else
+        {
+            Debug.DrawLine(startPos, endPos, Color.red);
+        }
 
 
         return val;
@@ -213,19 +98,24 @@ public class Enemy1 : MonoBehaviour
     {
         if (transform.position.x < Player.position.x)
         {
-            rb.velocity = new Vector2(moveSpeed, rb.velocity.y);
-            transform.localScale = new Vector2(1, 1);
-            isfacingleft = false;
+            Flip(1);
         }
         else if(transform.position.x > Player.position.x)
         {
-            rb.velocity = new Vector2(-moveSpeed, rb.velocity.y);
-            transform.localScale = new Vector2(-1, 1);
-            isfacingleft = true;
+            Flip(-1);
         }
-        
-    }
 
+        rb.velocity = new Vector2(dirOfPlayer*moveSpeed, rb.velocity.y);
+
+    }
+    void Flip(int dir)
+    {
+        isFacingRight = !isFacingRight;
+        Vector3 scaler = transform.localScale;
+        scaler.x = dir;
+        transform.localScale = scaler;
+        dirOfPlayer = dir;
+    }
     private void StopFollowingPlayer()
     {
         
@@ -233,10 +123,7 @@ public class Enemy1 : MonoBehaviour
         
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireSphere(transform.position, WallRadius);
-    }
+    
 
     
 }
