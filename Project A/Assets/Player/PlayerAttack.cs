@@ -16,6 +16,11 @@ public class PlayerAttack : MonoBehaviour
     Playermovement playermovement;
     float DefaultSpeed;
     [SerializeField] float speedWhileAttacking;
+
+    [Header("AttackSPeed")]
+    public float attackRate = 2f;
+    private float nextAttackTime = 0f;
+
     void Start()
     {
         EnemyLayer = LayerMask.GetMask("Enemy");
@@ -28,19 +33,27 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Time.time > nextAttackTime)
         {
-            anim.SetTrigger("Attack1");
-            StartCoroutine(DisableMovement_WhileAttacking());
+            if (Input.GetMouseButtonDown(0))
+            {
+                anim.SetTrigger("Attack1");
+                DisableMovement___();
+                nextAttackTime = Time.time + 1f / attackRate;
+            }
         }
+       
     }
-    public IEnumerator DisableMovement_WhileAttacking()
+    public void DisableMovement___()
     {
         playermovement.MoveSpeed = speedWhileAttacking;
-        yield return new WaitForSeconds(.5f);
-        playermovement.MoveSpeed = DefaultSpeed;
 
     }
+    public void FreeMovement()
+    {
+        playermovement.MoveSpeed = DefaultSpeed;
+    }
+
     public void Attack()
     {
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(AttackPoint.position, AttackRadius, EnemyLayer);

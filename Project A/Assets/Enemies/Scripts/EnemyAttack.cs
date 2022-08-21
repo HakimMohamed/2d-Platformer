@@ -9,15 +9,18 @@ public class EnemyAttack : MonoBehaviour
     [SerializeField] private float AttackRadius = 0.5f;
     [SerializeField] Transform AttackPoint;
     [SerializeField]private LayerMask playerLayer;
-   
+ 
 
 
 
-   
+    private void Awake()
+    {
+        
+    }
     // Update is called once per frame
     void Update()
     {
-        
+        Debug.Log(Vector2.Distance(transform.position, GameObject.Find("Player").transform.position));
        
 
     }
