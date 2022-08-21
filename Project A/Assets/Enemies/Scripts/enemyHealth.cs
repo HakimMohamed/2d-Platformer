@@ -18,7 +18,7 @@ public class enemyHealth : MonoBehaviour
     [Header("Components")]
     private Animator anim;
     private SpriteRenderer sp;
-    
+    private Transform Blood;
 
     [Header("States")]
     private bool IsDead = false;
@@ -28,11 +28,13 @@ public class enemyHealth : MonoBehaviour
         //Refrence
 
         anim = GetComponent<Animator>();
-        sp = GetComponent<SpriteRenderer>();        
+        sp = GetComponent<SpriteRenderer>();
+        
 
         //Set Values
         Health = MaxHealth;
-      
+        Blood = GameAssets.instance.BloodVFX;
+
     }
 
     private void Update()
@@ -63,11 +65,12 @@ public class enemyHealth : MonoBehaviour
             IsDead = true;
             anim.SetBool("IsDead", IsDead);
             anim.SetTrigger("Death");
+            EnemyBlood();
+
             return;
         }
-
-        anim.SetTrigger("Hit"); 
-
+        anim.SetTrigger("Hit");
+        EnemyBlood();
     }
 
     private void EnemyDissolve()
@@ -80,5 +83,11 @@ public class enemyHealth : MonoBehaviour
             Destroy(gameObject);
     }
 
+    private void EnemyBlood()
+    {
+        Instantiate(Blood, transform.position, Quaternion.identity);
+
+       
+    }
     
 }
