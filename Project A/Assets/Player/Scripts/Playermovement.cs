@@ -13,8 +13,11 @@ public class Playermovement : MonoBehaviour
 
     [Header("Horizontal Movement")]
     public float MoveSpeed = 10f;
+    public float DefaultMoveSpeed;
+    public float WalkMoveSpeed;
     private Vector2 direciton;
     private bool FacingRight = true;
+    private bool LeftCtrl;
 
     [Header("Dash")]
     private bool canDash = true;
@@ -48,12 +51,14 @@ public class Playermovement : MonoBehaviour
         GroundChecker = GameObject.Find("GroundChecker").transform;
         isDead = GetComponent<PlayerHealth>().IsDead;
         src = GetComponent<CinemachineImpulseSource>();
-
+        DefaultMoveSpeed = MoveSpeed;
+        WalkMoveSpeed = .2f * MoveSpeed;
     }
 
     // Update is called once per frame
     void Update()
     {
+        isDead = GetComponent<PlayerHealth>().IsDead;
         if (isDead)
         {
             GetComponent<Playermovement>().enabled = false;
@@ -65,8 +70,15 @@ public class Playermovement : MonoBehaviour
         if (isDashing)
             return;
 
-        isDead = GetComponent<PlayerHealth>().IsDead;
+        LeftCtrl = Input.GetKey(KeyCode.LeftControl);
+        if (LeftCtrl)
+            MoveSpeed = WalkMoveSpeed;
+        else
+            MoveSpeed = DefaultMoveSpeed;
 
+        
+
+        anim.SetBool("Ctrl", LeftCtrl);
         isGroundedHandler();
 
         Air_AnimationsHandler();

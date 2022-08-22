@@ -22,7 +22,6 @@ public class PlayerAttack : MonoBehaviour
     private float nextAttackTime = 0f;
 
     [Header("Attack Transistion")]
-    public float TimeBetweenAttackCombo;
     int _currentAttack;
 
     bool _grounded;
