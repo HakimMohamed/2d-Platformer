@@ -43,6 +43,9 @@ TagManager:
   - name: Background
     uniqueID: 4237944567
     locked: 0
+  - name: New Layer 4
+    uniqueID: 1367214065
+    locked: 0
   - name: Lightning
     uniqueID: 394376759
     locked: 0

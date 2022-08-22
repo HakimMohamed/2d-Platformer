@@ -21,6 +21,11 @@ public class PlayerAttack : MonoBehaviour
     public float attackRate = 2f;
     private float nextAttackTime = 0f;
 
+    [Header("Attack Transistion")]
+    float _timeSinceAttack;
+    bool _grounded;
+    int _currentAttack;
+
     void Start()
     {
         EnemyLayer = LayerMask.GetMask("Enemy");
@@ -33,18 +38,39 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        _grounded = playermovement.IsGrounded;
         if (Time.time > nextAttackTime)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) & _grounded && _timeSinceAttack > 0.2f)
             {
-                anim.SetTrigger("Attack1");
-                DisableMovement___();
                 nextAttackTime = Time.time + 1f / attackRate;
+                // Reset timer
+                _timeSinceAttack = 0.0f;
+
+                _currentAttack++;
+
+                // Loop back to one after second attack
+                if (_currentAttack > 2)
+                    _currentAttack = 1;
+
+                // Reset Attack combo if time since last attack is too large
+                if (_timeSinceAttack > 1.0f)
+                    _currentAttack = 1;
+
+                // Call one of the two attack animations "Attack1" or "Attack2"
+                anim.SetTrigger("Attack" + _currentAttack);
+
+                // Disable movement 
+                DisableMovement();
+
             }
         }
-       
+        
+
+        _timeSinceAttack += Time.deltaTime;
+
     }
-    public void DisableMovement___()
+    public void DisableMovement()
     {
         playermovement.MoveSpeed = speedWhileAttacking;
 

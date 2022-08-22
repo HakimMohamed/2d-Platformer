@@ -31,7 +31,7 @@ public class Playermovement : MonoBehaviour
     [SerializeField] private Transform GroundChecker;
     [SerializeField] private float GroundChecker_Radius = .6f;
     [SerializeField] private LayerMask GroundLayer;
-    private bool IsGrounded;
+    public bool IsGrounded;
 
     [Header("States")]
     bool isDead;
