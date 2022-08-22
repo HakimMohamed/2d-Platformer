@@ -2390,7 +2390,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1874620956
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2639,6 +2639,7 @@ MonoBehaviour:
   GroundLayer:
     serializedVersion: 2
     m_Bits: 64
+  IsGrounded: 0
   isAttacking: 0
   _jumpVelocityFalloff: 8
   _fallMultiplier: 5

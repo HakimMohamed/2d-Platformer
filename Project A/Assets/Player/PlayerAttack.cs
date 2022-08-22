@@ -22,10 +22,10 @@ public class PlayerAttack : MonoBehaviour
     private float nextAttackTime = 0f;
 
     [Header("Attack Transistion")]
-    float _timeSinceAttack;
-    bool _grounded;
+    public float TimeBetweenAttackCombo;
     int _currentAttack;
 
+    bool _grounded;
     void Start()
     {
         EnemyLayer = LayerMask.GetMask("Enemy");
@@ -41,33 +41,44 @@ public class PlayerAttack : MonoBehaviour
         _grounded = playermovement.IsGrounded;
         if (Time.time > nextAttackTime)
         {
-            if (Input.GetMouseButtonDown(0) & _grounded && _timeSinceAttack > 0.2f)
+            if (Input.GetMouseButtonDown(0) & _grounded )
             {
-                nextAttackTime = Time.time + 1f / attackRate;
+                nextAttackTime = Time.time +2f / attackRate;
                 // Reset timer
-                _timeSinceAttack = 0.0f;
 
-                _currentAttack++;
+                _currentAttack=1;
 
-                // Loop back to one after second attack
-                if (_currentAttack > 2)
-                    _currentAttack = 1;
-
-                // Reset Attack combo if time since last attack is too large
-                if (_timeSinceAttack > 1.0f)
-                    _currentAttack = 1;
-
+                Debug.Log(Time.time);
                 // Call one of the two attack animations "Attack1" or "Attack2"
                 anim.SetTrigger("Attack" + _currentAttack);
 
                 // Disable movement 
                 DisableMovement();
 
+                _currentAttack++;
             }
         }
-        
+        else if(Time.time <= nextAttackTime&&_currentAttack==2)
+        {
+            if (Input.GetMouseButtonDown(0) & _grounded)
+            {
 
-        _timeSinceAttack += Time.deltaTime;
+                nextAttackTime = Time.time + 1f / attackRate;
+
+                _currentAttack = 2;
+
+
+                Debug.Log(Time.time);
+                // Call one of the two attack animations "Attack1" or "Attack2"
+                anim.SetTrigger("Attack" + _currentAttack);
+
+                // Disable movement 
+                DisableMovement();
+                _currentAttack = 1;
+            }
+        }
+       
+
 
     }
     public void DisableMovement()
