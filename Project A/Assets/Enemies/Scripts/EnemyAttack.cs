@@ -20,7 +20,7 @@ public class EnemyAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(Vector2.Distance(transform.position, GameObject.Find("Player").transform.position));
+        //Debug.Log(Vector2.Distance(transform.position, GameObject.Find("Player").transform.position));
        
 
     }

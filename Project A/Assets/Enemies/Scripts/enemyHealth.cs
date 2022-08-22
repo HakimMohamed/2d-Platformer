@@ -66,7 +66,7 @@ public class enemyHealth : MonoBehaviour
             anim.SetBool("IsDead", IsDead);
             anim.SetTrigger("Death");
             EnemyBlood();
-
+            //StartCoroutine( DoSlowMotion());
             return;
         }
         anim.SetTrigger("Hit");

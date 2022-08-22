@@ -8,7 +8,6 @@ public class Playermovement : MonoBehaviour
     [Header("Components")]
     private Rigidbody2D rb;
     private Animator anim;
-    [SerializeField] TrailRenderer tr;
     private CinemachineImpulseSource src;
 
     [Header("Horizontal Movement")]
@@ -70,11 +69,12 @@ public class Playermovement : MonoBehaviour
         if (isDashing)
             return;
 
-        LeftCtrl = Input.GetKey(KeyCode.LeftControl);
-        if (LeftCtrl)
-            MoveSpeed = WalkMoveSpeed;
-        else
-            MoveSpeed = DefaultMoveSpeed;
+        //LeftCtrl = Input.GetKey(KeyCode.LeftControl);
+
+        //if (LeftCtrl)
+        //    MoveSpeed = WalkMoveSpeed;
+        //else
+        //    MoveSpeed = DefaultMoveSpeed;
 
         
 
@@ -173,11 +173,9 @@ public class Playermovement : MonoBehaviour
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0f;
         rb.velocity = new Vector2(transform.localScale.x * dashinPower, 0f);
-        tr.emitting = true;
         src.GenerateImpulse();
 
         yield return new WaitForSeconds(dashingTime);
-        tr.emitting = false;
         rb.gravityScale = originalGravity;
         isDashing = false;
 
