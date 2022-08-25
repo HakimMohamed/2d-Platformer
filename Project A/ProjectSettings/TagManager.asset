@@ -40,18 +40,39 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Background
-    uniqueID: 4237944567
+  - name: Sky
+    uniqueID: 2364319121
     locked: 0
-  - name: New Layer 4
+  - name: Clouds
     uniqueID: 1367214065
+    locked: 0
+  - name: Sea
+    uniqueID: 1951498679
+    locked: 0
+  - name: FarGrounds
+    uniqueID: 4237944567
     locked: 0
   - name: Lightning
     uniqueID: 394376759
     locked: 0
-  - name: Default
-    uniqueID: 0
-    locked: 0
   - name: Foreground
     uniqueID: 2946842017
+    locked: 0
+  - name: Background Tiles
+    uniqueID: 606215653
+    locked: 0
+  - name: House
+    uniqueID: 1116413215
+    locked: 0
+  - name: NPC's
+    uniqueID: 1711325945
+    locked: 0
+  - name: Player
+    uniqueID: 3722876167
+    locked: 0
+  - name: Ground
+    uniqueID: 798024843
+    locked: 0
+  - name: Default
+    uniqueID: 0
     locked: 0

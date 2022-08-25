@@ -12,12 +12,13 @@ public class Playermovement : MonoBehaviour
 
     [Header("Horizontal Movement")]
     public float MoveSpeed = 10f;
-    public float DefaultMoveSpeed;
+    public float DefaultMoveSpeed= 333f;
     public float WalkMoveSpeed;
     private Vector2 direciton;
     private bool FacingRight = true;
     private bool LeftCtrl;
-
+    public float speedanimatorMut=1f;
+    public float defualtAnimatorSpeed=1f;
     [Header("Dash")]
     private bool canDash = true;
     private bool isDashing;
@@ -50,7 +51,6 @@ public class Playermovement : MonoBehaviour
         GroundChecker = GameObject.Find("GroundChecker").transform;
         isDead = GetComponent<PlayerHealth>().IsDead;
         src = GetComponent<CinemachineImpulseSource>();
-        DefaultMoveSpeed = MoveSpeed;
         WalkMoveSpeed = .2f * MoveSpeed;
     }
 
@@ -64,8 +64,7 @@ public class Playermovement : MonoBehaviour
             GetComponent<PlayerAttack>().enabled = false;
             return;
         }
-        
-            
+                 
         if (isDashing)
             return;
 
@@ -76,22 +75,25 @@ public class Playermovement : MonoBehaviour
         //else
         //    MoveSpeed = DefaultMoveSpeed;
 
+        anim.SetBool("Ctrl", LeftCtrl);
+        var speed = rb.velocity.normalized.x;
+        anim.SetFloat("Speed", Mathf.Abs(speed));
+
+        //speedanimatorMut = Mathf.Clamp(speedanimatorMut, 1, 2);
+        anim.SetFloat("speedMut",speedanimatorMut);
         
 
-        anim.SetBool("Ctrl", LeftCtrl);
         isGroundedHandler();
-
         Air_AnimationsHandler();
-
-
-
         jump_Input_Handler();
-
+        HandleFlipping();
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
         {
             StartCoroutine(Dash());
         }
+
+       
     }
     private void FixedUpdate()
     {
@@ -106,7 +108,17 @@ public class Playermovement : MonoBehaviour
     private Vector2 Direction() =>direciton = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxis("Vertical"));
     
 
-   
+    private void HandleFlipping()
+    {
+        if (Direction().x > 0 && !FacingRight)
+        {
+            Flip(1);
+        }
+        else if ((Direction().x < 0 && FacingRight))
+        {
+            Flip(-1);
+        }
+    }
     private void isGroundedHandler()
     {
         IsGrounded = Physics2D.OverlapCircle(GroundChecker.position, GroundChecker_Radius, GroundLayer);
@@ -120,23 +132,8 @@ public class Playermovement : MonoBehaviour
     }
 
     void MoveCharacter(float horizontal)
-    {
-       
-        
-        rb.velocity = new Vector2(horizontal * Time.deltaTime * MoveSpeed, rb.velocity.y);
-        var speed = rb.velocity.normalized.x;
-        anim.SetFloat("Speed", Mathf.Abs(speed));
-
-        if (horizontal > 0 && !FacingRight)
-        {
-            Flip(1);
-        }
-        else if ((horizontal < 0 && FacingRight))
-        {
-            Flip(-1);
-        }
-        
-
+    {    
+        rb.velocity = new Vector2(horizontal * Time.fixedDeltaTime * MoveSpeed, rb.velocity.y);
     }
 
     void Jump()

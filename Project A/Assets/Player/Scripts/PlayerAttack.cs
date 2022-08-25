@@ -20,7 +20,7 @@ public class PlayerAttack : MonoBehaviour
     [Header("AttackSPeed")]
     public float attackRate = 2f;
     private float nextAttackTime = 0f;
-
+    public float defaultAttackSpeed;
     [Header("Attack Transistion")]
     int _currentAttack;
 
