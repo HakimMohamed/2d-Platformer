@@ -45,3 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BloodVFX: {fileID: 2827807867048043319, guid: 7e7a8c3257340a849b0e82371427d681, type: 3}
+  ExplosionVFX: {fileID: 1147279734267827100, guid: e0ad8db37625c8b41ae5bc4232d30510, type: 3}

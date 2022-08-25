@@ -788,7 +788,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aura_MoveSpeed: 1.5
-  anim_Speed: 1
+  coolDownMax: 3
+  anim_Speed: 3.04
   aura_Image: {fileID: 571071171}
   aura_anim: {fileID: 571071173}
   aura_Panel: {fileID: 1399014734}

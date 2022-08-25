@@ -31,7 +31,7 @@ public class PlayerAura : MonoBehaviour
 
     [Header("States")]
     private bool canAura;
-    private bool isInAura;
+    public bool isInAura;
 
 
     private void Awake()
