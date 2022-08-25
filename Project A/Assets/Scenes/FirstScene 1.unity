@@ -788,7 +788,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aura_MoveSpeed: 1.5
-  anim_Speed: 0.4
+  anim_Speed: 1
   aura_Image: {fileID: 571071171}
   aura_anim: {fileID: 571071173}
   aura_Panel: {fileID: 1399014734}
@@ -1449,6 +1449,22 @@ PrefabInstance:
       propertyPath: HealthBar
       value: 
       objectReference: {fileID: 745384466}
+    - target: {fileID: 7164588357550049760, guid: 5e34e1e6c33584f499a9ab4f046ffb94, type: 3}
+      propertyPath: m_Color.a
+      value: 0.050980393
+      objectReference: {fileID: 0}
+    - target: {fileID: 7164588357550049760, guid: 5e34e1e6c33584f499a9ab4f046ffb94, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7164588357550049760, guid: 5e34e1e6c33584f499a9ab4f046ffb94, type: 3}
+      propertyPath: m_Color.g
+      value: 0.76596725
+      objectReference: {fileID: 0}
+    - target: {fileID: 7164588357550049760, guid: 5e34e1e6c33584f499a9ab4f046ffb94, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8760691956499221861, guid: 5e34e1e6c33584f499a9ab4f046ffb94, type: 3}
       propertyPath: m_IsActive
       value: 0

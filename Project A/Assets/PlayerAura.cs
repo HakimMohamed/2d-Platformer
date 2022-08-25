@@ -17,7 +17,7 @@ public class PlayerAura : MonoBehaviour
     private float duration;
     private float durationMax=6f;
     private float coolDown;
-    private float coolDownMax = 3f;
+    [SerializeField]private float coolDownMax = 3f;
     [SerializeField]private float anim_Speed = 1.5f;
     [Header("UI")]
     [SerializeField] private Image aura_Image;
