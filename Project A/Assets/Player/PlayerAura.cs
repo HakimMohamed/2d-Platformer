@@ -40,7 +40,7 @@ public class PlayerAura : MonoBehaviour
         playerattack = GetComponent<PlayerAttack>();
         speed = playermovement.DefaultMoveSpeed;
         speed += playermovement.MoveSpeed*aura_MoveSpeed;
-        attackSpeed = playerattack.attackRate;
+       // attackSpeed = playerattack.attackRate;
         // Duration = lvl 1 6 seconds  for now
 
         duration = durationMax;

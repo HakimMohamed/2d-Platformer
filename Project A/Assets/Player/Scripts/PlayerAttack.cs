@@ -17,14 +17,13 @@ public class PlayerAttack : MonoBehaviour
     float DefaultSpeed;
     [SerializeField] float speedWhileAttacking;
 
-    [Header("AttackSPeed")]
-    public float attackRate = 2f;
-    private float nextAttackTime = 0f;
-    public float defaultAttackSpeed;
-    [Header("Attack Transistion")]
-    int _currentAttack;
 
-    bool _grounded;
+
+
+    public int noOfClicks = 0;
+    private float timeBetweenAttacks = 1f;
+
+
     void Start()
     {
         EnemyLayer = LayerMask.GetMask("Enemy");
@@ -37,46 +36,18 @@ public class PlayerAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _grounded = playermovement.IsGrounded;
-        if (Time.time > nextAttackTime)
+        if (Input.GetMouseButtonDown(0)&&noOfClicks<1)
         {
-            if (Input.GetMouseButtonDown(0) & _grounded )
-            {
-                DisableMovement();
-                nextAttackTime = Time.time +2f / attackRate;
-                // Reset timer
+            noOfClicks=1;
+            anim.SetBool("Attack1", true);
 
-                _currentAttack=1;
-
-                Debug.Log(Time.time);
-                // Call one of the two attack animations "Attack1" or "Attack2"
-                anim.SetTrigger("Attack" + _currentAttack);
-
-                // Disable movement 
-                
-
-                _currentAttack++;
-            }
         }
-        else if(Time.time <= nextAttackTime&&_currentAttack==2)
-        {
-            if (Input.GetMouseButtonDown(0) & _grounded)
-            {
-                DisableMovement();
-
-                nextAttackTime = Time.time + 1f / attackRate;
-
-                _currentAttack = 2;
+        anim.SetInteger("noOfClick", noOfClicks);
 
 
-                Debug.Log(Time.time);
-                // Call one of the two attack animations "Attack1" or "Attack2"
-                anim.SetTrigger("Attack" + _currentAttack);
 
-                // Disable movement 
-                _currentAttack = 1;
-            }
-        }
+
+
 
 
         Time.timeScale += (1f / slowdownLength) *Time.unscaledDeltaTime;
@@ -84,6 +55,8 @@ public class PlayerAttack : MonoBehaviour
 
         Debug.Log(Time.timeScale);
     }
+
+    
     public void DisableMovement()
     {
         if (!GetComponent<PlayerAura>().isInAura)
