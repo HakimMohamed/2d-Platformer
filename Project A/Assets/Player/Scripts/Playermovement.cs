@@ -22,7 +22,7 @@ public class Playermovement : MonoBehaviour
     [Header("Dash")]
     private bool canDash = true;
     private bool isDashing;
-    private float dashinPower=24f;
+    [SerializeField]private float dashinPower=24f;
     private float dashingTime = 0.2f;
     private float dashingCooldown =1f;
 
