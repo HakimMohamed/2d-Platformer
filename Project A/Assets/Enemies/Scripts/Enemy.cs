@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class Enemy : MonoBehaviour
     Transform Player;
     Animator anim;
     Rigidbody2D rb;
+    [SerializeField]private Image Enemy_Health_Bar;
+    
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -39,5 +42,10 @@ public class Enemy : MonoBehaviour
         Vector3 scaler = transform.localScale;
         scaler.x = dir;
         transform.localScale = scaler;
+        Flip_Ui();
+    }
+    void Flip_Ui()
+    {
+        Enemy_Health_Bar.transform.localScale = new Vector2(transform.localScale.x, transform.localScale.y);
     }
 }
