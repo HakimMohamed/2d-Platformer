@@ -64,9 +64,9 @@ public class Playermovement : MonoBehaviour
             GetComponent<PlayerAttack>().enabled = false;
             return;
         }
-                 
-        if (isDashing)
-            return;
+        anim.SetBool("isDashing", isDashing);
+
+        
 
         //LeftCtrl = Input.GetKey(KeyCode.LeftControl);
 
@@ -90,10 +90,10 @@ public class Playermovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
         {
-            StartCoroutine(Dash());
+            anim.SetTrigger("Falcon");
+            isDashing = true;
         }
 
-       
     }
     private void FixedUpdate()
     {
@@ -163,15 +163,18 @@ public class Playermovement : MonoBehaviour
         transform.localScale = scaler;
     }
 
-    private IEnumerator Dash()
+    public void startDash()
+    {
+        StartCoroutine(Dash());
+    }
+    public IEnumerator Dash()
     {
         canDash = false;
         isDashing = true;
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0f;
-        rb.velocity = new Vector2(transform.localScale.x * dashinPower, 0f);
-        src.GenerateImpulse();
-
+        rb.velocity = new Vector2(transform.localScale.x * dashinPower, rb.velocity.y);
+        //src.GenerateImpulse();
         yield return new WaitForSeconds(dashingTime);
         rb.gravityScale = originalGravity;
         isDashing = false;
@@ -184,6 +187,14 @@ public class Playermovement : MonoBehaviour
         Gizmos.DrawWireSphere(GroundChecker.position, GroundChecker_Radius);
     }
 
+    
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.CompareTag("enemy"))
+        {
+            Debug.Log("aa");
+        }
+    }
     public void SpawnDustEffect(GameObject dust, float dustXOffset = 0, float dustYOffset = 0)
     {
         if (dust != null)

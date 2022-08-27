@@ -16,7 +16,7 @@ public class PlayerAttack : MonoBehaviour
     Playermovement playermovement;
     float DefaultSpeed;
     [SerializeField] float speedWhileAttacking;
-
+    float attackCoolDownReset;
 
 
 
@@ -44,7 +44,7 @@ public class PlayerAttack : MonoBehaviour
         }
         anim.SetInteger("noOfClick", noOfClicks);
 
-
+        
 
 
 
@@ -53,7 +53,6 @@ public class PlayerAttack : MonoBehaviour
         Time.timeScale += (1f / slowdownLength) *Time.unscaledDeltaTime;
         Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
 
-        Debug.Log(Time.timeScale);
     }
 
     
@@ -69,7 +68,7 @@ public class PlayerAttack : MonoBehaviour
             playermovement.MoveSpeed = DefaultSpeed;
     }
 
-    public void Attack()
+    public void Attack(int attackDamage)
     {
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(AttackPoint.position, AttackRadius, EnemyLayer);
 
@@ -78,7 +77,7 @@ public class PlayerAttack : MonoBehaviour
             var enemy_ = enemy.GetComponent<Enemy>();
             var enemy_health = enemy.GetComponent<enemyHealth>();
 
-            enemy_health.EnemyReceiveDamage(AttackDamage);
+            enemy_health.EnemyReceiveDamage(attackDamage);
             StartCoroutine(DoSlowMotion());
         }
     }

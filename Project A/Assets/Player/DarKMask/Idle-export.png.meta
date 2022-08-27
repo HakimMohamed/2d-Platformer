@@ -131,10 +131,10 @@ TextureImporter:
       name: Idle-export_0
       rect:
         serializedVersion: 2
-        x: 91
-        y: 71
-        width: 33
-        height: 56
+        x: 0
+        y: 0
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -152,10 +152,10 @@ TextureImporter:
       name: Idle-export_1
       rect:
         serializedVersion: 2
-        x: 281
-        y: 72
-        width: 33
-        height: 56
+        x: 200
+        y: 0
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -173,10 +173,10 @@ TextureImporter:
       name: Idle-export_2
       rect:
         serializedVersion: 2
-        x: 481
-        y: 72
-        width: 33
-        height: 54
+        x: 400
+        y: 0
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -194,10 +194,10 @@ TextureImporter:
       name: Idle-export_3
       rect:
         serializedVersion: 2
-        x: 681
-        y: 72
-        width: 33
-        height: 54
+        x: 600
+        y: 0
+        width: 200
+        height: 200
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

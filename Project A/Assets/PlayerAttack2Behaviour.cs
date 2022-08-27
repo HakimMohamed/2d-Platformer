@@ -10,13 +10,21 @@ public class PlayerAttack2Behaviour : StateMachineBehaviour
 
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        if (Input.GetMouseButtonDown(0))
+        {
+            animator.GetComponent<PlayerAttack>().noOfClicks = 3;
+
+            animator.SetBool("Attack3", true);
+
+        }
 
     }
 
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        animator.GetComponent<PlayerAttack>().noOfClicks = 0;
         animator.SetBool("Attack2", false);
+        if (animator.GetComponent<PlayerAttack>().noOfClicks != 3)
+            animator.GetComponent<PlayerAttack>().noOfClicks = 0;
 
     }
 
