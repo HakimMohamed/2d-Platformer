@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.UI;
 public class Playermovement : MonoBehaviour
 {
     [Header("Components")]
@@ -19,12 +20,7 @@ public class Playermovement : MonoBehaviour
     private bool LeftCtrl;
     public float speedanimatorMut=1f;
     public float defualtAnimatorSpeed=1f;
-    [Header("Dash")]
-    private bool canDash = true;
-    private bool isDashing;
-    [SerializeField]private float dashinPower=24f;
-    private float dashingTime = 0.2f;
-    private float dashingCooldown =1f;
+   
 
 
     [Header("Vertical Movement")]
@@ -43,7 +39,7 @@ public class Playermovement : MonoBehaviour
     [SerializeField] private float _jumpVelocityFalloff = 8;
     [SerializeField] private float _fallMultiplier = 7;
 
-
+    
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -52,6 +48,7 @@ public class Playermovement : MonoBehaviour
         isDead = GetComponent<PlayerHealth>().IsDead;
         src = GetComponent<CinemachineImpulseSource>();
         WalkMoveSpeed = .2f * MoveSpeed;
+        
     }
 
     // Update is called once per frame
@@ -64,7 +61,6 @@ public class Playermovement : MonoBehaviour
             GetComponent<PlayerAttack>().enabled = false;
             return;
         }
-        anim.SetBool("isDashing", isDashing);
 
         
 
@@ -88,17 +84,13 @@ public class Playermovement : MonoBehaviour
         jump_Input_Handler();
         HandleFlipping();
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
-        {
-            anim.SetTrigger("Falcon");
-            isDashing = true;
-        }
 
     }
     private void FixedUpdate()
     {
-        if (isDashing)
-            return;
+        if (GetComponent<EagleDash>().isDashing)
+            return; 
+
         MoveCharacter(Direction().x);
 
 
@@ -163,25 +155,8 @@ public class Playermovement : MonoBehaviour
         transform.localScale = scaler;
     }
 
-    public void startDash()
-    {
-        StartCoroutine(Dash());
-    }
-    public IEnumerator Dash()
-    {
-        canDash = false;
-        isDashing = true;
-        float originalGravity = rb.gravityScale;
-        rb.gravityScale = 0f;
-        rb.velocity = new Vector2(transform.localScale.x * dashinPower, rb.velocity.y);
-        //src.GenerateImpulse();
-        yield return new WaitForSeconds(dashingTime);
-        rb.gravityScale = originalGravity;
-        isDashing = false;
-
-        yield return new WaitForSeconds(dashingCooldown);
-        canDash = true;
-    }
+    
+    
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(GroundChecker.position, GroundChecker_Radius);

@@ -78,7 +78,7 @@ public class PlayerAttack : MonoBehaviour
             var enemy_health = enemy.GetComponent<enemyHealth>();
 
             enemy_health.EnemyReceiveDamage(attackDamage);
-            StartCoroutine(DoSlowMotion());
+            //StartCoroutine(DoSlowMotion());
         }
     }
 
