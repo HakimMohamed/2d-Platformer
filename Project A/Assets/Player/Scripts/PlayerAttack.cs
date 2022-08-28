@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using Cinemachine;
 public class PlayerAttack : MonoBehaviour
 {
     [Header("Attack")]
@@ -23,7 +23,8 @@ public class PlayerAttack : MonoBehaviour
     public int noOfClicks = 0;
     private float timeBetweenAttacks = 1f;
 
-
+    private CinemachineImpulseSource src;
+    
     void Start()
     {
         EnemyLayer = LayerMask.GetMask("Enemy");
@@ -31,6 +32,7 @@ public class PlayerAttack : MonoBehaviour
         playermovement = GetComponent<Playermovement>();
         DefaultSpeed = playermovement.MoveSpeed;
         speedWhileAttacking = DefaultSpeed * speedWhileAttacking;
+        src = GetComponent<CinemachineImpulseSource>();
     }
 
     // Update is called once per frame
@@ -40,7 +42,7 @@ public class PlayerAttack : MonoBehaviour
         {
             noOfClicks=1;
             anim.SetBool("Attack1", true);
-
+            DisableMovement();
         }
         anim.SetInteger("noOfClick", noOfClicks);
 
@@ -79,9 +81,10 @@ public class PlayerAttack : MonoBehaviour
 
             enemy_health.EnemyReceiveDamage(attackDamage);
             //StartCoroutine(DoSlowMotion());
+            src.GenerateImpulse();
         }
     }
-
+    
     public float slowDownFactor = 0.05f;
     public float slowdownLength=2f;
 

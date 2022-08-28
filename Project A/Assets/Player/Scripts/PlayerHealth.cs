@@ -19,12 +19,13 @@ public class PlayerHealth : MonoBehaviour
     [Header("Components")]
     private Animator anim;
     public bool IsDead = false;
-
+    Rigidbody2D rb;
     private CinemachineImpulseSource src;
+
     private void Awake()
     {
         //Refrence
-
+        rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         src = GetComponent<CinemachineImpulseSource>();
         //Set Values
@@ -49,6 +50,8 @@ public class PlayerHealth : MonoBehaviour
             //Dead
             IsDead = true;
             anim.SetTrigger("Death");
+            rb.constraints = RigidbodyConstraints2D.FreezePositionX;
+
             CameraShake();
             return;
         }

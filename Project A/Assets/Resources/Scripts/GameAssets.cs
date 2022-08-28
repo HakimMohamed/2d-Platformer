@@ -15,5 +15,6 @@ public class GameAssets : MonoBehaviour
 
     public Transform BloodVFX;
     public Transform ExplosionVFX;
+    public Transform HandsDown;
 
 }

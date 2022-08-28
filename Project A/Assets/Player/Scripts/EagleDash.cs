@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Cinemachine;
 
 public class EagleDash : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class EagleDash : MonoBehaviour
     Rigidbody2D rb;
     Animator anim;
     float dashingTimeForImg;
+    private CinemachineImpulseSource src;
+
     //bool startdecrementingDashTime=false;
     void Start()
     {
@@ -26,6 +29,8 @@ public class EagleDash : MonoBehaviour
         anim = GetComponent<Animator>();
         dashingTimeForImg = dashingTime;
         EagleDash_img.fillAmount = 1f;
+        src = GetComponent<CinemachineImpulseSource>();
+
     }
 
     // Update is called once per frame
@@ -57,7 +62,7 @@ public class EagleDash : MonoBehaviour
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0f;
         rb.velocity = new Vector2(transform.localScale.x * dashinPower, rb.velocity.y);
-        //src.GenerateImpulse();
+        src.GenerateImpulse();
         yield return new WaitForSeconds(dashingTime);
         rb.gravityScale = originalGravity;
         isDashing = false;

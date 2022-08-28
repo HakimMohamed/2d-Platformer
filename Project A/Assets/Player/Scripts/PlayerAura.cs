@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using Cinemachine;
 public class PlayerAura : MonoBehaviour
 {
 
@@ -32,6 +32,7 @@ public class PlayerAura : MonoBehaviour
     [Header("States")]
     private bool canAura;
     public bool isInAura;
+    private CinemachineImpulseSource src;
 
 
     private void Awake()
@@ -40,7 +41,9 @@ public class PlayerAura : MonoBehaviour
         playerattack = GetComponent<PlayerAttack>();
         speed = playermovement.DefaultMoveSpeed;
         speed += playermovement.MoveSpeed*aura_MoveSpeed;
-       // attackSpeed = playerattack.attackRate;
+        src = GetComponent<CinemachineImpulseSource>();
+
+        // attackSpeed = playerattack.attackRate;
         // Duration = lvl 1 6 seconds  for now
 
         duration = durationMax;
@@ -57,6 +60,7 @@ public class PlayerAura : MonoBehaviour
         {
             StartCoroutine(AuraEffect());
             aura_Panel.SetTrigger("AuraEffect");
+            src.GenerateImpulse();
 
         }
         if (isInAura)
