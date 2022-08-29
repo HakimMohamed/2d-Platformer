@@ -14,6 +14,7 @@ public class Playermovement : MonoBehaviour
     [Header("Horizontal Movement")]
     public float MoveSpeed = 10f;
     public float DefaultMoveSpeed= 333f;
+    public float WalkSpeed = 120f;
     public float WalkMoveSpeed;
     private Vector2 direciton;
     private bool FacingRight = true;

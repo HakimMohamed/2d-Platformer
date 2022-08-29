@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using Cinemachine;
 
 public class PlayerHealth : MonoBehaviour
@@ -10,7 +11,7 @@ public class PlayerHealth : MonoBehaviour
 
     [Header("Properties")]
     [HideInInspector] public float Health;
-    [SerializeField] float MaxHealth;
+    [SerializeField] public float MaxHealth;
 
     [Header("UI Components")]
     [SerializeField] private Image HealthBar;
@@ -21,7 +22,7 @@ public class PlayerHealth : MonoBehaviour
     public bool IsDead = false;
     Rigidbody2D rb;
     private CinemachineImpulseSource src;
-
+    [SerializeField]private TextMeshProUGUI healthNumber_UI;
     private void Awake()
     {
         //Refrence
@@ -30,21 +31,17 @@ public class PlayerHealth : MonoBehaviour
         src = GetComponent<CinemachineImpulseSource>();
         //Set Values
         Health = MaxHealth;
-
+        healthNumber_UI.text = Health + "/" + MaxHealth;
     }
     private void Update()
     {
-        if (Input.GetKeyDown("e"))
-        {
-            PlayerReceiveDamage(20f);
-            CameraShake();
-        }
+        HealthBar.fillAmount = Health / MaxHealth;
+        healthNumber_UI.text = Health + "/" + MaxHealth;
     }
 
     public void PlayerReceiveDamage(float Damage)
     {
         Health -= Damage;
-        HealthBar.fillAmount = Health / MaxHealth;
         if (Health <= 0)
         {
             //Dead

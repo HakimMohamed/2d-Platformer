@@ -18,7 +18,7 @@ public class Explosion : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
-        rb.velocity = explosionSpeed * Time.fixedDeltaTime * Vector2.right*dir;
+        rb.velocity = dir * explosionSpeed * Time.fixedDeltaTime * Vector2.right;
 
     }
     private void OnTriggerEnter2D(Collider2D collision)
