@@ -7,15 +7,14 @@ public class PlayerhealthPotion : MonoBehaviour
     private int timesTousePotions = 3;
     private float healthReturned=30;
 
-    private bool StartTime=false;
+    private bool isDrinking=false;
     private float timeToConsume ;
-    private float timeToConsumeMax = 1f;
+    [SerializeField]private float timeToConsumeMax = 1f;
     PlayerHealth playerhealth;
     Animator anim;
     Playermovement playermovement;
     float health;
     float maxHealth;
-
 
     private void Awake()
     {
@@ -30,20 +29,22 @@ public class PlayerhealthPotion : MonoBehaviour
     {
         health = playerhealth.Health;
         maxHealth = playerhealth.MaxHealth;
+        
+        anim.SetBool("isDrinking", isDrinking);
+
         if (Input.GetKeyDown(KeyCode.E)&&timesTousePotions>0&& health<maxHealth)
         {
-            anim.SetTrigger("Heal");
-            StartTime = true;
+            isDrinking = true;
             playermovement.MoveSpeed = playermovement.WalkMoveSpeed;
         }
-        if (StartTime)
+        if (isDrinking)
         {
             timeToConsume -= Time.deltaTime;
             if (timeToConsume <= 0)
             {
                 Heal();
                 timeToConsume = timeToConsumeMax;
-                StartTime = false;
+                isDrinking = false;
             }
         }
 
