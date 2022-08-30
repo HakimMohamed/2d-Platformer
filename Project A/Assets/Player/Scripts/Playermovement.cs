@@ -89,9 +89,10 @@ public class Playermovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        if (GetComponent<EagleDash>().isDashing)
-            return; 
-
+        if (GetComponent<EagleDash>().isFalcon)
+            return;
+        if (GetComponent<Player_Dash>().isDashing)
+            return;
         MoveCharacter(Direction().x);
 
 

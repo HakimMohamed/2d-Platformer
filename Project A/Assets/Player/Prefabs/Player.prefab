@@ -368,7 +368,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &612077177207249065
 Transform:
   m_ObjectHideFlags: 0
@@ -377,7 +377,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1155780314107142714}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.39, y: 0.32, z: 0.299995}
+  m_LocalPosition: {x: 0.39, y: -0.242, z: 0.299995}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -480,6 +480,7 @@ GameObject:
   - component: {fileID: 859304883}
   - component: {fileID: 1722925391}
   - component: {fileID: 859304842}
+  - component: {fileID: 859304857}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -549,7 +550,7 @@ SpriteRenderer:
   m_SortingLayerID: -572091129
   m_SortingLayer: -2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1597593369, guid: 420f3b5c40e528b45bd55258584516c8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4dec39247f2386144874153ac9e84c3e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -713,8 +714,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.08, y: -0.027854443}
-  m_Size: {x: 0.77628326, y: 1.5705643}
+  m_Offset: {x: 0.058488876, y: -0.33331025}
+  m_Size: {x: 0.8193055, y: 1.2694108}
   m_Direction: 0
 --- !u!114 &6828741445914886118
 MonoBehaviour:
@@ -811,7 +812,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EagleDash_img: {fileID: 0}
-  isDashing: 0
+  isFalcon: 0
   dashinPower: 20
 --- !u!114 &1722925391
 MonoBehaviour:
@@ -838,6 +839,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeToConsumeMax: 1
+--- !u!114 &859304857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6828741445914886116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38c69e0d54805ef489c42f4cace96359, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDashing: 0
+  dashinPower: 5
 --- !u!1 &6828741446105893326
 GameObject:
   m_ObjectHideFlags: 0
@@ -862,7 +877,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6828741446105893326}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.37, y: -0.687, z: 0.29999498}
+  m_LocalPosition: {x: 0.009, y: -0.928, z: 0.29999498}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -893,7 +908,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6828741446334958091}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.38, y: 0.037, z: 0.299995}
+  m_LocalPosition: {x: 0.915, y: -0.247, z: 0.299995}
   m_LocalScale: {x: 1.1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
