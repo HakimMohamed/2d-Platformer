@@ -13,7 +13,11 @@ public class Ball : MonoBehaviour
     }
 
     // Update is called once per frame
-    
+
+    private void Update()
+    {
+        
+    }
     private void FixedUpdate()
     {
         rb.velocity += new Vector2(BallSpeed*Time.deltaTime, rb.velocity.y);
