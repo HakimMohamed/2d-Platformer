@@ -475,8 +475,6 @@ GameObject:
   - component: {fileID: 6828741445914886118}
   - component: {fileID: 6828741445914886119}
   - component: {fileID: 859304871}
-  - component: {fileID: 859304883}
-  - component: {fileID: 1722925391}
   - component: {fileID: 859304842}
   - component: {fileID: 859304857}
   - component: {fileID: 859304858}
@@ -709,7 +707,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 6828741445914886116}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 3d1a966473fc343448c2149f6ebae904, type: 2}
+  m_Material: {fileID: 6200000, guid: fd98d43979de3d547b90be7a72421d8d, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -766,32 +764,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   verSlash: {fileID: 1447189587}
   horSlash: {fileID: 912267956}
---- !u!114 &859304883
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6828741445914886116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca95c6bd07d2e684cbe869c5bf78db74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isFalcon: 0
-  dashinPower: 20
---- !u!114 &1722925391
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6828741445914886116}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d9d364ce2c07294a833a0d8bc29afae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &859304842
 MonoBehaviour:
   m_ObjectHideFlags: 0

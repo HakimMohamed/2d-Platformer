@@ -44,7 +44,7 @@ public class Player_Dash : MonoBehaviour
         isDashing = true;
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0f;
-        rb.velocity = new Vector2(transform.localScale.x * dashinPower, rb.velocity.y);
+        rb.velocity = new Vector2(transform.localScale.x * dashinPower, 0f);
         src.GenerateImpulse();
         yield return new WaitForSeconds(dashingTime);
         rb.gravityScale = originalGravity;
