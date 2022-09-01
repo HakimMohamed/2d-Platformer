@@ -3670,11 +3670,11 @@ TextureImporter:
       industrial.v2_25: -1259810417
       industrial.v2_155: 1471466791
       industrial.v2_133: 660937085
-      industrial.v2_98: 191298893
+      industrial.v2_79: 997732393
       industrial.v2_31: 776246079
       industrial.v2_48: 992080264
       industrial.v2_32: 1896601031
-      industrial.v2_146: -1784182160
+      industrial.v2_98: 191298893
       industrial.v2_58: -339299963
       industrial.v2_136: -1122118557
       industrial.v2_116: -1690689376
@@ -3833,7 +3833,7 @@ TextureImporter:
       industrial.v2_152: 529206172
       industrial.v2_42: 1386747675
       industrial.v2_156: -377431650
-      industrial.v2_79: 997732393
+      industrial.v2_146: -1784182160
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
