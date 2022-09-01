@@ -6,6 +6,7 @@ public class Ball : MonoBehaviour
 {
     public float BallSpeed=10f;
     private Rigidbody2D rb;
+    bool IsBallMoving = false;
 
     void Start()
     {
@@ -16,11 +17,19 @@ public class Ball : MonoBehaviour
 
     private void Update()
     {
-        
+        if (Input.GetKey(KeyCode.K))
+        {
+            IsBallMoving = true;
+        }
     }
     private void FixedUpdate()
     {
-        rb.velocity += new Vector2(BallSpeed*Time.deltaTime, rb.velocity.y);
+        if (IsBallMoving)
+        {
+
+
+            rb.velocity += new Vector2(BallSpeed * Time.deltaTime, rb.velocity.y);
+        }
 
     }
 }
