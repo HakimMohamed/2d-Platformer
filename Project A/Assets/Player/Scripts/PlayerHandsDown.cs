@@ -14,7 +14,6 @@ public class PlayerHandsDown : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         Handvfx = GameAssets.instance.HandsDown;
-        cursorPos = GameObject.Find("HandsDownCrosshair").GetComponent<CrosshairCursor>();
         DarkGate = GameAssets.instance.DarkGate;
     }
 

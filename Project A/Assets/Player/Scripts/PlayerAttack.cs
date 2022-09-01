@@ -60,14 +60,13 @@ public class PlayerAttack : MonoBehaviour
     
     public void DisableMovement()
     {
-        if (!GetComponent<PlayerAura>().isInAura)
-            playermovement.MoveSpeed = speedWhileAttacking;
+        
+        playermovement.MoveSpeed = speedWhileAttacking;
 
     }
     public void FreeMovement()
     {
-        if(!GetComponent<PlayerAura>().isInAura)
-            playermovement.MoveSpeed = DefaultSpeed;
+        playermovement.MoveSpeed = DefaultSpeed;
     }
 
     public void Attack(int attackDamage)

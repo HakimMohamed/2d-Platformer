@@ -6,7 +6,6 @@ using Cinemachine;
 
 public class EagleDash : MonoBehaviour
 {
-    [SerializeField] private Image EagleDash_img;
 
     [Header("Dash")]
     private bool canDash = true;
@@ -28,7 +27,6 @@ public class EagleDash : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         dashingTimeForImg = dashingTime;
-        EagleDash_img.fillAmount = 1f;
         src = GetComponent<CinemachineImpulseSource>();
 
     }
@@ -44,15 +42,7 @@ public class EagleDash : MonoBehaviour
             isFalcon = true;
 
         }
-        if (isFalcon)
-        {
-            dashingTimeForImg -= Time.deltaTime;
-            EagleDash_img.fillAmount = dashingTimeForImg / dashingTime;
-        }
-        else
-        {
-            EagleDash_img.fillAmount +=Time.deltaTime;
-        }
+        
 
     }
     public IEnumerator Dash()
@@ -71,7 +61,6 @@ public class EagleDash : MonoBehaviour
 
         yield return new WaitForSeconds(dashingCooldown);
         canDash = true;
-        EagleDash_img.fillAmount = 1f;
     }
     public void startDash()
     {
