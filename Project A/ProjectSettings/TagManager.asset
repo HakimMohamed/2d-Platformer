@@ -6,6 +6,10 @@ TagManager:
   tags:
   - enemy
   - Wall
+  - Dog
+  - NewBall
+  - FetchMachine
+  - DogDatabase
   layers:
   - Default
   - TransparentFX
@@ -70,12 +74,12 @@ TagManager:
   - name: Enemy
     uniqueID: 3399406997
     locked: 0
-  - name: Player
-    uniqueID: 3722876167
-    locked: 0
   - name: Ground
     uniqueID: 798024843
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 3722876167
     locked: 0
