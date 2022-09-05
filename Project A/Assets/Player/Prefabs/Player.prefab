@@ -478,6 +478,7 @@ GameObject:
   - component: {fileID: 859304842}
   - component: {fileID: 859304857}
   - component: {fileID: 859304858}
+  - component: {fileID: 3610519030035856846}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -790,7 +791,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDashing: 0
-  dashinPower: 10
+  dashinPower: 15
 --- !u!114 &859304858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -801,6 +802,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: de0a053b308070b45ad7ddbb6ee6bfea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3610519030035856846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6828741445914886116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2033fb6389629ce49a9d559567c04473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6828741446105893326
