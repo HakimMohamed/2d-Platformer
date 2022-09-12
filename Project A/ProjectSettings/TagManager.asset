@@ -48,11 +48,11 @@ TagManager:
   - name: Sky
     uniqueID: 2364319121
     locked: 0
-  - name: Clouds
-    uniqueID: 1367214065
-    locked: 0
   - name: Sea
     uniqueID: 1951498679
+    locked: 0
+  - name: Clouds
+    uniqueID: 1367214065
     locked: 0
   - name: FarGrounds
     uniqueID: 4237944567
