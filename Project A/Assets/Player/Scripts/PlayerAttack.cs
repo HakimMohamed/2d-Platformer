@@ -77,8 +77,14 @@ public class PlayerAttack : MonoBehaviour
         {
             var enemy_ = enemy.GetComponent<Enemy>();
             var enemy_health = enemy.GetComponent<enemyHealth>();
-
-            enemy_health.EnemyReceiveDamage(attackDamage);
+            if (enemy.CompareTag("Barrel"))
+            {
+                enemy.GetComponent<BarrelHealth>().BarrelReceiveDamage(attackDamage);
+            }
+            else if (enemy.CompareTag("enemy"))
+            {
+                enemy_health.EnemyReceiveDamage(attackDamage);
+            }
             //StartCoroutine(DoSlowMotion());
             src.GenerateImpulse();
         }

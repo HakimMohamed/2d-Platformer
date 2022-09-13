@@ -31,7 +31,7 @@ public class Player_Dash : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift)&&canDash)
         {
             anim.SetTrigger("Dash");
             StartCoroutine(Dash());

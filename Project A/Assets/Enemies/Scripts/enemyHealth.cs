@@ -23,13 +23,14 @@ public class enemyHealth : MonoBehaviour
     [Header("States")]
     private bool IsDead = false;
 
+    Rigidbody2D rb;
     private void Awake()
     {
         //Refrence
 
         anim = GetComponent<Animator>();
         sp = GetComponent<SpriteRenderer>();
-        
+        rb = GetComponent<Rigidbody2D>();
 
         //Set Values
         Health = MaxHealth;
@@ -59,18 +60,27 @@ public class enemyHealth : MonoBehaviour
 
         Health -= Damage;
         HealthBar.fillAmount = Health / MaxHealth;
-        if (Health <= 0)
+        if (Health <= 0 && !IsDead)
         {
             //Dead
             IsDead = true;
-            anim.SetBool("IsDead", IsDead);
+            
             anim.SetTrigger("Death");
+            
             EnemyBlood();
+            anim.SetBool("IsDead", IsDead);
+            
+           
+            rb.bodyType = RigidbodyType2D.Dynamic;
+            
+                
             //StartCoroutine( DoSlowMotion());
             return;
         }
+        
         anim.SetTrigger("Hit");
         EnemyBlood();
+        
     }
 
     private void EnemyDissolve()
