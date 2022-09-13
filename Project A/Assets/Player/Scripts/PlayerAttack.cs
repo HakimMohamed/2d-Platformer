@@ -6,7 +6,7 @@ using Cinemachine;
 public class PlayerAttack : MonoBehaviour
 {
     [Header("Attack")]
-    private float AttackDamage = 40f;
+    private Vector2 AttackDamage = new Vector2(20f,50f);
     [SerializeField]private float AttackRadius = 0.5f;
     [SerializeField] Transform AttackPoint;
     private LayerMask EnemyLayer;
@@ -69,7 +69,7 @@ public class PlayerAttack : MonoBehaviour
         playermovement.MoveSpeed = DefaultSpeed;
     }
 
-    public void Attack(int attackDamage)
+    public void Attack()
     {
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(AttackPoint.position, AttackRadius, EnemyLayer);
 
@@ -79,11 +79,11 @@ public class PlayerAttack : MonoBehaviour
             var enemy_health = enemy.GetComponent<enemyHealth>();
             if (enemy.CompareTag("Barrel"))
             {
-                enemy.GetComponent<BarrelHealth>().BarrelReceiveDamage(attackDamage);
+                enemy.GetComponent<BarrelHealth>().BarrelReceiveDamage(UnityEngine.Random.Range(AttackDamage.x,AttackDamage.y));
             }
             else if (enemy.CompareTag("enemy"))
             {
-                enemy_health.EnemyReceiveDamage(attackDamage);
+                enemy_health.EnemyReceiveDamage(UnityEngine.Random.Range(AttackDamage.x, AttackDamage.y));
             }
             //StartCoroutine(DoSlowMotion());
             src.GenerateImpulse();

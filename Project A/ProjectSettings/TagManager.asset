@@ -11,6 +11,7 @@ TagManager:
   - FetchMachine
   - DogDatabase
   - Ladder
+  - Barrel
   layers:
   - Default
   - TransparentFX
