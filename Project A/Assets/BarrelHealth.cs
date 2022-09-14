@@ -66,7 +66,6 @@ public class BarrelHealth : MonoBehaviour
             
             
             
-            rb.bodyType = RigidbodyType2D.Dynamic;
             
 
             //StartCoroutine( DoSlowMotion());

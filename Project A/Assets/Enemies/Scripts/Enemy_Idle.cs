@@ -4,16 +4,26 @@ using UnityEngine;
 
 public class Enemy_Idle : StateMachineBehaviour
 {
-     
-    //OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
+
+    private bool canSeePlayer = false;
+    Transform Player;
+    Rigidbody2D rb;
+    public float followRange = 0f;
+
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-
+        Player = GameObject.Find("Player").transform;
+        rb = animator.GetComponent<Rigidbody2D>();
     }
 
     //OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        animator.SetBool("canSeePlayer", canSeePlayer);
+
+        canSeePlayer = Vector2.Distance(Player.position, rb.position) <= followRange + 3f;
+        
+
 
     }
 

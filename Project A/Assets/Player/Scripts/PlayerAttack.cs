@@ -71,18 +71,19 @@ public class PlayerAttack : MonoBehaviour
 
     public void Attack()
     {
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(AttackPoint.position, AttackRadius, EnemyLayer);
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(AttackPoint.position, AttackRadius,EnemyLayer);
 
         foreach (Collider2D enemy in hitEnemies)
         {
-            var enemy_ = enemy.GetComponent<Enemy>();
-            var enemy_health = enemy.GetComponent<enemyHealth>();
+            
             if (enemy.CompareTag("Barrel"))
             {
                 enemy.GetComponent<BarrelHealth>().BarrelReceiveDamage(UnityEngine.Random.Range(AttackDamage.x,AttackDamage.y));
             }
             else if (enemy.CompareTag("enemy"))
             {
+                var enemy_ = enemy.GetComponent<Enemy>();
+                var enemy_health = enemy.GetComponent<enemyHealth>();
                 enemy_health.EnemyReceiveDamage(UnityEngine.Random.Range(AttackDamage.x, AttackDamage.y));
             }
             //StartCoroutine(DoSlowMotion());

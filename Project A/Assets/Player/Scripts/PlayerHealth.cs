@@ -35,26 +35,31 @@ public class PlayerHealth : MonoBehaviour
     }
     private void Update()
     {
+
         HealthBar.fillAmount = Health / MaxHealth;
         healthNumber_UI.text = Health + "/" + MaxHealth;
+        anim.SetBool("isDead", IsDead);
     }
 
     public void PlayerReceiveDamage(float Damage)
     {
-        Health -= Damage;
-        if (Health <= 0)
+        if (!IsDead)
         {
-            //Dead
-            IsDead = true;
-            anim.SetTrigger("Death");
-            rb.constraints = RigidbodyConstraints2D.FreezePositionX;
+            Health -= Damage;
+            if (Health <= 0 )
+            {
+                //Dead
+                Health = 0;
+                IsDead = true;
+                anim.SetTrigger("Death");
+                rb.constraints = RigidbodyConstraints2D.FreezePositionX;
 
+                CameraShake();
+                return;
+            }
             CameraShake();
-            return;
+            anim.SetTrigger("Hurt");
         }
-        CameraShake();
-        anim.SetTrigger("Hurt");
-
     }
 
     public void CameraShake()
