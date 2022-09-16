@@ -63,15 +63,6 @@ public class Playermovement : MonoBehaviour
             return;
         }
 
-        
-
-        //LeftCtrl = Input.GetKey(KeyCode.LeftControl);
-
-        //if (LeftCtrl)
-        //    MoveSpeed = WalkMoveSpeed;
-        //else
-        //    MoveSpeed = DefaultMoveSpeed;
-
         anim.SetBool("Ctrl", LeftCtrl);
         var speed = rb.velocity.normalized.x;
         anim.SetFloat("Speed", Mathf.Abs(speed));
@@ -142,7 +133,7 @@ public class Playermovement : MonoBehaviour
             Debug.Log("aasd");
         }
 
-        if (rb.velocity.y < _jumpVelocityFalloff || rb.velocity.y > 0 && !Input.GetKey(KeyCode.C))
+        if (rb.velocity.y < _jumpVelocityFalloff || rb.velocity.y > 0 && !Input.GetKey(KeyCode.Space))
             rb.velocity += _fallMultiplier * Physics.gravity.y * Vector2.up * Time.deltaTime;
 
     }

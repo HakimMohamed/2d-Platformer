@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class PlayerhealthPotion : MonoBehaviour
 {
-    private int timesTousePotions = 3;
+    public int timesTousePotions = 3;
     private float healthReturned=30;
 
     private bool isDrinking=false;
@@ -15,6 +15,7 @@ public class PlayerhealthPotion : MonoBehaviour
     Playermovement playermovement;
     float health;
     float maxHealth;
+    [SerializeField] TextMeshProUGUI PotionsAvailbe; 
 
     private void Awake()
     {
@@ -29,10 +30,10 @@ public class PlayerhealthPotion : MonoBehaviour
     {
         health = playerhealth.Health;
         maxHealth = playerhealth.MaxHealth;
-        
+        PotionsAvailbe.text = timesTousePotions.ToString();
         anim.SetBool("isDrinking", isDrinking);
 
-        if (Input.GetKeyDown(KeyCode.E)&&timesTousePotions>0&& health<maxHealth)
+        if (Input.GetKeyDown(KeyCode.R)&&timesTousePotions>0&& health<maxHealth)
         {
             isDrinking = true;
             playermovement.MoveSpeed = playermovement.WalkMoveSpeed;
