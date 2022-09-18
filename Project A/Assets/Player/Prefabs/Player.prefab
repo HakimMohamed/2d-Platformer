@@ -548,7 +548,7 @@ SpriteRenderer:
   m_SortingLayerID: -572091129
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 4dec39247f2386144874153ac9e84c3e, type: 3}
+  m_Sprite: {fileID: 1753048312, guid: b061244a95173b74fa5da7ae813904dc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -662,8 +662,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d008924974661543b431456379e5b61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 340
-  DefaultMoveSpeed: 333
+  MoveSpeed: 280
+  DefaultMoveSpeed: 280
   WalkSpeed: 120
   WalkMoveSpeed: 0
   speedanimatorMut: 1
@@ -693,7 +693,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 4
   m_Material: {fileID: 0}
   m_Interpolate: 1
   m_SleepingMode: 1
@@ -712,8 +712,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.058488876, y: -0.33331025}
-  m_Size: {x: 0.8193055, y: 1.2694108}
+  m_Offset: {x: 0.058488876, y: -0.15655684}
+  m_Size: {x: 0.8193055, y: 1.5768285}
   m_Direction: 0
 --- !u!114 &6828741445914886118
 MonoBehaviour:
@@ -777,7 +777,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2467c499eafd3d84cb998dfbee641b9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timesTousePotions: 3
   timeToConsumeMax: 1
+  PotionsAvailbe: {fileID: 0}
 --- !u!114 &859304857
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -791,7 +793,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDashing: 0
-  dashinPower: 15
+  dashinPower: 22.52
 --- !u!114 &859304858
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -804,6 +806,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de0a053b308070b45ad7ddbb6ee6bfea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackRate: 2
 --- !u!114 &3610519030035856846
 MonoBehaviour:
   m_ObjectHideFlags: 0
