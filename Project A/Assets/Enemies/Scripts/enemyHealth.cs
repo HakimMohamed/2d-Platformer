@@ -24,6 +24,7 @@ public class enemyHealth : MonoBehaviour
     private bool IsDead = false;
 
     Rigidbody2D rb;
+    GameObject player;
     private void Awake()
     {
         //Refrence
@@ -31,7 +32,7 @@ public class enemyHealth : MonoBehaviour
         anim = GetComponent<Animator>();
         sp = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
-
+        player = GameObject.Find("Player");
         //Set Values
         Health = MaxHealth;
         Blood = GameAssets.instance.BloodVFX;
@@ -64,9 +65,15 @@ public class enemyHealth : MonoBehaviour
         {
             //Dead
             IsDead = true;
-            
+            player.GetComponent<Playermovement>().EnemiesKilled += 1;
             anim.SetTrigger("Death");
-            
+
+            int randomNumber = Random.Range(0,3);
+            if(randomNumber% player.GetComponent<Playermovement>().EnemiesKilled==0)
+            {
+               Instantiate( GameAssets.instance.Onigiri,new Vector2(transform.position.x,transform.position.y+4f),Quaternion.identity);
+            }
+
             EnemyBlood();
             anim.SetBool("IsDead", IsDead);
             

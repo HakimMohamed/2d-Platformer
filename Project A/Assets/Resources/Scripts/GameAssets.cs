@@ -17,6 +17,6 @@ public class GameAssets : MonoBehaviour
     public Transform ExplosionVFX;
     public Transform HandsDown;
     public Transform DarkGate;
-    public Transform Thunder_Hit;
+    public Transform Onigiri;
     
 }

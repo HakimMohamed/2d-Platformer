@@ -40,7 +40,7 @@ public class Playermovement : MonoBehaviour
     [SerializeField] private float _jumpVelocityFalloff = 8;
     [SerializeField] private float _fallMultiplier = 7;
 
-    
+    public  int EnemiesKilled = 0;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
