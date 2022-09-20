@@ -14,7 +14,7 @@ public class HealthPotion : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Vector2.Distance(transform.position, Player.transform.position) < 1f)
+        if(Vector2.Distance(transform.position, Player.transform.position) < 3f)
         {
             TakeButton.SetActive(true);
             if (Input.GetKeyDown(KeyCode.F))

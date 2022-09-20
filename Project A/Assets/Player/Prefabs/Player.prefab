@@ -777,7 +777,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2467c499eafd3d84cb998dfbee641b9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timesTousePotions: 3
+  timesTousePotions: 1
   timeToConsumeMax: 1
   PotionsAvailbe: {fileID: 0}
 --- !u!114 &859304857
@@ -793,7 +793,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDashing: 0
-  dashinPower: 22.52
+  dashinPower: 17.75
 --- !u!114 &859304858
 MonoBehaviour:
   m_ObjectHideFlags: 0

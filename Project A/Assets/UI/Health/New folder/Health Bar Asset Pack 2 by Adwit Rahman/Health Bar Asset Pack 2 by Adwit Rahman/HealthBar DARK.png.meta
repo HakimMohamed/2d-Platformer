@@ -132,10 +132,10 @@ TextureImporter:
       name: HealthBar DARK_0
       rect:
         serializedVersion: 2
-        x: 19
+        x: 20
         y: 147
-        width: 57
-        height: 7
+        width: 56
+        height: 2
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -380,6 +380,27 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: HealthBar DARK_12
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 150
+        width: 4
+        height: 4
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 23c71854945d5044c810508fd5d02b02
+      internalID: 1230403122
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -396,6 +417,7 @@ TextureImporter:
       HealthBar DARK_0: 499175815
       HealthBar DARK_4: 1264925572
       HealthBar DARK_3: -1540195183
+      HealthBar DARK_12: 1230403122
       HealthBar DARK_5: 1016936778
       HealthBar DARK_7: -1819479291
       HealthBar DARK_8: -862178746

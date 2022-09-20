@@ -6,7 +6,7 @@ using Cinemachine;
 public class PlayerAttack : MonoBehaviour
 {
     [Header("Attack")]
-    private Vector2 AttackDamage = new Vector2(20f,50f);
+    private Vector2 AttackDamage = new Vector2(20f,30f);
     [SerializeField]private float AttackRadius = 0.5f;
     [SerializeField] Transform AttackPoint;
     private LayerMask EnemyLayer;
