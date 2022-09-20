@@ -678,6 +678,7 @@ MonoBehaviour:
   isAttacking: 0
   _jumpVelocityFalloff: 8
   _fallMultiplier: 5
+  EnemiesKilled: 0
 --- !u!50 &6828741445914886112
 Rigidbody2D:
   serializedVersion: 4
@@ -748,9 +749,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 0
   MaxHealth: 100
+  Mana: 0
+  MaxMana: 50
   HealthBar: {fileID: 0}
+  ManaBar: {fileID: 0}
   IsDead: 0
   healthNumber_UI: {fileID: 0}
+  ManaNumber_UI: {fileID: 0}
 --- !u!114 &859304871
 MonoBehaviour:
   m_ObjectHideFlags: 0

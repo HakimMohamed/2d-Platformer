@@ -68,11 +68,7 @@ public class enemyHealth : MonoBehaviour
             player.GetComponent<Playermovement>().EnemiesKilled += 1;
             anim.SetTrigger("Death");
 
-            int randomNumber = Random.Range(0,3);
-            if(randomNumber% player.GetComponent<Playermovement>().EnemiesKilled==0)
-            {
-               Instantiate( GameAssets.instance.Onigiri,new Vector2(transform.position.x,transform.position.y+4f),Quaternion.identity);
-            }
+            player.GetComponent<Playermovement>().EnemiesKilled += 1;
 
             EnemyBlood();
             anim.SetBool("IsDead", IsDead);

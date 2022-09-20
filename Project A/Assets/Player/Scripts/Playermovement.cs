@@ -35,11 +35,9 @@ public class Playermovement : MonoBehaviour
 
     [Header("States")]
     bool isDead;
-    public bool isAttacking=false;
-
     [SerializeField] private float _jumpVelocityFalloff = 8;
     [SerializeField] private float _fallMultiplier = 7;
-
+    PlayerAttack playerattack;
     public  int EnemiesKilled = 0;
     private void Awake()
     {
@@ -49,7 +47,7 @@ public class Playermovement : MonoBehaviour
         isDead = GetComponent<PlayerHealth>().IsDead;
         src = GetComponent<CinemachineImpulseSource>();
         WalkMoveSpeed = .2f * MoveSpeed;
-        
+        playerattack = GetComponent<PlayerAttack>();
     }
 
     // Update is called once per frame
@@ -62,7 +60,7 @@ public class Playermovement : MonoBehaviour
             GetComponent<PlayerAttack>().enabled = false;
             return;
         }
-
+        
         anim.SetBool("Ctrl", LeftCtrl);
         var speed = rb.velocity.normalized.x;
         anim.SetFloat("Speed", Mathf.Abs(speed));
@@ -76,7 +74,12 @@ public class Playermovement : MonoBehaviour
         jump_Input_Handler();
         HandleFlipping();
 
-
+        //increase 20 percent if he is fighting
+        if (!playerattack.isAttacking)
+        {
+            float speedWhileFighting = .4f * DefaultMoveSpeed + DefaultMoveSpeed;
+            MoveSpeed = playerattack.isFighting ? speedWhileFighting : DefaultMoveSpeed;
+        }
     }
     private void FixedUpdate()
     {

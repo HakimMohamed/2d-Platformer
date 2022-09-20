@@ -23,7 +23,7 @@ public class ResetAnimations : StateMachineBehaviour
         animator.SetBool("Attack2", false);
         animator.SetBool("Attack3", false);
         animator.GetComponent<PlayerAttack>().noOfClicks = 0;
-        animator.GetComponent<Playermovement>().MoveSpeed = animator.GetComponent<Playermovement>().DefaultMoveSpeed;
+        animator.GetComponent<Playermovement>().MoveSpeed = animator.GetComponent<Playermovement>().MoveSpeed;
 
     }
 

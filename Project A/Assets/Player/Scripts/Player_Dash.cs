@@ -19,28 +19,32 @@ public class Player_Dash : MonoBehaviour
     Animator anim;
     float dashingTimeForImg;
     private CinemachineImpulseSource src;
-
+    PlayerHealth playerhealth;
+    private float manaUsage=10f;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         dashingTimeForImg = dashingTime;
         src = GetComponent<CinemachineImpulseSource>();
+        playerhealth = GetComponent<PlayerHealth>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift)&&canDash)
+        if (Input.GetKeyDown(KeyCode.LeftShift)&&canDash&& manaUsage<=playerhealth.Mana)
         {
             anim.SetTrigger("Dash");
             StartCoroutine(Dash());
+            
         }
         anim.SetBool("isDashing", isDashing);
     }
     public IEnumerator Dash()
     {
         canDash = false;
+        playerhealth.PlayerUseMana(manaUsage);
         isDashing = true;
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0f;

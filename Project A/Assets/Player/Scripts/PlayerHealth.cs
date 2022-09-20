@@ -12,9 +12,11 @@ public class PlayerHealth : MonoBehaviour
     [Header("Properties")]
     [HideInInspector] public float Health;
     [SerializeField] public float MaxHealth;
-
+    [HideInInspector] public float Mana;
+    public float MaxMana;
     [Header("UI Components")]
     [SerializeField] private Image HealthBar;
+    [SerializeField] private Image ManaBar;
 
 
     [Header("Components")]
@@ -23,6 +25,8 @@ public class PlayerHealth : MonoBehaviour
     Rigidbody2D rb;
     private CinemachineImpulseSource src;
     [SerializeField]private TextMeshProUGUI healthNumber_UI;
+    [SerializeField] private TextMeshProUGUI ManaNumber_UI;
+
     private void Awake()
     {
         //Refrence
@@ -32,13 +36,24 @@ public class PlayerHealth : MonoBehaviour
         //Set Values
         Health = MaxHealth;
         healthNumber_UI.text = Health + "/" + MaxHealth;
+      
+        Mana = MaxMana;
+        healthNumber_UI.text = Mana + "/" + MaxMana;
     }
     private void Update()
     {
+        ManaBar.fillAmount = Mana / MaxMana;
+        ManaNumber_UI.text = (int)Mana + "/" + MaxMana.ToString("0");
 
         HealthBar.fillAmount = Health / MaxHealth;
         healthNumber_UI.text = Health + "/" + MaxHealth;
         anim.SetBool("isDead", IsDead);
+
+        if(Mana<MaxMana)
+            Mana += Time.deltaTime;
+
+        if (Mana > MaxMana)
+            Mana = MaxMana;
     }
 
     public void PlayerReceiveDamage(float Damage)
@@ -72,6 +87,13 @@ public class PlayerHealth : MonoBehaviour
         {
             Health += amount;
         }
+
+    }
+    public void PlayerUseMana(float amount)
+    {
+        Debug.Log("xx");
+        Mana -= amount;
+        
 
     }
     public void CameraShake()
