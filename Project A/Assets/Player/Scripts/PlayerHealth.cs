@@ -61,7 +61,19 @@ public class PlayerHealth : MonoBehaviour
             anim.SetTrigger("Hurt");
         }
     }
+    public void PlayerReceiveHealth(float amount)
+    {
+        float health = Health + amount;
+        if (health > MaxHealth)
+        {
+            Health = MaxHealth;
+        }
+        else
+        {
+            Health += amount;
+        }
 
+    }
     public void CameraShake()
     {
         src.GenerateImpulse();
