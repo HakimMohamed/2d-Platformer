@@ -76,6 +76,9 @@ TagManager:
   - name: Enemy
     uniqueID: 3399406997
     locked: 0
+  - name: Wall
+    uniqueID: 944692903
+    locked: 0
   - name: Ground
     uniqueID: 798024843
     locked: 0

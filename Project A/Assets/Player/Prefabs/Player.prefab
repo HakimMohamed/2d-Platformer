@@ -111,6 +111,37 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!1 &225200080
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 225200081}
+  m_Layer: 8
+  m_Name: wallChecker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &225200081
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 225200080}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.199, y: -0.064, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6828741445914885662}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &912267956
 GameObject:
   m_ObjectHideFlags: 0
@@ -504,6 +535,7 @@ Transform:
   - {fileID: 4021110615644028486}
   - {fileID: 1447189591}
   - {fileID: 912267960}
+  - {fileID: 225200081}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -648,6 +680,8 @@ MonoBehaviour:
   AttackPoint: {fileID: 6828741446334958090}
   speedWhileAttacking: 0.2
   noOfClicks: 0
+  isFighting: 0
+  isAttacking: 0
   slowDownFactor: 0.01
   slowdownLength: 0.56
 --- !u!114 &6828741445914886115
@@ -675,10 +709,15 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   IsGrounded: 0
-  isAttacking: 0
   _jumpVelocityFalloff: 8
   _fallMultiplier: 5
   EnemiesKilled: 0
+  isSliding: 0
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 4096
+  wallChecker: {fileID: 225200081}
+  wallRadius: 0.25
 --- !u!50 &6828741445914886112
 Rigidbody2D:
   serializedVersion: 4
@@ -713,8 +752,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.058488876, y: -0.15655684}
-  m_Size: {x: 0.8193055, y: 1.5768285}
+  m_Offset: {x: 0.028793335, y: -0.15655684}
+  m_Size: {x: 0.5674286, y: 1.5768285}
   m_Direction: 0
 --- !u!114 &6828741445914886118
 MonoBehaviour:
@@ -756,6 +795,7 @@ MonoBehaviour:
   IsDead: 0
   healthNumber_UI: {fileID: 0}
   ManaNumber_UI: {fileID: 0}
+  ManaBar_anim: {fileID: 0}
 --- !u!114 &859304871
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -824,6 +864,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2033fb6389629ce49a9d559567c04473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isClimbing: 0
 --- !u!1 &6828741446105893326
 GameObject:
   m_ObjectHideFlags: 0
@@ -848,7 +889,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6828741446105893326}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.009, y: -0.928, z: 0.29999498}
+  m_LocalPosition: {x: 0.045, y: -0.725, z: 0.29999498}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -967,7 +1008,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4938660236084515295, guid: 10253595487b9684c85a05c35bcddb1a, type: 3}
       propertyPath: m_SortingLayer
-      value: -7
+      value: -8
       objectReference: {fileID: 0}
     - target: {fileID: 4938660236084515295, guid: 10253595487b9684c85a05c35bcddb1a, type: 3}
       propertyPath: m_SortingLayerID

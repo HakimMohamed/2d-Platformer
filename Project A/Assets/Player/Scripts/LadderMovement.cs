@@ -7,15 +7,17 @@ public class LadderMovement : MonoBehaviour
     private float vertical;
     private float speed = 8f;
     private bool isLadder;
-    private bool isClimbing;
+    public bool isClimbing;
     private float defualtGravity;
     private Rigidbody2D rb;
     private Animator anim;
+    private Playermovement playermovement;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         defualtGravity = rb.gravityScale;
+        playermovement = GetComponent<Playermovement>();
     }
 
     // Update is called once per frame
@@ -34,14 +36,15 @@ public class LadderMovement : MonoBehaviour
     private void FixedUpdate()
     {
 
-        if (isClimbing)
+        if (isClimbing&&!playermovement.isSliding)
         {
             rb.gravityScale = 0f;
             rb.velocity = new Vector2(rb.velocity.x, vertical * speed);
         }
-        else
+        else 
         {
-            rb.gravityScale = defualtGravity;
+            if(!playermovement.isSliding)
+                rb.gravityScale = defualtGravity;
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)

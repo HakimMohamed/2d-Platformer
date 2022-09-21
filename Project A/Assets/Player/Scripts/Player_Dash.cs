@@ -33,7 +33,7 @@ public class Player_Dash : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift)&&canDash&& manaUsage<=playerhealth.Mana)
+        if (Input.GetKeyDown(KeyCode.LeftShift)&&canDash&& playerhealth.PlayerUseMana(manaUsage))
         {
             anim.SetTrigger("Dash");
             StartCoroutine(Dash());
@@ -44,7 +44,6 @@ public class Player_Dash : MonoBehaviour
     public IEnumerator Dash()
     {
         canDash = false;
-        playerhealth.PlayerUseMana(manaUsage);
         isDashing = true;
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0f;

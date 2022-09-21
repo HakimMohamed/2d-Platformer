@@ -26,6 +26,7 @@ public class PlayerAttack : MonoBehaviour
     private CinemachineImpulseSource src;
     public bool isFighting = false;
     public bool isAttacking;
+    public bool disableAttack;
     void Start()
     {
         EnemyLayer = LayerMask.GetMask("Enemy");
@@ -43,7 +44,6 @@ public class PlayerAttack : MonoBehaviour
         {
             noOfClicks=1;
             anim.SetBool("Attack1", true);
-            DisableMovement();
             isAttacking = true;
         }
         anim.SetInteger("noOfClick", noOfClicks);
@@ -67,12 +67,14 @@ public class PlayerAttack : MonoBehaviour
     
     public void DisableMovement()
     {
-        
+        disableAttack = true;
         playermovement.MoveSpeed = speedWhileAttacking;
 
     }
     public void FreeMovement()
     {
+        disableAttack = false;
+
         isAttacking = false;
         playermovement.MoveSpeed = DefaultSpeed;
     }
@@ -80,6 +82,7 @@ public class PlayerAttack : MonoBehaviour
     public void Attack()
     {
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(AttackPoint.position, AttackRadius,EnemyLayer);
+        DisableMovement();
 
         foreach (Collider2D enemy in hitEnemies)
         {

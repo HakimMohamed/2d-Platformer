@@ -70,7 +70,7 @@ public class enemyHealth : MonoBehaviour
 
             player.GetComponent<Playermovement>().EnemiesKilled += 1;
 
-            EnemyBlood();
+            //EnemyBlood();
             anim.SetBool("IsDead", IsDead);
             
            
@@ -82,7 +82,7 @@ public class enemyHealth : MonoBehaviour
         }
         
         anim.SetTrigger("Hit");
-        EnemyBlood();
+        //EnemyBlood();
         
     }
 

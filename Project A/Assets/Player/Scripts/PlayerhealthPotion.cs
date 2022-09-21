@@ -36,7 +36,7 @@ public class PlayerhealthPotion : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R)&&timesTousePotions>0&& health<maxHealth)
         {
             isDrinking = true;
-            playermovement.MoveSpeed = playermovement.WalkMoveSpeed;
+            playermovement.MoveSpeed = 120f;
         }
         if (isDrinking)
         {

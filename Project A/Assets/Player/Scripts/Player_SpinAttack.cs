@@ -20,11 +20,10 @@ public class Player_SpinAttack : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.S)&&Time.time > nextAttackTime )
         {
-            if (Input.GetMouseButtonDown(0)&& manaUsage <= playerhealth.Mana)
+            if (Input.GetMouseButtonDown(0)&& playerhealth.PlayerUseMana(manaUsage))
             {
                 anim.SetTrigger("Spin");
                 nextAttackTime = Time.time + 1f / attackRate;
-                playerhealth.PlayerUseMana(manaUsage);
             }
         }
     }

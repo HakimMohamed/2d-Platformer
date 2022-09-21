@@ -26,7 +26,7 @@ public class PlayerHealth : MonoBehaviour
     private CinemachineImpulseSource src;
     [SerializeField]private TextMeshProUGUI healthNumber_UI;
     [SerializeField] private TextMeshProUGUI ManaNumber_UI;
-
+    [SerializeField] private Animator ManaBar_anim;
     private void Awake()
     {
         //Refrence
@@ -50,7 +50,7 @@ public class PlayerHealth : MonoBehaviour
         anim.SetBool("isDead", IsDead);
 
         if(Mana<MaxMana)
-            Mana += Time.deltaTime;
+            Mana += Time.deltaTime*1.4f;
 
         if (Mana > MaxMana)
             Mana = MaxMana;
@@ -89,12 +89,26 @@ public class PlayerHealth : MonoBehaviour
         }
 
     }
-    public void PlayerUseMana(float amount)
+    public bool PlayerUseMana(float amount)
     {
         Debug.Log("xx");
-        Mana -= amount;
         
+      
+        if (Mana - amount >= 0)
+        {
+            Mana-= amount;
+            return true;
+        }
+        else
+        {
+            notEnoughMana();
+            return false;
+        }
 
+    }
+    private void notEnoughMana()
+    {
+        ManaBar_anim.SetTrigger("notEnough");
     }
     public void CameraShake()
     {

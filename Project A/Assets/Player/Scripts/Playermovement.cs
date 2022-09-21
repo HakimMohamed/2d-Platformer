@@ -10,12 +10,11 @@ public class Playermovement : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
     private CinemachineImpulseSource src;
-
+    private LadderMovement laddermovement;
     [Header("Horizontal Movement")]
     public float MoveSpeed = 10f;
     public float DefaultMoveSpeed= 333f;
-    public float WalkSpeed = 120f;
-    public float WalkMoveSpeed;
+    [SerializeField]private float WalkMoveSpeed= 120f;
     private Vector2 direciton;
     private bool FacingRight = true;
     private bool LeftCtrl;
@@ -39,6 +38,12 @@ public class Playermovement : MonoBehaviour
     [SerializeField] private float _fallMultiplier = 7;
     PlayerAttack playerattack;
     public  int EnemiesKilled = 0;
+
+    [Header("walling")]
+    public bool isSliding = false;
+    [SerializeField] LayerMask wallLayer;
+    [SerializeField] Transform wallChecker;
+    [SerializeField] float wallRadius;
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -46,13 +51,25 @@ public class Playermovement : MonoBehaviour
         GroundChecker = GameObject.Find("GroundChecker").transform;
         isDead = GetComponent<PlayerHealth>().IsDead;
         src = GetComponent<CinemachineImpulseSource>();
-        WalkMoveSpeed = .2f * MoveSpeed;
+
         playerattack = GetComponent<PlayerAttack>();
+        laddermovement = GetComponent<LadderMovement>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        HandleFlipping();
+        isGroundedHandler();
+        Air_AnimationsHandler();
+        jump_Input_Handler();
+
+        anim.SetBool("isSliding", isSliding);
+        isSliding = Physics2D.OverlapCircle(wallChecker.position, wallRadius, wallLayer)&&!IsGrounded&& !Input.GetKeyDown(KeyCode.Space);
+
+        if (isSliding)
+            return;
+           
         isDead = GetComponent<PlayerHealth>().IsDead;
         if (isDead)
         {
@@ -60,29 +77,47 @@ public class Playermovement : MonoBehaviour
             GetComponent<PlayerAttack>().enabled = false;
             return;
         }
+
+        LeftCtrl = Input.GetKey(KeyCode.LeftControl);
         
         anim.SetBool("Ctrl", LeftCtrl);
         var speed = rb.velocity.normalized.x;
+
+        if(LeftCtrl)
+            MoveSpeed = WalkMoveSpeed;
+
         anim.SetFloat("Speed", Mathf.Abs(speed));
 
         //speedanimatorMut = Mathf.Clamp(speedanimatorMut, 1, 2);
         anim.SetFloat("speedMut",speedanimatorMut);
         
 
-        isGroundedHandler();
-        Air_AnimationsHandler();
-        jump_Input_Handler();
-        HandleFlipping();
+
+
 
         //increase 20 percent if he is fighting
-        if (!playerattack.isAttacking)
+        if (!playerattack.isAttacking&&!laddermovement.isClimbing&&!isSliding)
         {
             float speedWhileFighting = .4f * DefaultMoveSpeed + DefaultMoveSpeed;
-            MoveSpeed = playerattack.isFighting ? speedWhileFighting : DefaultMoveSpeed;
+            if(!LeftCtrl&&!playerattack.disableAttack)
+                MoveSpeed = playerattack.isFighting ? speedWhileFighting : DefaultMoveSpeed;
         }
     }
     private void FixedUpdate()
     {
+        float defualtGravity = rb.gravityScale;
+
+        if (isSliding&&!IsGrounded)
+        {
+            rb.gravityScale = 1f;
+            rb.velocity = new Vector2(0,  -1f);
+        }
+        else if(!laddermovement.isClimbing)
+        {
+            rb.gravityScale = defualtGravity;
+        }
+        if (isSliding)
+            return;
         if (GetComponent<Player_Dash>().isDashing)
             return;
         MoveCharacter(Direction().x);
@@ -91,19 +126,23 @@ public class Playermovement : MonoBehaviour
     }
 
 
-    private Vector2 Direction() =>direciton = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxis("Vertical"));
+    private Vector2 Direction() =>direciton = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
     
 
     private void HandleFlipping()
     {
-        if (Direction().x > 0 && !FacingRight)
+        if (!isSliding)
         {
-            Flip(1);
+            if (Direction().x > 0 && !FacingRight)
+            {
+                Flip(1);
+            }
+            else if ((Direction().x < 0 && FacingRight))
+            {
+                Flip(-1);
+            }
         }
-        else if ((Direction().x < 0 && FacingRight))
-        {
-            Flip(-1);
-        }
+        
     }
     private void isGroundedHandler()
     {
@@ -120,6 +159,10 @@ public class Playermovement : MonoBehaviour
     void MoveCharacter(float horizontal)
     {    
         rb.velocity = new Vector2(horizontal * Time.fixedDeltaTime * MoveSpeed, rb.velocity.y);
+        if (horizontal == 0)
+        {
+            rb.velocity = Vector2.zero;
+        }
     }
 
     void Jump()
@@ -131,13 +174,15 @@ public class Playermovement : MonoBehaviour
     {
         if (IsGrounded && Input.GetKeyDown(KeyCode.Space))
         {
-
             Jump();
-            Debug.Log("aasd");
+        }
+        if (isSliding && !IsGrounded&&Input.GetKeyDown(KeyCode.Space))
+        {
+            Jump();
         }
 
         if (rb.velocity.y < _jumpVelocityFalloff || rb.velocity.y > 0 && !Input.GetKey(KeyCode.Space))
-            rb.velocity += _fallMultiplier * Physics.gravity.y * Vector2.up * Time.deltaTime;
+            rb.velocity += _fallMultiplier * Physics.gravity.y * Time.deltaTime * Vector2.up;
 
     }
 
@@ -154,9 +199,11 @@ public class Playermovement : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(GroundChecker.position, GroundChecker_Radius);
+        Gizmos.DrawWireSphere(wallChecker.position, wallRadius);
+
     }
 
-    
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.transform.CompareTag("enemy"))
