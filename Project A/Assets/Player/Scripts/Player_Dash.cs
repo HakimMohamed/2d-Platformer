@@ -36,18 +36,18 @@ public class Player_Dash : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift)&&canDash&& playerhealth.PlayerUseMana(manaUsage))
         {
             anim.SetTrigger("Dash");
-            StartCoroutine(Dash());
+            StartCoroutine(Dash(transform.localScale.x,dashinPower));
             
         }
         anim.SetBool("isDashing", isDashing);
     }
-    public IEnumerator Dash()
+    public IEnumerator Dash(float dir,float dashpower)
     {
         canDash = false;
         isDashing = true;
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0f;
-        rb.velocity = new Vector2(transform.localScale.x * dashinPower, rb.velocity.y);
+        rb.velocity = new Vector2(dir * dashpower, rb.velocity.y);
         src.GenerateImpulse();
         yield return new WaitForSeconds(dashingTime);
         rb.gravityScale = originalGravity;

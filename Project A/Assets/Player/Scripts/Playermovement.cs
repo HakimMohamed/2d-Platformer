@@ -11,6 +11,7 @@ public class Playermovement : MonoBehaviour
     private Animator anim;
     private CinemachineImpulseSource src;
     private LadderMovement laddermovement;
+    private PlayerParry playerparry;
     [Header("Horizontal Movement")]
     public float MoveSpeed = 10f;
     public float DefaultMoveSpeed= 333f;
@@ -46,6 +47,7 @@ public class Playermovement : MonoBehaviour
     [SerializeField] float wallRadius;
     private void Awake()
     {
+        playerparry = GetComponent<PlayerParry>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         GroundChecker = GameObject.Find("GroundChecker").transform;
@@ -96,7 +98,7 @@ public class Playermovement : MonoBehaviour
 
 
         //increase 20 percent if he is fighting
-        if (!playerattack.isAttacking&&!laddermovement.isClimbing&&!isSliding)
+        if (!playerattack.isAttacking&&!laddermovement.isClimbing&&!isSliding&&!playerparry.isParry)
         {
             float speedWhileFighting = .4f * DefaultMoveSpeed + DefaultMoveSpeed;
             if(!LeftCtrl&&!playerattack.disableAttack)
@@ -120,6 +122,7 @@ public class Playermovement : MonoBehaviour
             return;
         if (GetComponent<Player_Dash>().isDashing)
             return;
+        
         MoveCharacter(Direction().x);
 
 

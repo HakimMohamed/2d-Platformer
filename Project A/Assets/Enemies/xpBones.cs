@@ -28,7 +28,7 @@ public class xpBones : MonoBehaviour
         {
             transform.position = Vector2.MoveTowards(transform.position, Player.position, Time.deltaTime * speed);
         }
-        if (Vector2.Distance(transform.position, Player.position) < 1f&& !isCollected)
+        if (Vector2.Distance(transform.position, Player.position) < 1f&& !isCollected&& TimeTostart<=0)
         {
             isCollected = true;
             anim.SetTrigger("Vanish");
@@ -36,7 +36,18 @@ public class xpBones : MonoBehaviour
             Player.GetComponent<PlayerExp>().numOfbones += 1;
             Player.GetComponent<PlayerExp>().StartCoroutine(Player.GetComponent<PlayerExp>().changePlayersColor());
         }
+
+        if (transform.position.x > Player.transform.position.x)
+        {
+            transform.localScale = new Vector2(-1, 1);
+
+        }
+        else if(transform.position.x < Player.transform.position.x)
+        {
+            transform.localScale = new Vector2(1, 1);
+
+        }
     }
-   
+    
    
 }

@@ -55,26 +55,43 @@ public class PlayerHealth : MonoBehaviour
         if (Mana > MaxMana)
             Mana = MaxMana;
     }
-
+    
     public void PlayerReceiveDamage(float Damage)
     {
-        if (!IsDead)
-        {
-            Health -= Damage;
-            if (Health <= 0 )
-            {
-                //Dead
-                Health = 0;
-                IsDead = true;
-                anim.SetTrigger("Death");
-                rb.constraints = RigidbodyConstraints2D.FreezePositionX;
+        if (IsDead)
+            return; 
 
-                CameraShake();
-                return;
-            }
-            CameraShake();
-            anim.SetTrigger("Hurt");
+        bool isparry = GetComponent<PlayerParry>().isParry;
+        bool canParry = GetComponent<PlayerParry>().canParry;
+
+        if (isparry&&canParry)
+        {
+            float knockBackPower = 13f;
+            GetComponent<Player_Dash>().StartCoroutine(GetComponent<Player_Dash>().Dash(-transform.localScale.x, knockBackPower));
+            anim.SetTrigger("Parryhit");
+            GetComponent<PlayerParry>().canParry = false;
+            return; 
         }
+
+
+
+        Health -= Damage;
+        rb.velocity = new Vector2(-transform.localScale.x * 13f, rb.velocity.y);
+
+        if (Health <= 0 )
+        {
+            //Dead
+            Health = 0;
+            IsDead = true;
+            anim.SetTrigger("Death");
+            rb.constraints = RigidbodyConstraints2D.FreezePositionX;
+
+            CameraShake();
+            return;
+        }
+        CameraShake();
+        anim.SetTrigger("Hurt");
+        
     }
     public void PlayerReceiveHealth(float amount)
     {
