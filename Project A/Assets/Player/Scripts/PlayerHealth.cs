@@ -66,7 +66,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (isparry&&canParry)
         {
-            float knockBackPower = 13f;
+            float knockBackPower = 8f;
             GetComponent<Player_Dash>().StartCoroutine(GetComponent<Player_Dash>().Dash(-transform.localScale.x, knockBackPower));
             anim.SetTrigger("Parryhit");
             GetComponent<PlayerParry>().canParry = false;

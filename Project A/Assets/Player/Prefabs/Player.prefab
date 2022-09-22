@@ -511,6 +511,7 @@ GameObject:
   - component: {fileID: 859304858}
   - component: {fileID: 3610519030035856846}
   - component: {fileID: 859304856}
+  - component: {fileID: 8717866739785559210}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -881,6 +882,20 @@ MonoBehaviour:
   numOfbones: 0
   expColor: {r: 1, g: 0.6117647, b: 0.85882354, a: 1}
   xpBonenumberOfBones: {fileID: 0}
+--- !u!114 &8717866739785559210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6828741445914886116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ea01b9fb386efd4494860993da78da2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isParry: 0
+  canParry: 1
 --- !u!1 &6828741446105893326
 GameObject:
   m_ObjectHideFlags: 0

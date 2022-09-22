@@ -98,7 +98,7 @@ public class enemyHealth : MonoBehaviour
     }
     private void SpawnBones_xp()
     {
-        int randomBones = Random.Range(0, 5);
+        int randomBones = Random.Range(1, 7);
         for(int i = 0; i < randomBones; i++)
         {
             Instantiate(GameAssets.instance.XpBones, transform.position, Quaternion.identity);
