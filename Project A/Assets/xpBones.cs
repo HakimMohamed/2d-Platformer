@@ -10,7 +10,7 @@ public class xpBones : MonoBehaviour
     Animator xpBonesAnimatorText;
     int speed;
     float TimeTostart = 2f;
-
+    bool isCollected = false;
     void Start()
     {
         speed = (int)Random.Range(randonSpeed.x, randonSpeed.y);
@@ -28,8 +28,9 @@ public class xpBones : MonoBehaviour
         {
             transform.position = Vector2.MoveTowards(transform.position, Player.position, Time.deltaTime * speed);
         }
-        if (Vector2.Distance(transform.position, Player.position) < 1f)
+        if (Vector2.Distance(transform.position, Player.position) < 1f&& !isCollected)
         {
+            isCollected = true;
             anim.SetTrigger("Vanish");
             xpBonesAnimatorText.SetTrigger("newBone");
             Player.GetComponent<PlayerExp>().numOfbones += 1;

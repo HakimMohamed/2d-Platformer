@@ -12,6 +12,7 @@ TagManager:
   - DogDatabase
   - Ladder
   - Barrel
+  - numberOfBones
   layers:
   - Default
   - TransparentFX
@@ -28,7 +29,7 @@ TagManager:
   - Wall
   - barrel
   - Food
-  - 
+  - xp
   - 
   - 
   - 
