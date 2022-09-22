@@ -90,7 +90,6 @@ public class PlayerAttack : MonoBehaviour
             if (enemy.CompareTag("Barrel"))
             {
                 enemy.GetComponent<BarrelHealth>().BarrelReceiveDamage(UnityEngine.Random.Range(AttackDamage.x,AttackDamage.y));
-                src.GenerateImpulse();
 
             }
             else if (enemy.CompareTag("enemy"))
@@ -98,7 +97,6 @@ public class PlayerAttack : MonoBehaviour
                 var enemy_ = enemy.GetComponent<Enemy>();
                 var enemy_health = enemy.GetComponent<enemyHealth>();
                 enemy_health.EnemyReceiveDamage(UnityEngine.Random.Range(AttackDamage.x, AttackDamage.y));
-                src.GenerateImpulse();
 
             }
 
@@ -107,6 +105,10 @@ public class PlayerAttack : MonoBehaviour
             StartCoroutine(StartedFighting());
 
         }
+    }
+    public void ScreenShake()
+    {
+        src.GenerateImpulse();
     }
     public void Attack_byamount(float damage)
     {

@@ -30,7 +30,7 @@ public class PlayerhealthPotion : MonoBehaviour
     {
         health = playerhealth.Health;
         maxHealth = playerhealth.MaxHealth;
-        PotionsAvailbe.text = timesTousePotions.ToString();
+        PotionsAvailbe.text = timesTousePotions.ToString()+"x";
         anim.SetBool("isDrinking", isDrinking);
 
         if (Input.GetKeyDown(KeyCode.R)&&timesTousePotions>0&& health<maxHealth)

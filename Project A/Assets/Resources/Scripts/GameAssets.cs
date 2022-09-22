@@ -18,5 +18,7 @@ public class GameAssets : MonoBehaviour
     public Transform HandsDown;
     public Transform DarkGate;
     public Transform Onigiri;
+    public Transform DeathBone;
+    public Transform XpBones;
     
 }

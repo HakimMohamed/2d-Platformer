@@ -289,7 +289,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1447189587}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.22, y: -0.51, z: 0.299995}
+  m_LocalPosition: {x: 1.23, y: 0.42, z: 0.299995}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -337,7 +337,7 @@ SpriteRenderer:
   m_SortingLayerID: -572091129
   m_SortingLayer: 1
   m_SortingOrder: -7
-  m_Sprite: {fileID: 1297082211, guid: 653a567673030f740943ab4bdfdd9805, type: 3}
+  m_Sprite: {fileID: 1511330722, guid: 4cc150944a0eaf443ab3a6f7e0398469, type: 3}
   m_Color: {r: 0.8392157, g: 0.4862745, b: 0.70980394, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -510,6 +510,7 @@ GameObject:
   - component: {fileID: 859304857}
   - component: {fileID: 859304858}
   - component: {fileID: 3610519030035856846}
+  - component: {fileID: 859304856}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -682,6 +683,7 @@ MonoBehaviour:
   noOfClicks: 0
   isFighting: 0
   isAttacking: 0
+  disableAttack: 0
   slowDownFactor: 0.01
   slowdownLength: 0.56
 --- !u!114 &6828741445914886115
@@ -698,7 +700,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MoveSpeed: 280
   DefaultMoveSpeed: 280
-  WalkSpeed: 120
   WalkMoveSpeed: 0
   speedanimatorMut: 1
   defualtAnimatorSpeed: 1
@@ -737,7 +738,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &6828741445914886113
 CapsuleCollider2D:
@@ -865,6 +866,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isClimbing: 0
+--- !u!114 &859304856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6828741445914886116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa89c8ce75b382d4299231ffc3456a3a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numOfbones: 0
+  expColor: {r: 1, g: 0.6117647, b: 0.85882354, a: 1}
+  xpBonenumberOfBones: {fileID: 0}
 --- !u!1 &6828741446105893326
 GameObject:
   m_ObjectHideFlags: 0

@@ -70,7 +70,8 @@ public class enemyHealth : MonoBehaviour
 
             player.GetComponent<Playermovement>().EnemiesKilled += 1;
 
-            //EnemyBlood();
+            EnemyDeathBone();
+            SpawnBones_xp();
             anim.SetBool("IsDead", IsDead);
             
            
@@ -95,10 +96,18 @@ public class enemyHealth : MonoBehaviour
         if (RGBA.w <= 0)
             Destroy(gameObject);
     }
-
-    private void EnemyBlood()
+    private void SpawnBones_xp()
     {
-        Instantiate(Blood, transform.position, Quaternion.identity);
+        int randomBones = Random.Range(0, 5);
+        for(int i = 0; i < randomBones; i++)
+        {
+            Instantiate(GameAssets.instance.XpBones, transform.position, Quaternion.identity);
+
+        }
+    }
+    private void EnemyDeathBone()
+    {
+        Instantiate(GameAssets.instance.DeathBone,transform.position, Quaternion.identity);
 
        
     }
