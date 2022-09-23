@@ -122,7 +122,8 @@ public class Playermovement : MonoBehaviour
             return;
         if (GetComponent<Player_Dash>().isDashing)
             return;
-        
+        if (GetComponent<EagleDash>().isFalcon)
+            return;
         MoveCharacter(Direction().x);
 
 

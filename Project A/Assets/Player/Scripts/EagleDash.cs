@@ -36,7 +36,7 @@ public class EagleDash : MonoBehaviour
     {
         anim.SetBool("isFalcon", isFalcon);
 
-        if (Input.GetKeyDown(KeyCode.F) && canDash)
+        if (Input.GetKeyDown(KeyCode.E) && canDash)
         {
             anim.SetTrigger("Falcon");
             isFalcon = true;

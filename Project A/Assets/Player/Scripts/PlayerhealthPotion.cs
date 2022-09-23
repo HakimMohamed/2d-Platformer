@@ -33,7 +33,7 @@ public class PlayerhealthPotion : MonoBehaviour
         PotionsAvailbe.text = timesTousePotions.ToString()+"x";
         anim.SetBool("isDrinking", isDrinking);
 
-        if (Input.GetKeyDown(KeyCode.R)&&timesTousePotions>0&& health<maxHealth)
+        if (Input.GetKeyDown(KeyCode.Q)&&timesTousePotions>0&& health<maxHealth)
         {
             isDrinking = true;
             playermovement.MoveSpeed = 120f;
