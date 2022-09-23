@@ -5,10 +5,10 @@ using UnityEngine;
 public class Player_SpinAttack : MonoBehaviour
 {
     Animator anim;
-    public float attackRate = 2f;
+    public float attackRate = 1f;
     private float nextAttackTime = 0f;
     PlayerHealth playerhealth;
-    private float manaUsage=20f;
+    private float manaUsage=10f;
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -23,7 +23,7 @@ public class Player_SpinAttack : MonoBehaviour
             if (Input.GetMouseButtonDown(0)&& playerhealth.PlayerUseMana(manaUsage))
             {
                 anim.SetTrigger("Spin");
-                nextAttackTime = Time.time + 1f / attackRate;
+                nextAttackTime = Time.time + 2f / attackRate;
             }
         }
     }
