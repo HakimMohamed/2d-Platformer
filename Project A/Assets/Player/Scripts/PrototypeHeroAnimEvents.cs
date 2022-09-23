@@ -38,7 +38,7 @@ public class PrototypeHeroAnimEvents : MonoBehaviour
     {
 
     }
-
+    
     void AE_runStop()
     {
         m_audioManager.PlaySound("RunStop");
@@ -120,12 +120,20 @@ public class PrototypeHeroAnimEvents : MonoBehaviour
     {
         m_audioManager.PlaySound("SwordAttack");
     }
-
+    void AE_SwordAttack2()
+    {
+        m_audioManager.PlaySound("SwordAttack2");
+    }
+    void AE_SpinAttack()
+    {
+        m_audioManager.PlaySound("SpinAttack");
+    }
+    
     void AE_SheathSword()
     {
         m_audioManager.PlaySound("SheathSword");
     }
-
+    
     void AE_Dodge()
     {
         m_audioManager.PlaySound("Dodge");

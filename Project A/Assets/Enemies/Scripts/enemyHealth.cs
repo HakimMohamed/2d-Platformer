@@ -13,7 +13,6 @@ public class enemyHealth : MonoBehaviour
 
     [Header("UI Components")]
     [SerializeField] private Image HealthBar;
-    [SerializeField] private Image HealthBar_Stroke;
 
     [Header("Components")]
     private Animator anim;
@@ -25,6 +24,8 @@ public class enemyHealth : MonoBehaviour
 
     Rigidbody2D rb;
     GameObject player;
+
+
     private void Awake()
     {
         //Refrence
@@ -52,8 +53,11 @@ public class enemyHealth : MonoBehaviour
 
     //Follow the player
 
+    void AE_EnemyHurt()
+    {
+        AudioManager_PrototypeHero.instance.PlaySound("EnemyHurt");
+    }
 
-    
     public void EnemyReceiveDamage(float Damage)
     {
         if (IsDead)
@@ -89,7 +93,6 @@ public class enemyHealth : MonoBehaviour
 
     private void EnemyDissolve()
     {
-        HealthBar_Stroke.enabled = false;
         Vector4 RGBA = sp.color;
         RGBA -= new Vector4(0, 0, 0, Time.deltaTime);
         transform.GetComponent<SpriteRenderer>().color = RGBA;
