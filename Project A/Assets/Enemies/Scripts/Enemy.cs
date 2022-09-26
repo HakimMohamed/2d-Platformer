@@ -10,9 +10,10 @@ public class Enemy : MonoBehaviour
     Animator anim;
     Rigidbody2D rb;
     [SerializeField]private Image Enemy_Health_Bar;
-    
-    void Start()
+    public static int enemies_Number;
+    void Awake()
     {
+        enemies_Number++;
         anim = GetComponent<Animator>();
         Player = GameObject.Find("Player").transform;
         rb = GetComponent<Rigidbody2D>();

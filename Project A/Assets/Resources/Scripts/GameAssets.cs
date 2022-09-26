@@ -13,12 +13,16 @@ public class GameAssets : MonoBehaviour
         
     }
 
-    public Transform BloodVFX;
-    public Transform ExplosionVFX;
     public Transform HandsDown;
     public Transform DarkGate;
     public Transform Onigiri;
-    public Transform DeathBone;
+
+    [Header("Enemy")]
     public Transform XpBones;
-    
+    public Transform DeathBone;
+    public Transform enemy_Bullet;
+    public Transform enemy_bulletExplosion1;
+    public Transform enemy_bulletExplosion2;
+    public Transform BloodVFX;
+
 }

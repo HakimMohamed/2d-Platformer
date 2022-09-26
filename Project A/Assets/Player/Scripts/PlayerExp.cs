@@ -8,7 +8,7 @@ public class PlayerExp : MonoBehaviour
     public int numOfbones;
     SpriteRenderer sp;
     [SerializeField] Color expColor;
-    [SerializeField] TextMeshProUGUI xpBonenumberOfBones;
+    [SerializeField] TextMeshProUGUI numberOfBones;
 
     void Start()
     {
@@ -18,7 +18,7 @@ public class PlayerExp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        xpBonenumberOfBones.text = numOfbones.ToString();
+        numberOfBones.text = numOfbones.ToString();
     }
     public IEnumerator changePlayersColor()
     {

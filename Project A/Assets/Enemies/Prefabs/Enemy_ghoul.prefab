@@ -228,6 +228,8 @@ MonoBehaviour:
   Health: 0
   MaxHealth: 100
   HealthBar: {fileID: 1951438940156307234}
+  slowDownFactor: 0.01
+  slowdownLength: 2
 --- !u!114 &1951438939751295298
 MonoBehaviour:
   m_ObjectHideFlags: 0

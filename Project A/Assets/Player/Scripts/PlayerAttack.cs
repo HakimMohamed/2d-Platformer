@@ -99,8 +99,8 @@ public class PlayerAttack : MonoBehaviour
                 enemy_health.EnemyReceiveDamage(UnityEngine.Random.Range(AttackDamage.x, AttackDamage.y));
 
             }
-
-            //StartCoroutine(DoSlowMotion());
+            ScreenShake();
+            
             StopCoroutine(StartedFighting());
             StartCoroutine(StartedFighting());
 
@@ -154,7 +154,10 @@ public class PlayerAttack : MonoBehaviour
         Time.fixedDeltaTime = .02f;
 
     }
-
+    public void StartSlowMotion()
+    {
+        StartCoroutine(DoSlowMotion());
+    }
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

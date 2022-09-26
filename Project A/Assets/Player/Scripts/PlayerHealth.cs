@@ -108,7 +108,6 @@ public class PlayerHealth : MonoBehaviour
     }
     public bool PlayerUseMana(float amount)
     {
-        Debug.Log("xx");
         
       
         if (Mana - amount >= 0)

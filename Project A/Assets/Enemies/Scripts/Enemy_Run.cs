@@ -32,7 +32,6 @@ public class Enemy_Run : StateMachineBehaviour
         Vector2 target = new Vector2(Player.position.x, rb.position.y);
         Vector2 newpos = Vector2.MoveTowards(rb.position, target, Speed * Time.fixedDeltaTime);
 
-
         rb.MovePosition(newpos);
 
         if (Time.time > nextAttackTime && Vector2.Distance(Player.position, rb.position) <= attackRange)

@@ -25,7 +25,8 @@ public class enemyHealth : MonoBehaviour
     Rigidbody2D rb;
     GameObject player;
 
-
+    public float slowDownFactor = 0.01f;
+    public float slowdownLength =.56f;
     private void Awake()
     {
         //Refrence
@@ -37,7 +38,6 @@ public class enemyHealth : MonoBehaviour
         //Set Values
         Health = MaxHealth;
         Blood = GameAssets.instance.BloodVFX;
-
     }
 
     private void Update()
@@ -68,6 +68,7 @@ public class enemyHealth : MonoBehaviour
         if (Health <= 0 && !IsDead)
         {
             //Dead
+            Enemy.enemies_Number--;
             IsDead = true;
             player.GetComponent<Playermovement>().EnemiesKilled += 1;
             anim.SetTrigger("Death");
@@ -78,11 +79,13 @@ public class enemyHealth : MonoBehaviour
             SpawnBones_xp();
             anim.SetBool("IsDead", IsDead);
             
-           
             rb.bodyType = RigidbodyType2D.Dynamic;
-            
+            if (Enemy.enemies_Number <= 0)
+            {
+                Debug.Log("last enemy");
+                StartCoroutine(DoSlowMotion());
+            }
                 
-            //StartCoroutine( DoSlowMotion());
             return;
         }
         
@@ -90,7 +93,15 @@ public class enemyHealth : MonoBehaviour
         //EnemyBlood();
         
     }
+    public IEnumerator DoSlowMotion()
+    {
+        Time.timeScale = slowDownFactor;
+        Time.fixedDeltaTime = Time.timeScale * .02f;
+        yield return new WaitForSeconds(0.1f);
+        Time.timeScale = 1f;
+        Time.fixedDeltaTime = .02f;
 
+    }
     private void EnemyDissolve()
     {
         Vector4 RGBA = sp.color;

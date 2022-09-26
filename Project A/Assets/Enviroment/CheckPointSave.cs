@@ -9,7 +9,7 @@ public class CheckPointSave : MonoBehaviour
     bool isSaved = false;
     Animator anim;
     [SerializeField]GameObject SaveLight;
-    [SerializeField] GameObject Saved_UI;
+    //[SerializeField] GameObject Saved_UI;
     void Start()
     {
         Player = GameObject.Find("Player").transform;
@@ -23,7 +23,7 @@ public class CheckPointSave : MonoBehaviour
         {
             isSaved = true;
             anim.SetTrigger("Saved");
-            Saved_UI.SetActive(true);
+            //Saved_UI.SetActive(true);
         }
         SaveLight.SetActive(isSaved);
     }

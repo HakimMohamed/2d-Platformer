@@ -47,19 +47,19 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Sky
+  - name: SuperFar
     uniqueID: 2364319121
     locked: 0
-  - name: Sea
+  - name: far
     uniqueID: 1951498679
     locked: 0
-  - name: Clouds
+  - name: far light
     uniqueID: 1367214065
     locked: 0
-  - name: FarGrounds
+  - name: close
     uniqueID: 4237944567
     locked: 0
-  - name: Lightning
+  - name: close light
     uniqueID: 394376759
     locked: 0
   - name: Foreground
@@ -82,6 +82,9 @@ TagManager:
     locked: 0
   - name: Ground
     uniqueID: 798024843
+    locked: 0
+  - name: Decor
+    uniqueID: 298757201
     locked: 0
   - name: Default
     uniqueID: 0
