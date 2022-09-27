@@ -155,9 +155,10 @@ public class Playermovement : MonoBehaviour
     }
     private void Air_AnimationsHandler()
     {
-        float Yvelocity = rb.velocity.y;
-        Yvelocity = Mathf.Clamp(Yvelocity, 0, 1);
-        anim.SetFloat("Yvelocity", Yvelocity, 0.1f, Time.deltaTime);
+
+        bool isJumping = Input.GetKey(KeyCode.Space);
+        anim.SetBool("isJumping", isJumping);
+
     }
 
     void MoveCharacter(float horizontal)

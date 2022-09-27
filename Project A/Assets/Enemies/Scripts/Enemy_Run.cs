@@ -12,6 +12,7 @@ public class Enemy_Run : StateMachineBehaviour
     Transform Player;
     Rigidbody2D rb;
     Enemy enemy;
+    public bool needToFollow = false;
 
     public float attackRate = 2f;
     private float nextAttackTime = 0f;
@@ -28,22 +29,40 @@ public class Enemy_Run : StateMachineBehaviour
     //OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        if (Player.GetComponent<PlayerHealth>().IsDead)
+            return;
+
+        if (Vector2.Distance(Player.position, rb.position) >= attackRange - 1f)
+        {
+            needToFollow = true;
+
+        }
+        else if (Vector2.Distance(Player.position, rb.position) <= attackRange - 1f)
+        {
+            needToFollow = false;
+        }
+        animator.SetBool("needToFollow", needToFollow);
+
+        animator.SetBool("canSeePlayer", canSeePlayer);
+
+        canSeePlayer = Vector2.Distance(Player.position, rb.position) <= followRange + 3f;
+
         enemy.LookAtPlayer();
         Vector2 target = new Vector2(Player.position.x, rb.position.y);
         Vector2 newpos = Vector2.MoveTowards(rb.position, target, Speed * Time.fixedDeltaTime);
 
-        rb.MovePosition(newpos);
-
-        if (Time.time > nextAttackTime && Vector2.Distance(Player.position, rb.position) <= attackRange)
+        if (needToFollow)
         {
-
+            rb.MovePosition(newpos);
+        }
+        if (Time.time > nextAttackTime && Vector2.Distance(Player.position, rb.position) <= attackRange + 1f)
+        {
+             
             animator.SetTrigger("Attack1");
             nextAttackTime = Time.time + 1f / attackRate;
 
         }
-        animator.SetBool("canSeePlayer", canSeePlayer);
-
-        canSeePlayer = Vector2.Distance(Player.position, rb.position) <= followRange + 3f;
+        
 
 
     }
@@ -53,6 +72,6 @@ public class Enemy_Run : StateMachineBehaviour
     {
         animator.ResetTrigger("Attack1");
     }
-
+    
 
 }

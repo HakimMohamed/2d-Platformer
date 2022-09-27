@@ -15,11 +15,18 @@ public class Enemy_RangedAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (transform.localScale.x == 1)
+        {
+            attackPoint.rotation = Quaternion.Euler(0, 0, 0);
+        }
+        else
+        {
+            attackPoint.rotation = Quaternion.Euler(0, 0, 180);
+        }
     }
 
     public void Ranged_Attack()
     {
-        Instantiate(GameAssets.instance.enemy_Bullet, attackPoint.position, Quaternion.identity);
+        Instantiate(GameAssets.instance.enemy_Bullet, attackPoint.position, attackPoint.rotation);
     }
 }

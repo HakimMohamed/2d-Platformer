@@ -59,9 +59,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c7ecc0ae4253c846b8ddae5cf0d0563, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 1.54
-  attackRange: 7
-  attackRate: 0.7
+  Speed: 1.2
+  attackRange: 10
+  needToFollow: 0
+  attackRate: 0.5
   followRange: 20
 --- !u!1101 &-7478548294517859997
 AnimatorStateTransition:
@@ -328,10 +329,7 @@ AnimatorStateTransition:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: Attack1
-    m_EventTreshold: 0
+  m_Conditions: []
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 2608501758767549803}
   m_Solo: 0

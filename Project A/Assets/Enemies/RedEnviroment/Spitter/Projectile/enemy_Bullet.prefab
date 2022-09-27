@@ -13,7 +13,8 @@ GameObject:
   - component: {fileID: 2686850981368182664}
   - component: {fileID: -7498677214925710254}
   - component: {fileID: -1575436383612867837}
-  m_Layer: 0
+  - component: {fileID: 3591497176146343594}
+  m_Layer: 16
   m_Name: enemy_Bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -119,6 +120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fba90120ab358646911b8b0530afe17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletDamage: {x: 20, y: 35}
 --- !u!70 &-1575436383612867837
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -135,3 +137,24 @@ CapsuleCollider2D:
   m_Offset: {x: 0.009567261, y: -0.0019111633}
   m_Size: {x: 0.29467773, y: 0.29467773}
   m_Direction: 0
+--- !u!50 &3591497176146343594
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3047299741995624859}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 1
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0

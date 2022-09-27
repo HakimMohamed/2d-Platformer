@@ -19,10 +19,14 @@ public class Enemy_Idle : StateMachineBehaviour
     //OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        
+
+
+        canSeePlayer = Vector2.Distance(Player.position, rb.position) <= followRange + 3f&& !Player.GetComponent<PlayerHealth>().IsDead;
         animator.SetBool("canSeePlayer", canSeePlayer);
 
-        canSeePlayer = Vector2.Distance(Player.position, rb.position) <= followRange + 3f;
-        
+        if (Player.GetComponent<PlayerHealth>().IsDead)
+            return;
 
 
     }

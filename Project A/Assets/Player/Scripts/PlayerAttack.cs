@@ -131,6 +131,7 @@ public class PlayerAttack : MonoBehaviour
                 src.GenerateImpulse();
 
             }
+            ScreenShake();
 
             //StartCoroutine(DoSlowMotion());
             StopCoroutine(StartedFighting());

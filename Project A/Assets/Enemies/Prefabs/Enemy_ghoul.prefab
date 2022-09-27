@@ -143,7 +143,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -895560299
-  m_SortingLayer: -3
+  m_SortingLayer: -4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bfad0240b36ef3943b8821fc9bf2d9a2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -226,7 +226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 0
-  MaxHealth: 100
+  MaxHealth: 50
   HealthBar: {fileID: 1951438940156307234}
   slowDownFactor: 0.01
   slowdownLength: 2
@@ -242,6 +242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b91a88cf7855fb84b99f92a96b22ee98, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AttackDamage: {x: 40, y: 55}
   AttackRadius: 0.62
   AttackPoint: {fileID: 1951438940197569479}
   playerLayer:
@@ -259,6 +260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41b96c5880af0924b911bd6518d61788, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Name: normalenemy
   Enemy_Health_Bar: {fileID: 1951438940156307234}
 --- !u!1 &1951438939944468328
 GameObject:

@@ -5,9 +5,10 @@ using UnityEngine;
 public class EnemyAttack : MonoBehaviour
 {
     [Header("Attack")]
-    private float AttackDamage = 40f;
+    [SerializeField]private Vector2 AttackDamage = new(20f,35f);
     [SerializeField] private float AttackRadius = 0.5f;
     [SerializeField] Transform AttackPoint;
+
     [SerializeField]private LayerMask playerLayer;
  
 
@@ -27,15 +28,17 @@ public class EnemyAttack : MonoBehaviour
     public void Attack()
     {
         
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(AttackPoint.position, AttackRadius, playerLayer);
+        Collider2D[] hitEnemies  = Physics2D.OverlapCircleAll(AttackPoint.position, AttackRadius, playerLayer);
+       
 
         foreach (Collider2D Player in hitEnemies)
         {
             var player_health = Player.GetComponent<PlayerHealth>();
 
-            player_health.PlayerReceiveDamage(AttackDamage);
+            player_health.PlayerReceiveDamage(Random.Range(AttackDamage.x,AttackDamage.y));
 
         }
+       
     }
     
 
@@ -43,7 +46,7 @@ public class EnemyAttack : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(AttackPoint.position, AttackRadius);
+        Gizmos.DrawWireSphere(AttackPoint.position, AttackRadius);     
     }
 
 }
