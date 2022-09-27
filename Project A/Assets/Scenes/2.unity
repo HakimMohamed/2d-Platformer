@@ -29874,6 +29874,10 @@ PrefabInstance:
       propertyPath: numberOfBones
       value: 
       objectReference: {fileID: 801025301}
+    - target: {fileID: 859304857, guid: 5e34e1e6c33584f499a9ab4f046ffb94, type: 3}
+      propertyPath: dashinPower
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 6828741445914885662, guid: 5e34e1e6c33584f499a9ab4f046ffb94, type: 3}
       propertyPath: m_RootOrder
       value: 16
