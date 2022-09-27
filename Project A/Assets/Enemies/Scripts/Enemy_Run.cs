@@ -30,8 +30,11 @@ public class Enemy_Run : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         if (Player.GetComponent<PlayerHealth>().IsDead)
+        {
+            animator.SetBool("canSeePlayer", false);
+            animator.SetBool("needToFollow", false);
             return;
-
+        }
         if (Vector2.Distance(Player.position, rb.position) >= attackRange - 1f)
         {
             needToFollow = true;
@@ -43,17 +46,27 @@ public class Enemy_Run : StateMachineBehaviour
         }
         animator.SetBool("needToFollow", needToFollow);
 
+        Vector2 playerPosition = new(Player.position.x, 0);
+        Vector2 enemyPosition = new(rb.position.x, 0);
+
+        canSeePlayer = Vector2.Distance(playerPosition, enemyPosition) <= followRange + 3f && !Player.GetComponent<PlayerHealth>().IsDead;
         animator.SetBool("canSeePlayer", canSeePlayer);
 
-        canSeePlayer = Vector2.Distance(Player.position, rb.position) <= followRange + 3f;
-
         enemy.LookAtPlayer();
-        Vector2 target = new Vector2(Player.position.x, rb.position.y);
-        Vector2 newpos = Vector2.MoveTowards(rb.position, target, Speed * Time.fixedDeltaTime);
 
+        //Vector2 target = new Vector2(Player.position.x, Player.position.y);
+        //Vector2 newpos = Vector2.MoveTowards(rb.position, target, Speed * Time.fixedDeltaTime);
+
+        //if (needToFollow)
+        //{
+        //    rb.MovePosition(newpos);
+        //}
+        Vector2 target = new Vector2(Player.position.x, Player.position.y);
+
+        Vector2 dir = (target - (Vector2)rb.transform.position).normalized;
         if (needToFollow)
         {
-            rb.MovePosition(newpos);
+            rb.velocity = new Vector2(dir.x * Speed, rb.velocity.y);
         }
         if (Time.time > nextAttackTime && Vector2.Distance(Player.position, rb.position) <= attackRange + 1f)
         {

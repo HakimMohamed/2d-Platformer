@@ -67,6 +67,9 @@ MonoBehaviour:
   attackRate: 0.5
   followRange: 20
   needToFollow: 0
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1101 &-7478548294517859997
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -109,6 +112,9 @@ MonoBehaviour:
   attackRate: 0.5
   followRange: 20
   needToFollow: 0
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!1101 &-7187293769695954076
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -345,6 +351,9 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
+  - m_ConditionMode: 1
+    m_ConditionEvent: canSeePlayer
+    m_EventTreshold: 0
   - m_ConditionMode: 2
     m_ConditionEvent: needToFollow
     m_EventTreshold: 0
@@ -376,43 +385,43 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Hit
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Death
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Speed
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: canSeePlayer
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Attack2
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: needToFollow
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -490,6 +499,7 @@ AnimatorState:
   - {fileID: -3577908456202203067}
   - {fileID: -1705013535214497252}
   - {fileID: -7187293769695954076}
+  - {fileID: 3167913095680938420}
   m_StateMachineBehaviours:
   - {fileID: -7409824249473352927}
   m_Position: {x: 50, y: 50, z: 0}
@@ -537,6 +547,34 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!1101 &3167913095680938420
+AnimatorStateTransition:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Conditions:
+  - m_ConditionMode: 2
+    m_ConditionEvent: canSeePlayer
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: needToFollow
+    m_EventTreshold: 0
+  m_DstStateMachine: {fileID: 0}
+  m_DstState: {fileID: 2931681558240340490}
+  m_Solo: 0
+  m_Mute: 0
+  m_IsExit: 0
+  serializedVersion: 3
+  m_TransitionDuration: 0
+  m_TransitionOffset: 0
+  m_ExitTime: 0.625
+  m_HasExitTime: 0
+  m_HasFixedDuration: 1
+  m_InterruptionSource: 0
+  m_OrderedInterruption: 1
+  m_CanTransitionToSelf: 1
 --- !u!1101 &4042089675775197923
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -689,3 +727,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followRange: 15
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 0

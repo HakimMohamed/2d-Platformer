@@ -45,6 +45,7 @@ public class Playermovement : MonoBehaviour
     [SerializeField] LayerMask wallLayer;
     [SerializeField] Transform wallChecker;
     [SerializeField] float wallRadius;
+    
     private void Awake()
     {
         playerparry = GetComponent<PlayerParry>();
@@ -107,17 +108,17 @@ public class Playermovement : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        float defualtGravity = rb.gravityScale;
+        //float defualtGravity = rb.gravityScale;
 
-        if (isSliding&&!IsGrounded)
-        {
-            rb.gravityScale = 1f;
-            rb.velocity = new Vector2(0,  -1f);
-        }
-        else if(!laddermovement.isClimbing)
-        {
-            rb.gravityScale = defualtGravity;
-        }
+        //if (isSliding&&!IsGrounded)
+        //{
+        //    rb.gravityScale = 1f;
+        //    rb.velocity = new Vector2(0,  -1f);
+        //}
+        //else if(!laddermovement.isClimbing)
+        //{
+        //    rb.gravityScale = defualtGravity;
+        //}
         if (isSliding)
             return;
         if (GetComponent<Player_Dash>().isDashing)
@@ -164,10 +165,10 @@ public class Playermovement : MonoBehaviour
     void MoveCharacter(float horizontal)
     {    
         rb.velocity = new Vector2(horizontal * Time.fixedDeltaTime * MoveSpeed, rb.velocity.y);
-        if (horizontal == 0)
-        {
-            rb.velocity = new Vector2(0,rb.velocity.y);
-        }
+        //if (horizontal == 0)
+        //{
+        //    rb.velocity = new Vector2(0,rb.velocity.y);
+        //}
     }
 
     void Jump()
@@ -186,8 +187,8 @@ public class Playermovement : MonoBehaviour
             Jump();
         }
 
-        if (rb.velocity.y < _jumpVelocityFalloff || rb.velocity.y > 0 && !Input.GetKey(KeyCode.Space))
-            rb.velocity += _fallMultiplier * Physics.gravity.y * Time.deltaTime * Vector2.up;
+        //if (rb.velocity.y < _jumpVelocityFalloff || rb.velocity.y > 0 && !Input.GetKey(KeyCode.Space))
+        //    rb.velocity += _fallMultiplier * Physics.gravity.y * Time.deltaTime * Vector2.up;
 
     }
 

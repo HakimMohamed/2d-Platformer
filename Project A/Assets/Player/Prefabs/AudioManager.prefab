@@ -82,7 +82,7 @@ MonoBehaviour:
   - m_name: SwordAttack
     m_clips:
     - {fileID: 8300000, guid: 6cdf2b6afcdf03c4fb959f056819ba48, type: 3}
-    volume: 0.8
+    volume: 0.2
     pitch: 1
     m_randomVolumeRange: {x: 0.7, y: 1}
     m_randomPitchRange: {x: 0.9, y: 1.1}
@@ -90,7 +90,15 @@ MonoBehaviour:
   - m_name: SwordAttack2
     m_clips:
     - {fileID: 8300000, guid: 64052350e1c642c46ae3f682ec7fabc5, type: 3}
-    volume: 0.25
+    volume: 0.2
+    pitch: 0.9
+    m_randomVolumeRange: {x: 0.95, y: 1.05}
+    m_randomPitchRange: {x: 0.95, y: 1.05}
+    m_loop: 0
+  - m_name: SpinAttack
+    m_clips:
+    - {fileID: 8300000, guid: 5e0be140f13f0c341bb91abddd2e76bf, type: 3}
+    volume: 0.2
     pitch: 0.9
     m_randomVolumeRange: {x: 0.95, y: 1.05}
     m_randomPitchRange: {x: 0.95, y: 1.05}
@@ -167,17 +175,17 @@ MonoBehaviour:
     m_randomVolumeRange: {x: 0.95, y: 1.05}
     m_randomPitchRange: {x: 0.95, y: 1.05}
     m_loop: 0
-  - m_name: Parry
+  - m_name: EnemyHurt
     m_clips:
-    - {fileID: 8300000, guid: 6e125c7f6c3574341bb7b01fe6b9dfee, type: 3}
-    volume: 0.25
+    - {fileID: 8300000, guid: 80bd9d4bd8318a14485df52d305370ad, type: 3}
+    volume: 0.2
     pitch: 0.9
     m_randomVolumeRange: {x: 0.95, y: 1.05}
     m_randomPitchRange: {x: 0.95, y: 1.05}
     m_loop: 0
-  - m_name: EnemyHurt
+  - m_name: Parry
     m_clips:
-    - {fileID: 8300000, guid: 80bd9d4bd8318a14485df52d305370ad, type: 3}
+    - {fileID: 8300000, guid: 6e125c7f6c3574341bb7b01fe6b9dfee, type: 3}
     volume: 0.25
     pitch: 0.9
     m_randomVolumeRange: {x: 0.95, y: 1.05}

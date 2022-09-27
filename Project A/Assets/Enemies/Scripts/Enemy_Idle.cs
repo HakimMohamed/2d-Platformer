@@ -9,6 +9,7 @@ public class Enemy_Idle : StateMachineBehaviour
     Transform Player;
     Rigidbody2D rb;
     public float followRange = 0f;
+    [SerializeField] LayerMask playerLayer;
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -20,9 +21,10 @@ public class Enemy_Idle : StateMachineBehaviour
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         
+        Vector2 playerPosition = new(Player.position.x, 0);
+        Vector2 enemyPosition = new(rb.position.x, 0);
 
-
-        canSeePlayer = Vector2.Distance(Player.position, rb.position) <= followRange + 3f&& !Player.GetComponent<PlayerHealth>().IsDead;
+        canSeePlayer = Vector2.Distance(playerPosition, enemyPosition) <= followRange + 3f&& !Player.GetComponent<PlayerHealth>().IsDead;
         animator.SetBool("canSeePlayer", canSeePlayer);
 
         if (Player.GetComponent<PlayerHealth>().IsDead)

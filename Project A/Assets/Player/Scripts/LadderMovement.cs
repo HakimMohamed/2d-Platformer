@@ -36,16 +36,16 @@ public class LadderMovement : MonoBehaviour
     private void FixedUpdate()
     {
 
-        if (isClimbing&&!playermovement.isSliding)
-        {
-            rb.gravityScale = 0f;
-            rb.velocity = new Vector2(rb.velocity.x, vertical * speed);
-        }
-        else 
-        {
-            if(!playermovement.isSliding)
-                rb.gravityScale = defualtGravity;
-        }
+        //if (isClimbing&&!playermovement.isSliding)
+        //{
+        //    rb.gravityScale = 0f;
+        //    rb.velocity = new Vector2(rb.velocity.x, vertical * speed);
+        //}
+        //else 
+        //{
+        //    if(!playermovement.isSliding)
+        //        rb.gravityScale = defualtGravity;
+        //}
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
