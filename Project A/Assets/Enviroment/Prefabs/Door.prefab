@@ -451,8 +451,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1711325945
+  m_SortingLayer: -5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4255ae2e3aed70b46a8b7d8a843c7967, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -478,4 +478,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactButton: {fileID: 154908345552242276}
-  DoorNumber: 0
+  DoorNumber: 2
+  FadeInPanel: {fileID: 0}

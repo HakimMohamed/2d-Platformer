@@ -167,7 +167,7 @@ public class Playermovement : MonoBehaviour
         rb.velocity = new Vector2(horizontal * Time.fixedDeltaTime * MoveSpeed, rb.velocity.y);
         //if (horizontal == 0)
         //{
-        //    rb.velocity = new Vector2(0,rb.velocity.y);
+        //    rb.velocity = new Vector2(0, rb.velocity.y);
         //}
     }
 

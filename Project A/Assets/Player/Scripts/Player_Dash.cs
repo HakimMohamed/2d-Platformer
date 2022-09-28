@@ -47,9 +47,10 @@ public class Player_Dash : MonoBehaviour
         isDashing = true;
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0f;
-        rb.velocity = new Vector2(dir * dashpower, rb.velocity.y);
+        rb.velocity = new Vector2(dir * dashpower, 0);
         src.GenerateImpulse();
         yield return new WaitForSeconds(dashingTime);
+
         rb.gravityScale = originalGravity;
         isDashing = false;
         dashingTimeForImg = dashingTime;
