@@ -24,5 +24,6 @@ public class GameAssets : MonoBehaviour
     public Transform enemy_bulletExplosion1;
     public Transform enemy_bulletExplosion2;
     public Transform BloodVFX;
+    public Transform ThunderHit;
 
 }

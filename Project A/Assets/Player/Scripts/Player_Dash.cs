@@ -21,9 +21,11 @@ public class Player_Dash : MonoBehaviour
     private CinemachineImpulseSource src;
     PlayerHealth playerhealth;
     private float manaUsage=10f;
+    float defualtGravityScale;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        defualtGravityScale = rb.gravityScale;
         anim = GetComponent<Animator>();
         dashingTimeForImg = dashingTime;
         src = GetComponent<CinemachineImpulseSource>();
@@ -37,7 +39,7 @@ public class Player_Dash : MonoBehaviour
         {
             anim.SetTrigger("Dash");
             StartCoroutine(Dash(transform.localScale.x,dashinPower));
-            
+
         }
         anim.SetBool("isDashing", isDashing);
     }
@@ -45,7 +47,7 @@ public class Player_Dash : MonoBehaviour
     {
         canDash = false;
         isDashing = true;
-        float originalGravity = rb.gravityScale;
+        float originalGravity = defualtGravityScale;
         rb.gravityScale = 0f;
         rb.velocity = new Vector2(dir * dashpower, 0);
         src.GenerateImpulse();

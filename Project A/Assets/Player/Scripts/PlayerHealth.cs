@@ -59,8 +59,9 @@ public class PlayerHealth : MonoBehaviour
     public void PlayerReceiveDamage(float Damage)
     {
         if (IsDead)
-            return; 
-
+            return;
+        if (GetComponent<EagleDash>().isEagle)
+            return;
         bool isparry = GetComponent<PlayerParry>().isParry;
         bool canParry = GetComponent<PlayerParry>().canParry;
 
@@ -76,7 +77,6 @@ public class PlayerHealth : MonoBehaviour
 
 
         Health -= Damage;
-        rb.velocity = new Vector2(-transform.localScale.x * 13f, rb.velocity.y);
 
         if (Health <= 0 )
         {
@@ -95,6 +95,8 @@ public class PlayerHealth : MonoBehaviour
     }
     public void PlayerReceiveHealth(float amount)
     {
+        if (IsDead)
+            return;
         float health = Health + amount;
         if (health > MaxHealth)
         {
@@ -108,8 +110,9 @@ public class PlayerHealth : MonoBehaviour
     }
     public bool PlayerUseMana(float amount)
     {
-        
-      
+        if (IsDead)
+            return false;
+
         if (Mana - amount >= 0)
         {
             Mana-= amount;
@@ -124,7 +127,10 @@ public class PlayerHealth : MonoBehaviour
     }
     private void notEnoughMana()
     {
+        if (IsDead)
+            return;
         ManaBar_anim.SetTrigger("notEnough");
+        CameraShake();
     }
     public void CameraShake()
     {

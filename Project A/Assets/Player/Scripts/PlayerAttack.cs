@@ -17,7 +17,7 @@ public class PlayerAttack : MonoBehaviour
     float DefaultSpeed;
     [SerializeField] float speedWhileAttacking;
     float attackCoolDownReset;
-
+    Rigidbody2D rb;
 
 
     public int noOfClicks = 0;
@@ -27,7 +27,9 @@ public class PlayerAttack : MonoBehaviour
     public bool isFighting = false;
     public bool isAttacking;
     public bool disableAttack;
-    void Start()
+
+    private float defualtGravityScale;
+    void Awake()
     {
         EnemyLayer = LayerMask.GetMask("Enemy");
         anim = GetComponent<Animator>();
@@ -35,6 +37,9 @@ public class PlayerAttack : MonoBehaviour
         DefaultSpeed = playermovement.MoveSpeed;
         speedWhileAttacking = DefaultSpeed * speedWhileAttacking;
         src = GetComponent<CinemachineImpulseSource>();
+        rb = GetComponent<Rigidbody2D>();
+        defualtGravityScale = rb.gravityScale;
+
     }
 
     // Update is called once per frame
@@ -68,7 +73,9 @@ public class PlayerAttack : MonoBehaviour
     public void DisableMovement()
     {
         disableAttack = true;
-        playermovement.MoveSpeed = speedWhileAttacking;
+
+        if(playermovement.IsGrounded)
+            playermovement.MoveSpeed = speedWhileAttacking;
 
     }
     public void FreeMovement()
@@ -82,14 +89,13 @@ public class PlayerAttack : MonoBehaviour
     public void Attack()
     {
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(AttackPoint.position, AttackRadius,EnemyLayer);
-        DisableMovement();
 
         foreach (Collider2D enemy in hitEnemies)
         {
             
             if (enemy.CompareTag("Barrel"))
             {
-                enemy.GetComponent<BarrelHealth>().BarrelReceiveDamage(UnityEngine.Random.Range(AttackDamage.x,AttackDamage.y));
+                enemy.GetComponent<BarrelHealth>().BarrelReceiveDamage(100f);
 
             }
             else if (enemy.CompareTag("enemy"))
@@ -97,10 +103,11 @@ public class PlayerAttack : MonoBehaviour
                 var enemy_ = enemy.GetComponent<Enemy>();
                 var enemy_health = enemy.GetComponent<enemyHealth>();
                 enemy_health.EnemyReceiveDamage(UnityEngine.Random.Range(AttackDamage.x, AttackDamage.y));
+                ScreenShake();
+                StartCoroutine(DoSlowMotion());
 
             }
-            ScreenShake();
-            
+
             StopCoroutine(StartedFighting());
             StartCoroutine(StartedFighting());
 
@@ -129,11 +136,12 @@ public class PlayerAttack : MonoBehaviour
                 var enemy_health = enemy.GetComponent<enemyHealth>();
                 enemy_health.EnemyReceiveDamage(damage);
                 src.GenerateImpulse();
+                ScreenShake();
+                Instantiate(GameAssets.instance.ThunderHit, enemy.transform.position, Quaternion.identity);
+                StartCoroutine(DoSlowMotion());
 
             }
-            ScreenShake();
 
-            //StartCoroutine(DoSlowMotion());
             StopCoroutine(StartedFighting());
             StartCoroutine(StartedFighting());
 

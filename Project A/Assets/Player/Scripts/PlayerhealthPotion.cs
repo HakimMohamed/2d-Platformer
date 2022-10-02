@@ -28,6 +28,8 @@ public class PlayerhealthPotion : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GetComponent<PlayerHealth>().IsDead)
+            return;
         health = playerhealth.Health;
         maxHealth = playerhealth.MaxHealth;
         PotionsAvailbe.text = timesTousePotions.ToString()+"x";
@@ -53,6 +55,7 @@ public class PlayerhealthPotion : MonoBehaviour
     }
     public void Heal()
     {
+     
         AudioManager_PrototypeHero.instance.PlaySound("heal");
         if (healthReturned + health < maxHealth)
         {

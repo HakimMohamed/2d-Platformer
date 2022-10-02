@@ -569,13 +569,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttackRadius: 0.71
   AttackPoint: {fileID: 6828741446334958090}
-  speedWhileAttacking: 0.2
+  speedWhileAttacking: 0.4
   noOfClicks: 0
   isFighting: 0
   isAttacking: 0
   disableAttack: 0
   slowDownFactor: 0.01
-  slowdownLength: 0.56
+  slowdownLength: 0.2
 --- !u!114 &6828741445914886115
 MonoBehaviour:
   m_ObjectHideFlags: 0

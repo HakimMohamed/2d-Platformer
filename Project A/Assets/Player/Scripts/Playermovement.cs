@@ -45,7 +45,6 @@ public class Playermovement : MonoBehaviour
     [SerializeField] LayerMask wallLayer;
     [SerializeField] Transform wallChecker;
     [SerializeField] float wallRadius;
-    
     private void Awake()
     {
         playerparry = GetComponent<PlayerParry>();
@@ -65,6 +64,12 @@ public class Playermovement : MonoBehaviour
         HandleFlipping();
         isGroundedHandler();
         Air_AnimationsHandler();
+
+
+        if (GetComponent<Player_Dash>().isDashing)
+            return;
+        if (GetComponent<EagleDash>().isEagle)
+            return;
         jump_Input_Handler();
 
         anim.SetBool("isSliding", isSliding);
@@ -123,8 +128,10 @@ public class Playermovement : MonoBehaviour
             return;
         if (GetComponent<Player_Dash>().isDashing)
             return;
-        if (GetComponent<EagleDash>().isFalcon)
+        if (GetComponent<EagleDash>().isEagle)
             return;
+
+
         MoveCharacter(Direction().x);
 
 

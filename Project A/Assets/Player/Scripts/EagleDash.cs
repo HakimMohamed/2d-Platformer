@@ -9,7 +9,7 @@ public class EagleDash : MonoBehaviour
 
     [Header("Dash")]
     private bool canDash = true;
-    public bool isFalcon;
+    public bool isEagle;
     [SerializeField] private float dashinPower = 24f;
     private float dashingTime = .5f;
     private float dashingCooldown = 1f;
@@ -34,12 +34,12 @@ public class EagleDash : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        anim.SetBool("isFalcon", isFalcon);
+        anim.SetBool("isFalcon", isEagle);
 
         if (Input.GetKeyDown(KeyCode.E) && canDash)
         {
             anim.SetTrigger("Falcon");
-            isFalcon = true;
+            isEagle = true;
 
         }
         
@@ -48,14 +48,13 @@ public class EagleDash : MonoBehaviour
     public IEnumerator Dash()
     {
         canDash = false;
-        isFalcon = true;
         float originalGravity = rb.gravityScale;
         rb.gravityScale = 0f;
         rb.velocity = new Vector2(transform.localScale.x * dashinPower, rb.velocity.y);
         src.GenerateImpulse();
         yield return new WaitForSeconds(dashingTime);
         rb.gravityScale = originalGravity;
-        isFalcon = false;
+        isEagle = false;
         dashingTimeForImg = dashingTime;
 
 
