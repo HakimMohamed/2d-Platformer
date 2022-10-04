@@ -574,8 +574,8 @@ MonoBehaviour:
   isFighting: 0
   isAttacking: 0
   disableAttack: 0
-  slowDownFactor: 0.01
-  slowdownLength: 0.2
+  slowDownFactor: 0.003
+  slowdownLength: 0.01
 --- !u!114 &6828741445914886115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -797,7 +797,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca95c6bd07d2e684cbe869c5bf78db74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isFalcon: 0
+  isEagle: 0
   dashinPower: 24
 --- !u!1 &6828741446105893326
 GameObject:

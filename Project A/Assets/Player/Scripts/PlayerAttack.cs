@@ -16,12 +16,10 @@ public class PlayerAttack : MonoBehaviour
     Playermovement playermovement;
     float DefaultSpeed;
     [SerializeField] float speedWhileAttacking;
-    float attackCoolDownReset;
     Rigidbody2D rb;
 
 
     public int noOfClicks = 0;
-    private float timeBetweenAttacks = 1f;
 
     private CinemachineImpulseSource src;
     public bool isFighting = false;
@@ -57,10 +55,11 @@ public class PlayerAttack : MonoBehaviour
 
 
 
-
-
-        Time.timeScale += (1f / slowdownLength) *Time.unscaledDeltaTime;
+        Debug.Log(Time.timeScale);
         Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
+
+        if(StartedSlowMotion)
+            Time.timeScale += (1f / slowdownLength) *Time.unscaledDeltaTime;
 
     }
     public IEnumerator StartedFighting()
@@ -149,19 +148,21 @@ public class PlayerAttack : MonoBehaviour
     }
     public float slowDownFactor = 0.05f;
     public float slowdownLength=2f;
-
+    bool StartedSlowMotion = false;
     //public void StopSlowMotion()
     //{
     //    Time.timeScale = 1f;
     //}
     public IEnumerator DoSlowMotion()
     {
+        StartedSlowMotion = true;
         Time.timeScale = slowDownFactor;
         Time.fixedDeltaTime = Time.timeScale * .02f;
+
         yield return new WaitForSeconds(0.1f);
         Time.timeScale = 1f;
         Time.fixedDeltaTime = .02f;
-
+        StartedSlowMotion = false;
     }
     public void StartSlowMotion()
     {
