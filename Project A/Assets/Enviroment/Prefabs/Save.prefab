@@ -232,4 +232,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CheckPoint_number: 0
   SaveLight: {fileID: 7983194500781519883}
-  Saved_UI: {fileID: 0}
+  LightPanel: {fileID: 0}

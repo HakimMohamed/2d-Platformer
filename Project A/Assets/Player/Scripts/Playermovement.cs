@@ -194,8 +194,8 @@ public class Playermovement : MonoBehaviour
             Jump();
         }
 
-        //if (rb.velocity.y < _jumpVelocityFalloff || rb.velocity.y > 0 && !Input.GetKey(KeyCode.Space))
-        //    rb.velocity += _fallMultiplier * Physics.gravity.y * Time.deltaTime * Vector2.up;
+        if (rb.velocity.y < _jumpVelocityFalloff || rb.velocity.y > 0 && !Input.GetKey(KeyCode.Space))
+            rb.velocity += _fallMultiplier * Physics.gravity.y * Time.deltaTime * Vector2.up;
 
     }
 

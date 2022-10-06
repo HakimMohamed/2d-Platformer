@@ -9,6 +9,7 @@ public class CheckPointSave : MonoBehaviour
     bool isSaved = false;
     Animator anim;
     [SerializeField]GameObject SaveLight;
+    [SerializeField] GameObject LightPanel;
     //[SerializeField] GameObject Saved_UI;
     void Start()
     {
@@ -26,5 +27,10 @@ public class CheckPointSave : MonoBehaviour
             //Saved_UI.SetActive(true);
         }
         SaveLight.SetActive(isSaved);
+    }
+    public void LightEffect()
+    {
+        LightPanel.GetComponent<Animator>().SetTrigger("AuraEffect");
+
     }
 }
