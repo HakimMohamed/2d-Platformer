@@ -84,11 +84,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c7ecc0ae4253c846b8ddae5cf0d0563, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 3
+  Speed: 1.5
   attackRange: 2
   needToFollow: 0
   attackRate: 1
-  followRange: 20
+  followRange: 15
 --- !u!1101 &-7478548294517859997
 AnimatorStateTransition:
   m_ObjectHideFlags: 1

@@ -7,6 +7,12 @@ public class GameManager : MonoBehaviour
     [SerializeField]GameObject SleepPanel;
     [SerializeField]GameObject SpaceBar;
     GameObject Player;
+    public float SlowDownFactor;
+    private bool attacked=false;
+    [SerializeField] GameObject MouseClick;
+    [SerializeField] GameObject PlayerHealth;
+    [SerializeField] GameObject PlayerBones;
+    GameObject enemy;
     private void Awake()
     {
         SpaceBar.SetActive(false);
@@ -20,7 +26,7 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        
+        enemy = GameObject.Find("EnemyWithSlowSign");
     }
 
     // Update is called once per frame
@@ -31,10 +37,43 @@ public class GameManager : MonoBehaviour
             Player.GetComponent<Animator>().SetBool("isSleeping", false);
             SleepPanel.GetComponentInChildren<Animator>().SetTrigger("GetUp");
             StopCoroutine(EnableSapaceBar());
-            SpaceBar.GetComponentInChildren<UiDestroySelf>().DestroyUi();
+            if(SpaceBar!=null)
+                SpaceBar.GetComponentInChildren<UiDestroySelf>().DestroyUi();
             Invoke("EnablePlayerMovement", 1.5f);
         }
+        if (enemy != null)
+        {
+            if (enemy.GetComponent<SlowSign>().enemyIsTooClose)
+            {
+                Player.GetComponent<PlayerAttack>().enabled = true;
+                if (Input.GetMouseButtonDown(0))
+                {
+                    attacked = true;
+
+                }
+                if (!attacked)
+                {
+                    Time.timeScale = SlowDownFactor;
+                    MouseClick.SetActive(true);
+
+                }
+                else
+                {
+                    Time.timeScale = 1f;
+
+                }
+            }
+        }
+        if (attacked || enemy == null)
+        {
+            MouseClick.SetActive(false);
+            Time.timeScale = 1f;
+            PlayerHealth.SetActive(true);
+            PlayerBones.SetActive(true);
+        }
+
     }
+
     private IEnumerator EnableSapaceBar()
     {
         yield return new WaitForSeconds(4f);

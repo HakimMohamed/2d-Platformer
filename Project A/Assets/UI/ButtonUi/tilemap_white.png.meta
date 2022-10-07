@@ -326,7 +326,7 @@ TextureImporter:
         width: 13
         height: 13
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -334,6 +334,48 @@ TextureImporter:
       bones: []
       spriteID: 7ccf99efe5f1aeb43be53b2f8a855b77
       internalID: -1097939166
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_white_10
+      rect:
+        serializedVersion: 2
+        x: 155
+        y: 357
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f5477ba484ff41243b54672f705473b3
+      internalID: -862867845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: tilemap_white_11
+      rect:
+        serializedVersion: 2
+        x: 138
+        y: 357
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4dd7f1d382a5d9c41b1a3974ffab36d9
+      internalID: 849648278
       vertices: []
       indices: 
       edges: []
@@ -352,10 +394,12 @@ TextureImporter:
       tilemap_white_1: -1986321661
       tilemap_white_3: -1005890476
       tilemap_white_2: -2087774772
+      tilemap_white_11: 849648278
       tilemap_white_9: -1097939166
       tilemap_white_0: 519548539
       tilemap_white_8: -1117921869
       tilemap_white_6: 525051655
+      tilemap_white_10: -862867845
       tilemap_white_4: -928727324
       tilemap_white_7: -1676995002
       tilemap_white_5: 1972702292

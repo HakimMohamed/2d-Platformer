@@ -82,9 +82,8 @@ public class PrototypeHeroAnimEvents : MonoBehaviour
     void AE_Parry()
     {
         m_audioManager.PlaySound("Parry");
-        float xOffset = 0.1875f;
-        float yOffset = 0.25f;
-        m_player.SpawnDustEffect(m_ParryEffect, xOffset, yOffset);
+
+        //m_player.SpawnDustEffect(m_ParryEffect, xOffset, yOffset);
         //m_player.DisableMovement(0.5f);
     }
 

@@ -28,13 +28,16 @@ public class xpBones : MonoBehaviour
         {
             transform.position = Vector2.MoveTowards(transform.position, Player.position, Time.deltaTime * speed);
         }
-        if (Vector2.Distance(transform.position, Player.position) < 1f&& !isCollected&& TimeTostart<=0)
+        if (Vector2.Distance(transform.position, Player.position) < 1f && !isCollected && TimeTostart <= 0)
         {
-            isCollected = true;
-            anim.SetTrigger("Vanish");
-            xpBonesAnimatorText.SetTrigger("newBone");
-            Player.GetComponent<PlayerExp>().numOfbones += 1;
-            Player.GetComponent<PlayerExp>().StartCoroutine(Player.GetComponent<PlayerExp>().changePlayersColor());
+            if (xpBonesAnimatorText != null)
+            {
+                isCollected = true;
+                anim.SetTrigger("Vanish");
+                xpBonesAnimatorText.SetTrigger("newBone");
+                Player.GetComponent<PlayerExp>().numOfbones += 1;
+                Player.GetComponent<PlayerExp>().StartCoroutine(Player.GetComponent<PlayerExp>().changePlayersColor());
+            }
         }
 
         if (transform.position.x > Player.transform.position.x)
