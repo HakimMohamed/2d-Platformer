@@ -77,7 +77,7 @@ public class enemyHealth : MonoBehaviour
 
             EnemyDeathBone();
             SpawnBones_xp();
-            anim.SetBool("IsDead", IsDead);
+            //anim.SetBool("IsDead", IsDead);
             
             rb.bodyType = RigidbodyType2D.Dynamic;
             if (Enemy.enemies_Number <= 0)

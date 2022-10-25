@@ -77,6 +77,9 @@ TagManager:
   - name: Enemy
     uniqueID: 3399406997
     locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
   - name: Wall
     uniqueID: 944692903
     locked: 0
@@ -85,9 +88,6 @@ TagManager:
     locked: 0
   - name: Decor
     uniqueID: 298757201
-    locked: 0
-  - name: Default
-    uniqueID: 0
     locked: 0
   - name: Player
     uniqueID: 3722876167

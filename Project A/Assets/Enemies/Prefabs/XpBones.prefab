@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d018ca9bf4992b449222dc399515d9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  randonSpeed: {x: 12, y: 33}
+  randonSpeed: {x: 33, y: 55}
 --- !u!114 &1704375194
 MonoBehaviour:
   m_ObjectHideFlags: 0

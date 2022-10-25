@@ -1,20 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 public class CheckPointSave : MonoBehaviour
 {
-    [SerializeField]private int CheckPoint_number = 0;
     Transform Player;
     bool isSaved = false;
     Animator anim;
     [SerializeField]GameObject SaveLight;
-    [SerializeField] GameObject LightPanel;
-    //[SerializeField] GameObject Saved_UI;
+    public static event EventHandler OnPlayerSaved;
     void Start()
     {
         Player = GameObject.Find("Player").transform;
         anim = GetComponent<Animator>();
+        OnPlayerSaved += LightEffectOnPlayerSaved;
     }
 
     // Update is called once per frame
@@ -24,13 +23,13 @@ public class CheckPointSave : MonoBehaviour
         {
             isSaved = true;
             anim.SetTrigger("Saved");
-            //Saved_UI.SetActive(true);
+            OnPlayerSaved?.Invoke(this,EventArgs.Empty);
         }
-        SaveLight.SetActive(isSaved);
     }
-    public void LightEffect()
+    private void LightEffectOnPlayerSaved(object sender, EventArgs e)
     {
-        LightPanel.GetComponent<Animator>().SetTrigger("AuraEffect");
+        SaveLight.SetActive(isSaved);
+        OnPlayerSaved -= LightEffectOnPlayerSaved;
 
     }
 }

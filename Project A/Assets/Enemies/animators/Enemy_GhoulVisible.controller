@@ -88,7 +88,7 @@ MonoBehaviour:
   attackRange: 2
   needToFollow: 0
   attackRate: 1
-  followRange: 15
+  followRange: 10
 --- !u!1101 &-7478548294517859997
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -546,7 +546,7 @@ MonoBehaviour:
   attackRange: 2
   needToFollow: 0
   attackRate: 1
-  followRange: 15
+  followRange: 10
 --- !u!1101 &8537927299689439244
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -584,7 +584,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e8da471d8aa7e84388474861cb0392c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  followRange: 15
+  followRange: 10
   playerLayer:
     serializedVersion: 2
     m_Bits: 256

@@ -24,7 +24,7 @@ public class PlayerDoubleJump : MonoBehaviour
             canJump = false;
             Jump();
         }
-        if (playermovement.isSliding && !playermovement.IsGrounded && Input.GetKeyDown(KeyCode.Space)&&canJump)
+        if ( !playermovement.IsGrounded && Input.GetKeyDown(KeyCode.Space)&&canJump)
         {
             canJump = false;
             Jump();

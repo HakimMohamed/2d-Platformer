@@ -24,10 +24,10 @@ public class Enemy_Idle : StateMachineBehaviour
         Vector2 playerPosition = new(Player.position.x, 0);
         Vector2 enemyPosition = new(rb.position.x, 0);
 
-        canSeePlayer = Vector2.Distance(playerPosition, enemyPosition) <= followRange + 3f&& !Player.GetComponent<PlayerHealth>().IsDead;
+        canSeePlayer = Vector2.Distance(playerPosition, enemyPosition) <= followRange + 3f&& !PlayerHealth.IsDead;
         animator.SetBool("canSeePlayer", canSeePlayer);
 
-        if (Player.GetComponent<PlayerHealth>().IsDead)
+        if (PlayerHealth.IsDead)
             return;
 
 

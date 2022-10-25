@@ -33,7 +33,7 @@ public class EnemyDiffrent_attacks : StateMachineBehaviour
     {
         ChangeAttackRange();
 
-        if (Player.GetComponent<PlayerHealth>().IsDead)
+        if (PlayerHealth.IsDead)
         {
             animator.SetBool("canSeePlayer", false);
             animator.SetBool("needToFollow", false);
@@ -42,7 +42,7 @@ public class EnemyDiffrent_attacks : StateMachineBehaviour
         }
             
 
-        canSeePlayer = Vector2.Distance(Player.position, rb.position) <= followRange + 3f && !Player.GetComponent<PlayerHealth>().IsDead;
+        canSeePlayer = Vector2.Distance(Player.position, rb.position) <= followRange + 3f && !PlayerHealth.IsDead;
         animator.SetBool("canSeePlayer", canSeePlayer);
 
         if (Vector2.Distance(Player.position, rb.position) >= attackRange-1f &&canSeePlayer)
@@ -58,7 +58,7 @@ public class EnemyDiffrent_attacks : StateMachineBehaviour
 
        
 
-        canSeePlayer = Vector2.Distance(Player.position, rb.position) <= followRange + 3f && !Player.GetComponent<PlayerHealth>().IsDead;
+        canSeePlayer = Vector2.Distance(Player.position, rb.position) <= followRange + 3f && !PlayerHealth.IsDead;
         animator.SetBool("canSeePlayer", canSeePlayer);
 
         

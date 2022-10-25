@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 public class xpBones : MonoBehaviour
 {
     Transform Player;
@@ -11,9 +11,10 @@ public class xpBones : MonoBehaviour
     int speed;
     float TimeTostart = 2f;
     bool isCollected = false;
+    public static event EventHandler OnnewBone;
     void Start()
     {
-        speed = (int)Random.Range(randonSpeed.x, randonSpeed.y);
+        speed = (int)UnityEngine.Random.Range(randonSpeed.x, randonSpeed.y);
         Player = GameObject.Find("Player").transform;
         anim = GetComponent<Animator>();
         xpBonesAnimatorText = GameObject.FindGameObjectWithTag("numberOfBones").GetComponent<Animator>();
@@ -32,6 +33,7 @@ public class xpBones : MonoBehaviour
         {
             if (xpBonesAnimatorText != null)
             {
+                OnnewBone?.Invoke(this, EventArgs.Empty);
                 isCollected = true;
                 anim.SetTrigger("Vanish");
                 xpBonesAnimatorText.SetTrigger("newBone");

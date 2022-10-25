@@ -30,7 +30,8 @@ public class DoorDamage : MonoBehaviour
             var player_health = Player.GetComponent<PlayerHealth>();
 
             player_health.PlayerReceiveDamage(AttackDamage);
-            Player.GetComponent<Player_Dash>().StartCoroutine(Player.GetComponent<Player_Dash>().Dash(-transform.localScale.x, knockBackPower));
+            StartCoroutine(Extensions.addForceToPlayer(Player.GetComponent<Rigidbody2D>(), (int)-transform.localScale.x, knockBackPower));
+
 
         }
     }

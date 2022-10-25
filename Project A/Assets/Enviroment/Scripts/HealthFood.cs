@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class HealthFood : MonoBehaviour
 {
     GameObject Player;
     [SerializeField] GameObject interactButton;
-    PlayerHealth playerhealth;
-    public float healthReturnPercentage=.2f;
+    PlayerHealth PlayerHealth;
+    public float healthReturnPercentage = .2f;
     Rigidbody2D rb;
     public PhysicsMaterial2D physicMaterial;
 
@@ -15,8 +16,7 @@ public class HealthFood : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         Player = GameObject.Find("Player");
-        playerhealth = Player.GetComponent<PlayerHealth>();
-        Invoke("StopBouncing",1f);
+        Invoke("StopBouncing", 1f);
     }
 
     // Update is called once per frame
@@ -27,9 +27,9 @@ public class HealthFood : MonoBehaviour
             interactButton.SetActive(true);
             if (Input.GetKeyDown(KeyCode.F))
             {
-                if (playerhealth.Health < playerhealth.MaxHealth)
+                if (PlayerHealth.Health < PlayerHealth.MaxHealth)
                 {
-                    playerhealth.PlayerReceiveHealth(playerhealth.MaxHealth * healthReturnPercentage);
+                    PlayerHealth.PlayerReceiveHealth(PlayerHealth.MaxHealth * healthReturnPercentage);
                     Destroy(gameObject);
                 }
             }

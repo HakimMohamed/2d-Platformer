@@ -29,7 +29,7 @@ public class Enemy_Run : StateMachineBehaviour
     //OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        if (Player.GetComponent<PlayerHealth>().IsDead)
+        if (PlayerHealth.IsDead)
         {
             animator.SetBool("canSeePlayer", false);
             animator.SetBool("needToFollow", false);
@@ -49,7 +49,7 @@ public class Enemy_Run : StateMachineBehaviour
         Vector2 playerPosition = new(Player.position.x, 0);
         Vector2 enemyPosition = new(rb.position.x, 0);
 
-        canSeePlayer = Vector2.Distance(playerPosition, enemyPosition) <= followRange + 3f && !Player.GetComponent<PlayerHealth>().IsDead;
+        canSeePlayer = Vector2.Distance(playerPosition, enemyPosition) <= followRange + 3f && !PlayerHealth.IsDead;
         animator.SetBool("canSeePlayer", canSeePlayer);
 
         enemy.LookAtPlayer();

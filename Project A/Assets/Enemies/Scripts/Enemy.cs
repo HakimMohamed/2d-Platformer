@@ -24,11 +24,11 @@ public class Enemy : MonoBehaviour
     {
         float speed = rb.velocity.normalized.x;
         anim.SetFloat("Speed", Mathf.Abs(speed));
-        if (Player.GetComponent<PlayerHealth>().IsDead&&Name=="normalenemy")
+        if (PlayerHealth.IsDead&&Name=="normalenemy")
         {
             GetComponent<EnemyAttack>().enabled=false;
         }
-        else if (Player.GetComponent<PlayerHealth>().IsDead && Name == "hellbot")
+        else if (PlayerHealth.IsDead && Name == "hellbot")
         {
             GetComponent<EnemyHellBotAttack>().enabled = false;
             
