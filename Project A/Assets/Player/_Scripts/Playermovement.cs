@@ -12,6 +12,8 @@ public class Playermovement : MonoBehaviour
     private Rigidbody2D rb;
     private Animator anim;
     private CinemachineImpulseSource src;
+    private LadderMovement laddermovement;
+    [SerializeField] PhysicsMaterial2D NoFriction;
     [Header("Horizontal Movement")]
     public float MoveSpeed = 10f;
     public float DefaultMoveSpeed = 333f;
@@ -58,12 +60,14 @@ public class Playermovement : MonoBehaviour
         src = GetComponent<CinemachineImpulseSource>();
 
         playerattack = GetComponent<PlayerAttack>();
+        laddermovement = GetComponent<LadderMovement>();
     }
 
     // Update is called once per frame
     void Update()
     {
-  
+        if (PlayerHealth.IsDead)        
+            return;   
         
         IsGrounded =   Physics2D.OverlapCircle(GroundChecker.position, GroundChecker_Radius, GroundLayer);
         bool isJumping = Input.GetKey(KeyCode.Space);
@@ -106,7 +110,7 @@ public class Playermovement : MonoBehaviour
             MoveSpeed = WalkMoveSpeed;
         anim.SetBool("Ctrl", LeftCtrl);
 
-        if (!playerattack.isAttacking )
+        if (!playerattack.isAttacking  && !PlayerParry.isParry)
         {
             float speedWhileFighting = .4f * DefaultMoveSpeed + DefaultMoveSpeed;
             if (!LeftCtrl && !playerattack.disableAttack)

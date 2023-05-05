@@ -20,6 +20,8 @@ public class Player_Dash : MonoBehaviour
     Rigidbody2D rb;
     Animator anim;
     private CinemachineImpulseSource src;
+    PlayerHealth playerhealth;
+    private float manaUsage = 10f;
     float defualtGravityScale;
     void Start()
     {
@@ -27,12 +29,13 @@ public class Player_Dash : MonoBehaviour
         defualtGravityScale = rb.gravityScale;
         anim = GetComponent<Animator>();
         src = GetComponent<CinemachineImpulseSource>();
+        playerhealth = GetComponent<PlayerHealth>();
     }
         
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftControl) && canDash )
+        if (Input.GetKeyDown(KeyCode.LeftControl) && canDash && playerhealth.PlayerUseMana(manaUsage))
         {
             anim.SetTrigger("Dash");
             StartCoroutine(Dash(transform.localScale.x,dashinPower));
